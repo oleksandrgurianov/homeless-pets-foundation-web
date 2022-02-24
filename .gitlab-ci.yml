@@ -15,6 +15,6 @@ test:
     - ./gradlew test
     - ./gradlew.bat -stop
 
-after script:
+after_script:
   - echo "End CI:"
   - exit
