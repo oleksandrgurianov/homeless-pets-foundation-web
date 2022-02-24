@@ -1,19 +1,20 @@
 stages:
-- build
-- test 
+  - build
+  - test
 
 build:
   stage: build
   script:
     - chmod +x gradlew
     - ./gradlew build -x test
-    - ./gradlew.bat --stop 
+    - .gradlew.bat --stop
+
 test:
   stage: test
   script:
     - ./gradlew test
-    - ./gradlew.bat –stop
+    - ./gradlew.bat -stop
 
-after_script:
+after script:
   - echo "End CI:"
   - exit
