@@ -6,7 +6,6 @@ build:
   stage: build
   script:
     - ./gradlew build -x test
-    - chmod +x gradlew
     - ./gradlew.bat --stop 
 test:
   stage: test
