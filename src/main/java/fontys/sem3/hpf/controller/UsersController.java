@@ -1,6 +1,6 @@
 package fontys.sem3.hpf.controller;
+import fontys.sem3.hpf.business.PetsService;
 import fontys.sem3.hpf.model.User;
-import fontys.sem3.hpf.repository.FakeDataStore;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/users")
 public class UsersController {
-    private static final FakeDataStore fakeDataStore = new FakeDataStore();
+    private PetsService petsService;
+
+    public UsersController(PetsService petsService) {
+        this.petsService = petsService;
+    }
 
     @GetMapping
     //GET at http://localhost:XXXX/users
