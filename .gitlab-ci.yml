@@ -5,10 +5,13 @@ stages:
 build:
   stage: build
   script:
+    - cd hpf-api   
     - ./gradlew build -x test
     - ./gradlew.bat --stop 
 test:
   stage: test
   script:
+    - cd hpf-api 
     - ./gradlew test
     - ./gradlew.bat --stop
+
