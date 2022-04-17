@@ -14,8 +14,8 @@ public class CustomerDTO extends UserDTO {
     private String cvv;
     private boolean status;
 
-    public CustomerDTO(int id, String avatar, String firstName, String lastName, String phoneNumber, String email, String password, String role, String street, String postcode, String city, String cardNumber, String expirationDate, String cvv, boolean status) {
-        super(id, avatar, firstName, lastName, phoneNumber, email, password, role);
+    public CustomerDTO(int id, String avatar, String fullName, String phoneNumber, String email, String password, String role, String street, String postcode, String city, String cardNumber, String expirationDate, String cvv, boolean status) {
+        super(id, avatar, fullName, phoneNumber, email, password, role);
         this.street = street;
         this.postcode = postcode;
         this.city = city;
