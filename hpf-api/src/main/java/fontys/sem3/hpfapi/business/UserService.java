@@ -1,4 +1,4 @@
 package fontys.sem3.hpfapi.business;
 
-public class UserService {
+public interface UserService {
 }

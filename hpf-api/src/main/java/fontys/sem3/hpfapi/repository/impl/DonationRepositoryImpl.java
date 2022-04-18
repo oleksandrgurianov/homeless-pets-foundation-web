@@ -5,11 +5,8 @@ import fontys.sem3.hpfapi.repository.DonationRepository;
 import fontys.sem3.hpfapi.repository.TemporaryDatabase;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Comparator;
-
-import static java.util.Collections.sort;
 
 @Primary
 @Service
@@ -17,32 +14,48 @@ public class DonationRepositoryImpl implements DonationRepository {
     private final TemporaryDatabase temporaryDatabase = new TemporaryDatabase();
 
     @Override
-    public ArrayList<DonationDTO> getDonationsSortedByDateOfReceipt(boolean ascending) {
-        ArrayList<DonationDTO> donations = this.temporaryDatabase.donationsList;
+    public ArrayList<DonationDTO> getDonationsSortedByDateOfReceipt(int customerId, boolean ascending) {
+        ArrayList<DonationDTO> donations = new ArrayList<>();
+
+        for (DonationDTO d : temporaryDatabase.donationsList) {
+            if (customerId == 0 || customerId == d.getCustomerId()) {
+                donations.add(d);
+            }
+        }
 
         Comparator<DonationDTO> compareByDateOfReceipt =
                 Comparator.comparing(DonationDTO::getDateOfReceipt);
 
-        if (ascending) {
-            sort(donations, compareByDateOfReceipt);
-        } else {
-            sort(donations, compareByDateOfReceipt.reversed());
+        if (!donations.isEmpty()) {
+            if (ascending) {
+                donations.sort(compareByDateOfReceipt);
+            } else {
+                donations.sort(compareByDateOfReceipt.reversed());
+            }
         }
 
         return donations;
     }
 
     @Override
-    public ArrayList<DonationDTO> getDonationsSortedByAmount(boolean ascending) {
-        ArrayList<DonationDTO> donations = this.temporaryDatabase.donationsList;
+    public ArrayList<DonationDTO> getDonationsSortedByAmount(int customerId, boolean ascending) {
+        ArrayList<DonationDTO> donations = new ArrayList<>();
+
+        for (DonationDTO d : temporaryDatabase.donationsList) {
+            if (customerId == 0 || customerId == d.getCustomerId()) {
+                donations.add(d);
+            }
+        }
 
         Comparator<DonationDTO> compareByAmount =
                 Comparator.comparing(DonationDTO::getAmount);
 
-        if (ascending) {
-            sort(donations, compareByAmount);
-        } else {
-            sort(donations, compareByAmount.reversed());
+        if (!donations.isEmpty()) {
+            if (ascending) {
+                donations.sort(compareByAmount);
+            } else {
+                donations.sort(compareByAmount.reversed());
+            }
         }
 
         return donations;

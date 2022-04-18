@@ -1,4 +1,7 @@
 package fontys.sem3.hpfapi.business.impl;
 
-public interface DonationServiceImpl {
+import fontys.sem3.hpfapi.business.DonationService;
+
+public class DonationServiceImpl implements DonationService {
+
 }

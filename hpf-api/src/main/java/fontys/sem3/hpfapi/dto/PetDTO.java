@@ -9,6 +9,7 @@ import java.util.ArrayList;
 @Setter
 public class PetDTO {
     private int id;
+    private int customerId;
     private ArrayList<String> pictures;
     private String type;
     private String name;

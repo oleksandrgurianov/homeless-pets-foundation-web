@@ -1,4 +1,7 @@
 package fontys.sem3.hpfapi.business.impl;
 
-public interface PetServiceImpl {
+import fontys.sem3.hpfapi.business.PetService;
+
+public class PetServiceImpl implements PetService {
+
 }
