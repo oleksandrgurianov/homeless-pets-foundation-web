@@ -14,7 +14,7 @@ public class DonationRepositoryImpl implements DonationRepository {
     private final TemporaryDatabase temporaryDatabase = new TemporaryDatabase();
 
     @Override
-    public ArrayList<DonationDTO> getDonationsSortedByDateOfReceipt(int customerId, boolean ascending) {
+    public ArrayList<DonationDTO> getDonationsByCustomerIdSortedByDateOfReceipt(int customerId, boolean ascending) {
         ArrayList<DonationDTO> donations = new ArrayList<>();
 
         for (DonationDTO d : temporaryDatabase.donationsList) {
@@ -38,7 +38,7 @@ public class DonationRepositoryImpl implements DonationRepository {
     }
 
     @Override
-    public ArrayList<DonationDTO> getDonationsSortedByAmount(int customerId, boolean ascending) {
+    public ArrayList<DonationDTO> getDonationsByCustomerIdSortedByAmount(int customerId, boolean ascending) {
         ArrayList<DonationDTO> donations = new ArrayList<>();
 
         for (DonationDTO d : temporaryDatabase.donationsList) {
@@ -70,18 +70,5 @@ public class DonationRepositoryImpl implements DonationRepository {
         }
 
         return null;
-    }
-
-    @Override
-    public ArrayList<DonationDTO> getDonationsByCustomerId(int customerId) {
-        ArrayList<DonationDTO> donations = new ArrayList<>();
-
-        for (DonationDTO d : temporaryDatabase.donationsList) {
-            if (d.getCustomerId() == customerId) {
-                donations.add(d);
-            }
-        }
-
-        return donations;
     }
 }
