@@ -7,7 +7,8 @@ public interface UserRepository {
     UserDTO getUserByEmailAndPassword(String email, String password);
     UserDTO getUserById(int id);
     ArrayList<UserDTO> getSortedCustomersBySearchAndStatus(String search, boolean ascending, boolean approved);
-    boolean createUser(UserDTO user);
+    boolean userExists(UserDTO user);
+    void createUser(UserDTO user);
     boolean updateAvatar(UserDTO user);
     boolean updateUser(UserDTO user);
     boolean updateCard(UserDTO user);

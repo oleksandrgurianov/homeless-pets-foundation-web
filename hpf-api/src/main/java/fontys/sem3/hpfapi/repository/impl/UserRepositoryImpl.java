@@ -17,16 +17,14 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public UserDTO getUserByEmailAndPassword(String email, String password) {
         for (UserDTO u : temporaryDatabase.usersList) {
-            if (!email.isBlank() && !password.isBlank()) {
-                if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
-                    if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
-                        if (!((CustomerDTO) u).isStatus()) {
-                            return null;
-                        }
+            if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
+                if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
+                    if (!((CustomerDTO) u).isStatus()) {
+                        return null;
                     }
-
-                    return u;
                 }
+
+                return u;
             }
         }
 
@@ -77,29 +75,33 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean createUser(UserDTO user) {
-        if (user != null) {
-            this.temporaryDatabase.usersList.add(user);
-            return true;
+    public boolean userExists(UserDTO user) {
+        for (UserDTO u : temporaryDatabase.usersList) {
+            if (u.getEmail().equals(user.getEmail())) {
+                return true;
+            }
         }
 
         return false;
     }
 
     @Override
-    public boolean updateAvatar(UserDTO user) {
-        if (user != null) {
-            for (UserDTO u : temporaryDatabase.usersList) {
-                if (u.getId() == user.getId()) {
-                    if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
-                        if (!((CustomerDTO) u).isStatus()) {
-                            return false;
-                        }
-                    }
+    public void createUser(UserDTO user) {
+        this.temporaryDatabase.usersList.add(user);
+    }
 
-                    u.setAvatar(user.getAvatar());
-                    return true;
+    @Override
+    public boolean updateAvatar(UserDTO user) {
+        for (UserDTO u : temporaryDatabase.usersList) {
+            if (u.getId() == user.getId()) {
+                if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
+                    if (!((CustomerDTO) u).isStatus()) {
+                        return false;
+                    }
                 }
+
+                u.setAvatar(user.getAvatar());
+                return true;
             }
         }
 
@@ -108,26 +110,24 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean updateUser(UserDTO user) {
-        if (user != null) {
-            for (UserDTO u : temporaryDatabase.usersList) {
-                if (u.getId() == user.getId()) {
-                    if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
-                        if (!((CustomerDTO) u).isStatus()) {
-                            return false;
-                        }
-
-                        ((CustomerDTO) u).setStreet(((CustomerDTO) user).getStreet());
-                        ((CustomerDTO) u).setPostcode(((CustomerDTO) user).getPostcode());
-                        ((CustomerDTO) u).setCity(((CustomerDTO) user).getCity());
+        for (UserDTO u : temporaryDatabase.usersList) {
+            if (u.getId() == user.getId()) {
+                if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
+                    if (!((CustomerDTO) u).isStatus()) {
+                        return false;
                     }
 
-                    u.setFullName(user.getFullName());
-                    u.setEmail(user.getEmail());
-                    u.setPhoneNumber(user.getPhoneNumber());
-                    u.setPassword(user.getPassword());
-
-                    return true;
+                    ((CustomerDTO) u).setStreet(((CustomerDTO) user).getStreet());
+                    ((CustomerDTO) u).setPostcode(((CustomerDTO) user).getPostcode());
+                    ((CustomerDTO) u).setCity(((CustomerDTO) user).getCity());
                 }
+
+                u.setFullName(user.getFullName());
+                u.setEmail(user.getEmail());
+                u.setPhoneNumber(user.getPhoneNumber());
+                u.setPassword(user.getPassword());
+
+                return true;
             }
         }
 
@@ -136,19 +136,17 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean updateCard(UserDTO user) {
-        if (user != null) {
-            for (UserDTO u : temporaryDatabase.usersList) {
-                if (u.getId() == user.getId()) {
-                    if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
-                        if (!((CustomerDTO) u).isStatus()) {
-                            return false;
-                        }
-
-                        ((CustomerDTO) u).setCardNumber(((CustomerDTO) user).getCardNumber());
-                        ((CustomerDTO) u).setExpirationDate(((CustomerDTO) user).getExpirationDate());
-                        ((CustomerDTO) u).setCvv(((CustomerDTO) user).getCvv());
-                        return true;
+        for (UserDTO u : temporaryDatabase.usersList) {
+            if (u.getId() == user.getId()) {
+                if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
+                    if (!((CustomerDTO) u).isStatus()) {
+                        return false;
                     }
+
+                    ((CustomerDTO) u).setCardNumber(((CustomerDTO) user).getCardNumber());
+                    ((CustomerDTO) u).setExpirationDate(((CustomerDTO) user).getExpirationDate());
+                    ((CustomerDTO) u).setCvv(((CustomerDTO) user).getCvv());
+                    return true;
                 }
             }
         }
@@ -158,7 +156,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean deleteAvatar(UserDTO user) {
-        if (user != null) {
+        if (!user.getAvatar().isBlank()) {
             for (UserDTO u : temporaryDatabase.usersList) {
                 if (u.getId() == user.getId()) {
                     if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
@@ -178,10 +176,28 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean deleteCustomer(UserDTO user) {
-        if (user != null) {
-            for (UserDTO u : temporaryDatabase.usersList) {
-                if (u.getId() == user.getId()) {
-                    this.temporaryDatabase.usersList.remove(u);
+        for (UserDTO u : temporaryDatabase.usersList) {
+            if (u.getId() == user.getId()) {
+                this.temporaryDatabase.usersList.remove(u);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean deleteCard(UserDTO user) {
+        for (UserDTO u : temporaryDatabase.usersList) {
+            if (u.getId() == user.getId()) {
+                if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
+                    if (!((CustomerDTO) u).isStatus()) {
+                        return false;
+                    }
+
+                    ((CustomerDTO) u).setCardNumber(null);
+                    ((CustomerDTO) u).setExpirationDate(null);
+                    ((CustomerDTO) u).setCvv(null);
                     return true;
                 }
             }
@@ -191,36 +207,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean deleteCard(UserDTO user) {
-        if (user != null) {
-            for (UserDTO u : temporaryDatabase.usersList) {
-                if (u.getId() == user.getId()) {
-                    if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
-                        if (!((CustomerDTO) u).isStatus()) {
-                            return false;
-                        }
-
-                        ((CustomerDTO) u).setCardNumber(null);
-                        ((CustomerDTO) u).setExpirationDate(null);
-                        ((CustomerDTO) u).setCvv(null);
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    @Override
     public boolean updateStatus(UserDTO user) {
-        if (user != null) {
-            for (UserDTO u : temporaryDatabase.usersList) {
-                if (u.getId() == user.getId()) {
-                    if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
-                        ((CustomerDTO) u).setStatus(!((CustomerDTO)u).isStatus());
-                        return true;
-                    }
+        for (UserDTO u : temporaryDatabase.usersList) {
+            if (u.getId() == user.getId()) {
+                if (u.getRole().equals("CUSTOMER") && u instanceof CustomerDTO) {
+                    ((CustomerDTO) u).setStatus(!((CustomerDTO)u).isStatus());
+                    return true;
                 }
             }
         }
