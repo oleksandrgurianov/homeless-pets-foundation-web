@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public interface PetRepository {
     ArrayList<PetDTO> getSortedPetsBySearch(String search, boolean ascending, int customerId);
     PetDTO getPetById(int id);
-    boolean createPet(PetDTO pet);
+    boolean petExists(PetDTO pet);
+    void createPet(PetDTO pet);
     boolean updatePet(PetDTO pet);
     boolean deletePet(PetDTO pet);
     boolean updateCustomerId(PetDTO pet, UserDTO user);

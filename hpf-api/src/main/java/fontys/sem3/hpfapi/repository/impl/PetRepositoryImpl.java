@@ -56,33 +56,37 @@ public class PetRepositoryImpl implements PetRepository {
     }
 
     @Override
-    public boolean createPet(PetDTO pet) {
-        if (pet != null) {
-            this.temporaryDatabase.petsList.add(pet);
-            return true;
+    public boolean petExists(PetDTO pet) {
+        for (PetDTO p : temporaryDatabase.petsList) {
+            if (p.getType().equals(pet.getType()) && p.getName().equals(pet.getName()) && p.getBreed().equals(pet.getBreed())) {
+                return true;
+            }
         }
 
         return false;
     }
 
     @Override
+    public void createPet(PetDTO pet) {
+        this.temporaryDatabase.petsList.add(pet);
+    }
+
+    @Override
     public boolean updatePet(PetDTO pet) {
-        if (pet != null) {
-            for (PetDTO p : temporaryDatabase.petsList) {
-                if (p.getId() == pet.getId()) {
-                    if (p.getCustomerId() == 0) {
-                        p.setPictures(pet.getPictures());
-                        p.setType(pet.getType());
-                        p.setName(pet.getName());
-                        p.setBreed(pet.getBreed());
-                        p.setAgeCategory(pet.getAgeCategory());
-                        p.setGender(pet.getGender());
-                        p.setSize(pet.getSize());
-                        p.setColor(pet.getColor());
-                        p.setDescription(pet.getDescription());
-                        p.setAdoptionFee(pet.getAdoptionFee());
-                        return true;
-                    }
+        for (PetDTO p : temporaryDatabase.petsList) {
+            if (p.getId() == pet.getId()) {
+                if (p.getCustomerId() == 0) {
+                    p.setPictures(pet.getPictures());
+                    p.setType(pet.getType());
+                    p.setName(pet.getName());
+                    p.setBreed(pet.getBreed());
+                    p.setAgeCategory(pet.getAgeCategory());
+                    p.setGender(pet.getGender());
+                    p.setSize(pet.getSize());
+                    p.setColor(pet.getColor());
+                    p.setDescription(pet.getDescription());
+                    p.setAdoptionFee(pet.getAdoptionFee());
+                    return true;
                 }
             }
         }
@@ -92,13 +96,11 @@ public class PetRepositoryImpl implements PetRepository {
 
     @Override
     public boolean deletePet(PetDTO pet) {
-        if (pet != null) {
-            for (PetDTO p : temporaryDatabase.petsList) {
-                if (p.getId() == pet.getId()) {
-                    if (p.getCustomerId() == 0) {
-                        this.temporaryDatabase.petsList.remove(p);
-                        return true;
-                    }
+        for (PetDTO p : temporaryDatabase.petsList) {
+            if (p.getId() == pet.getId()) {
+                if (p.getCustomerId() == 0) {
+                    this.temporaryDatabase.petsList.remove(p);
+                    return true;
                 }
             }
         }
@@ -108,13 +110,11 @@ public class PetRepositoryImpl implements PetRepository {
 
     @Override
     public boolean updateCustomerId(PetDTO pet, UserDTO user) {
-        if (pet != null) {
-            for (PetDTO p : temporaryDatabase.petsList) {
-                if (p.getId() == pet.getId()) {
-                    if (p.getCustomerId() == 0) {
-                        p.setCustomerId(user.getId());
-                        return true;
-                    }
+        for (PetDTO p : temporaryDatabase.petsList) {
+            if (p.getId() == pet.getId()) {
+                if (p.getCustomerId() == 0) {
+                    p.setCustomerId(user.getId());
+                    return true;
                 }
             }
         }
