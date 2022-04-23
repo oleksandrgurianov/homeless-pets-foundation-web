@@ -1,0 +1,19 @@
+<configuration>
+<!-- local machine: dev environment -->
+<springProfile name="dev">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="fontys.sem3.hpfapi">
+        <level value="debug"/>
+    </logger>
+    <logger name="org.springframework.web.client">
+        <level value="debug"/>
+    </logger>
+    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
+        <level value="debug" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</springProfile>
+</configuration>
