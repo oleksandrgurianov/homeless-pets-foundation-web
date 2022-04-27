@@ -1,16 +1,14 @@
 package fontys.sem3.hpfapi.dto;
 
 import lombok.*;
-import java.util.ArrayList;
 
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class PetDTO {
-    private int id;
-    private int customerId;
-    private ArrayList<String> pictures;
+    private Long id;
+    private CustomerDTO customer;
     private String type;
     private String name;
     private String breed;
@@ -19,5 +17,5 @@ public class PetDTO {
     private String size;
     private String color;
     private String description;
-    private double adoptionFee;
+    private Double adoptionFee;
 }

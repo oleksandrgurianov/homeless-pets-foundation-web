@@ -1,4 +1,4 @@
 package fontys.sem3.hpfapi.controller;
 
-public class UserController {
+public class CustomerController {
 }

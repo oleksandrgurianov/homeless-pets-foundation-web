@@ -6,8 +6,8 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdministratorDTO {
+public class PetPictureDTO {
     private Long id;
-    private String jobPosition;
-    private UserDTO user;
+    private PetDTO pet;
+    private String picture;
 }

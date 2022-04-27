@@ -9,6 +9,10 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
 
     List<Pet> findAllByBreedContainingAndCustomerIdOrderByNameDesc(String breed, Long customerId);
 
+    List<Pet> findAllByCustomerIdOrderByNameAsc(Long customerId);
+
+    List<Pet> findAllByCustomerIdOrderByNameDesc(Long customerId);
+
     Pet findById(long id);
 
     Boolean existsByTypeAndNameAndBreed(String type, String name, String breed);

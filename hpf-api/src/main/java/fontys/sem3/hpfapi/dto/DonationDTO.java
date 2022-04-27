@@ -3,14 +3,14 @@ package fontys.sem3.hpfapi.dto;
 import lombok.*;
 import java.util.Date;
 
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class DonationDTO {
-    private int id;
-    private int customerId;
-    private double amount;
+    private Long id;
+    private CustomerDTO customer;
+    private Double amount;
     private Date dateOfReceipt;
     private String description;
 }

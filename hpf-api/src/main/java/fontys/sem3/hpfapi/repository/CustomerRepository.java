@@ -8,4 +8,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     List<Customer> findAllByUserFullNameContainingAndStatusOrderByUserFullNameAsc(String fullName, Boolean status);
 
     List<Customer> findAllByUserFullNameContainingAndStatusOrderByUserFullNameDesc(String fullName, Boolean status);
+
+    List<Customer> findAllByStatusOrderByUserFullNameAsc(Boolean status);
+
+    List<Customer> findAllByStatusOrderByUserFullNameDesc(Boolean status);
 }

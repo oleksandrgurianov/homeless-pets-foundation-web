@@ -2,10 +2,13 @@ package fontys.sem3.hpfapi.dto;
 
 import lombok.*;
 
+@Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-public class CustomerDTO extends UserDTO {
+public class CustomerDTO {
+    private Long id;
+    private UserDTO user;
     private String street;
     private String postcode;
     private String city;
@@ -13,15 +16,4 @@ public class CustomerDTO extends UserDTO {
     private String expirationDate;
     private String cvv;
     private boolean status;
-
-    public CustomerDTO(int id, String avatar, String fullName, String phoneNumber, String email, String password, String role, String street, String postcode, String city, String cardNumber, String expirationDate, String cvv, boolean status) {
-        super(id, avatar, fullName, phoneNumber, email, password, role);
-        this.street = street;
-        this.postcode = postcode;
-        this.city = city;
-        this.cardNumber = cardNumber;
-        this.expirationDate = expirationDate;
-        this.cvv = cvv;
-        this.status = status;
-    }
 }

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class TemporaryDatabase {
+    /*
     public ArrayList<DonationDTO> donationsList;
     public ArrayList<PetDTO> petsList;
     public ArrayList<UserDTO> usersList;
@@ -106,4 +107,5 @@ public class TemporaryDatabase {
         usersList.add(new CustomerDTO(3, "https://drive.google.com/file/d/1HZ10iuK40owzVBmqix-YyWz2OVwuBwpD/view?usp=sharing", "Ingemar Coumans", "0616816346", "cust2@gmail.com", "password", "CUST", "Parkweg 132", "6511 BG", "Nijmegen", null, null, null, true));
         usersList.add(new CustomerDTO(4, "https://drive.google.com/file/d/1CCXztuaEGv9H95TfMVBuDyDX3ElL4tBc/view?usp=sharing", "Pearl Knijnenburg", "0682771024", "cust3@gmail.com", "password", "CUST", "Andre Severinweg 68", "6214 PM", "Maastricht", "5327789050901654", "05/26", "170", false));
     }
+    */
 }

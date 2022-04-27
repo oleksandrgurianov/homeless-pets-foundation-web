@@ -2,12 +2,12 @@ package fontys.sem3.hpfapi.dto;
 
 import lombok.*;
 
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class UserDTO {
-    protected int id;
+    protected Long id;
     protected String avatar;
     protected String fullName;
     protected String email;
