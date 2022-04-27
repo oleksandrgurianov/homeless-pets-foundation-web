@@ -1,4 +1,4 @@
-package fontys.sem3.hpfapi.repository;
+package fontys.sem3.hpfapi.configuration.db;
 
 import fontys.sem3.hpfapi.dto.*;
 import java.text.ParseException;

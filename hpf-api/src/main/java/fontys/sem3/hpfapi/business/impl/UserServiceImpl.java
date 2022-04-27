@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
+    /*
     @Override
     public UserDTO getUserByEmailAndPassword(String email, String password) {
         if (!email.isBlank() && !password.isBlank()) {
@@ -122,4 +123,5 @@ public class UserServiceImpl implements UserService {
 
         return false;
     }
+    */
 }

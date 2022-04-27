@@ -1,7 +1,7 @@
 CREATE TABLE user
 (
     id          int             NOT NULL AUTO_INCREMENT,
-    avatar      varchar,
+    avatar      varchar(255),
     fullName    varchar(255)    NOT NULL,
     email       varchar(255)    NOT NULL,
     phoneNumber varchar(255)    NOT NULL,

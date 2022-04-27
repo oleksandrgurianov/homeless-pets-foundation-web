@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class PetServiceImpl implements PetService {
     private final PetRepository petRepository;
 
+    /*
     @Override
     public ArrayList<PetDTO> getSortedPetsBySearch(String search, boolean ascending, int customerId) {
         return this.petRepository.getSortedPetsBySearch(search, ascending, customerId);
@@ -70,4 +71,5 @@ public class PetServiceImpl implements PetService {
 
         return false;
     }
+    */
 }

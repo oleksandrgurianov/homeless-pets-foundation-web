@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class DonationServiceImpl implements DonationService {
     private final DonationRepository donationRepository;
 
+    /*
     @Override
     public ArrayList<DonationDTO> getDonationsByCustomerIdSortedByDateOfReceipt(int customerId, boolean ascending) {
         return this.donationRepository.getDonationsByCustomerIdSortedByDateOfReceipt(customerId, ascending);
@@ -28,4 +29,5 @@ public class DonationServiceImpl implements DonationService {
     public DonationDTO getDonationById(int id) {
         return this.donationRepository.getDonationById(id);
     }
+    */
 }
