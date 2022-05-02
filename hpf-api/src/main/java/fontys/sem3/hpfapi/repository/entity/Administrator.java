@@ -17,12 +17,12 @@ public class Administrator {
     @Column(name = "id")
     private Long id;
 
-    @NotBlank
-    @Column(name = "jobPosition")
-    private String jobPosition;
-
     @NotNull
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @NotBlank
+    @Column(name = "jobPosition")
+    private String jobPosition;
 }
