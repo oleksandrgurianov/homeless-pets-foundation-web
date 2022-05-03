@@ -1,19 +1,31 @@
 <configuration>
-<!-- local machine: dev environment -->
-<springProfile name="dev">
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <logger name="fontys.sem3.hpfapi">
-        <level value="debug"/>
-    </logger>
-    <logger name="org.springframework.web.client">
-        <level value="debug"/>
-    </logger>
-    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
-        <level value="debug" />
-    </logger>
+    <!-- local machine: dev environment -->
+    <springProfile name="dev">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+        <logger name="fontys.sem3.hpfapi">
+            <level value="debug"/>
+        </logger>
+        <logger name="org.springframework.web.client">
+            <level value="debug"/>
+        </logger>
+        <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
+            <level value="debug" />
+        </logger>
 
-    <root level="info">
-        <appender-ref ref="CONSOLE"/>
-    </root>
-</springProfile>
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <!-- used in other environments, like: test, acc, prod -->
+    <springProfile name="!dev">
+        <!-- Use this appender in order to log in json -->
+        <appender name="JSON_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="JSON_APPENDER"/>
+        </root>
+    </springProfile>
 </configuration>
