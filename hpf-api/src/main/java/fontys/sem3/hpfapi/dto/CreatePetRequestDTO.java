@@ -1,9 +1,7 @@
 package fontys.sem3.hpfapi.dto;
 
 import lombok.*;
-
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 @Builder

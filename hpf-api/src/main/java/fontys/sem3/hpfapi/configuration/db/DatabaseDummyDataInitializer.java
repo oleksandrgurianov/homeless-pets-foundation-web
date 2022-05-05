@@ -451,12 +451,12 @@ public class DatabaseDummyDataInitializer {
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(remy)
-                            .picture("https://drive.google.com/file/d/1_Op49ce22_ZcJDkTJZDbZxiANv7RCvSI/view?usp=sharing")
+                            .picture("https://drive.google.com/file/d/1kLa9LcVwr91YK2pF75-7lSlwMPut8pSf/view?usp=sharing")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(remy)
-                            .picture("https://drive.google.com/file/d/1_Op49ce22_ZcJDkTJZDbZxiANv7RCvSI/view?usp=sharing")
+                            .picture("https://drive.google.com/file/d/1Ck1pUGzkaWheSi5GJdce7jQXXvLt4CW9/view?usp=sharing")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
