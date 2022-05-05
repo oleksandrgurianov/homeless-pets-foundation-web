@@ -8,7 +8,7 @@ CREATE TABLE customer
     cardNumber      varchar(255),
     expirationDate  varchar(255),
     cvv             varchar(255),
-    status          varchar(255),
+    status          boolean         NOT NULL DEFAULT 0,
     PRIMARY KEY (id),
     UNIQUE (user_id),
     FOREIGN KEY (user_id) REFERENCES user (id)
