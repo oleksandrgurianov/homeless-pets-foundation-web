@@ -1,9 +1,3 @@
-image: gradle:alpine
-variables:
-  SONAR_TOKEN: "bc9cfe1f984968e7844311eeb3dcbcdff9b34a70"
-  SONAR_HOST_URL: "http://localhost:9000"
-  GIT_DEPTH: 0
-
 stages:
 - build
 - test
@@ -22,9 +16,14 @@ test:
     - ./gradlew.bat --stop
 sonarqube-check:
   stage: test
-  script: 
+  image: gradle:alpine
+  variables:
+    SONAR_TOKEN: "bc9cfe1f984968e7844311eeb3dcbcdff9b34a70"
+    SONAR_HOST_URL: "http://localhost:9000"
+    GIT_DEPTH: 0
+  script:
     - cd hpf-api
-    – gradle sonarqube -Dsonar.qualitygate.wait=true
+    - gradle sonarqube -Dsonar.qualitygate.wait=true
   allow_failure: true
   only:
     - merge_requests
