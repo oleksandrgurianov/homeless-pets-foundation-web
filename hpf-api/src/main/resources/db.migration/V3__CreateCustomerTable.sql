@@ -12,4 +12,5 @@ CREATE TABLE customer
     PRIMARY KEY (id),
     UNIQUE (user_id),
     FOREIGN KEY (user_id) REFERENCES user (id)
+    ON DELETE CASCADE
 );

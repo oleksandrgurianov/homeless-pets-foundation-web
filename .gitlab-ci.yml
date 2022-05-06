@@ -1,32 +1,33 @@
+before_script:
+  - $env:JAVA_HOME = "C:\Users\pro4erb\Documents\jdk-17.0.2"
+  - $env:Path = $env:JAVA_HOME + '/bin;' + $env:Path
+
 stages:
-- build
-- test
+  - build
+  - test
+  - sonar
 
 build:
   stage: build
   script:
-    - cd hpf-api   
-    - ./gradlew build -x test
-    - ./gradlew.bat --stop 
+    - cd hpf-api
+    - ./gradlew clean --stacktrace
+    - ./gradlew assemble --stacktrace
+
 test:
   stage: test
   script:
-    - cd hpf-api 
-    - ./gradlew test
-    - ./gradlew.bat --stop
-sonarqube-check:
-  stage: test
-  image: gradle:alpine
-  variables:
-    SONAR_TOKEN: "bc9cfe1f984968e7844311eeb3dcbcdff9b34a70"
-    SONAR_HOST_URL: "http://localhost:9000"
-    GIT_DEPTH: 0
+    - cd hpf-api
+    - ./gradlew test --stacktrace
+
+sonar:
+  stage: sonar
+  only:
+    - main
+  when: manual
+  allow_failure: true
   script:
     - cd hpf-api
-    - gradle sonarqube -Dsonar.qualitygate.wait=true
-  allow_failure: true
-  only:
-    - merge_requests
-    - master
+    - ./gradlew sonarqube --stacktrace
 
 

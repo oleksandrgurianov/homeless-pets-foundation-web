@@ -2,6 +2,7 @@ package fontys.sem3.hpfapi.business.impl;
 
 import fontys.sem3.hpfapi.business.CreatePetUseCase;
 import fontys.sem3.hpfapi.business.CustomerIdValidator;
+import fontys.sem3.hpfapi.business.exception.InvalidPetException;
 import fontys.sem3.hpfapi.dto.CreatePetRequestDTO;
 import fontys.sem3.hpfapi.dto.CreatePetResponseDTO;
 import fontys.sem3.hpfapi.repository.PetRepository;
@@ -18,6 +19,10 @@ public class CreatePetUseCaseImpl implements CreatePetUseCase {
     @Transactional
     @Override
     public CreatePetResponseDTO createPet(CreatePetRequestDTO request) {
+        if (petRepository.existsByTypeAndNameAndBreed(request.getType(), request.getName(), request.getBreed())) {
+            throw new InvalidPetException("PET_DUPLICATED");
+        }
+
         Pet newPet = Pet.builder()
                 .type(request.getType())
                 .name(request.getName())

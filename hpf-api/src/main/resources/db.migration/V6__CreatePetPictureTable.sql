@@ -5,4 +5,5 @@ CREATE TABLE pet_picture
     picture varchar(255)    NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (pet_id) REFERENCES pet (id)
+    ON DELETE CASCADE
 );

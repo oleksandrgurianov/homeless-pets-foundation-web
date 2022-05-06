@@ -1,12 +1,13 @@
 package fontys.sem3.hpfapi.dto;
 
 import lombok.*;
-import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetCustomersResponseDTO {
-    private List<CustomerDTO> customers;
+public class UpdateUserAvatarRequestDTO {
+    private Long id;
+
+    private String avatar;
 }

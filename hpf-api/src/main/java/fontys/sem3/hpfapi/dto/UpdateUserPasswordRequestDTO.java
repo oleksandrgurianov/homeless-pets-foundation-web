@@ -7,11 +7,9 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetCustomersRequestDTO {
-    private String userFullName;
+public class UpdateUserPasswordRequestDTO {
+    private Long id;
 
     @NotBlank
-    private Boolean status;
-
-    private Boolean ascending;
+    private String password;
 }

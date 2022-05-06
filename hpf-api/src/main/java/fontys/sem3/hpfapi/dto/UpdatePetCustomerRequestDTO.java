@@ -7,7 +7,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetPetPicturesRequestDTO {
+public class UpdatePetCustomerRequestDTO {
+    private Long id;
+
     @NotNull
-    private Long petId;
+    private Long customerId;
 }

@@ -6,7 +6,7 @@ import fontys.sem3.hpfapi.repository.entity.Donation;
 final class DonationDTOConverter {
     private DonationDTOConverter() { }
 
-    private static DonationDTO convertToDTO(Donation donation) {
+    public static DonationDTO convertToDTO(Donation donation) {
         return DonationDTO.builder()
                 .id(donation.getId())
                 .customer(CustomerDTOConverter.convertToDTO(donation.getCustomer()))

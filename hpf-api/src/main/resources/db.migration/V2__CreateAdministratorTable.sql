@@ -6,4 +6,5 @@ CREATE TABLE administrator
     PRIMARY KEY (id),
     UNIQUE (user_id),
     FOREIGN KEY (user_id) REFERENCES user (id)
+    On DELETE CASCADE
 );
