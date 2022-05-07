@@ -7,6 +7,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetPetsRequestDTO {
+    private String type;
+
     private String breed;
 
     private Long customerId;

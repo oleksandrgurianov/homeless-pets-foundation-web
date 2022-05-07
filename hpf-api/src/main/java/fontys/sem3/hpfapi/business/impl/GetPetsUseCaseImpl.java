@@ -21,14 +21,34 @@ public class GetPetsUseCaseImpl implements GetPetsUseCase {
     public GetPetsResponseDTO getPets(GetPetsRequestDTO request) {
         List<Pet> results;
 
-        if (StringUtils.hasText(request.getBreed())) {
-            if (BooleanUtils.isNotFalse(request.getAscending())) {
-                results = petRepository.findAllByBreedContainingAndCustomerIdOrderByNameAsc(request.getBreed(), request.getCustomerId());
+        if (StringUtils.hasText(request.getType())) {
+            if (StringUtils.hasText(request.getBreed())) {
+                if (BooleanUtils.isNotFalse(request.getAscending())) {
+                    results = petRepository.findAllByTypeAndBreedContainingAndCustomerIdOrderByNameAsc(request.getType(), request.getBreed(), request.getCustomerId());
+                } else {
+                    results = petRepository.findAllByTypeAndBreedContainingAndCustomerIdOrderByNameDesc(request.getType(), request.getBreed(), request.getCustomerId());
+                }
             } else {
-                results = petRepository.findAllByBreedContainingAndCustomerIdOrderByNameDesc(request.getBreed(), request.getCustomerId());
+                if (BooleanUtils.isNotFalse(request.getAscending())) {
+                    results = petRepository.findAllByTypeAndCustomerIdOrderByNameAsc(request.getType(), request.getCustomerId());
+                } else {
+                    results = petRepository.findAllByTypeAndCustomerIdOrderByNameDesc(request.getType(), request.getCustomerId());
+                }
             }
         } else {
-            results = petRepository.findAllByCustomerIdOrderByNameAsc(request.getCustomerId());
+            if (StringUtils.hasText(request.getBreed())) {
+                if (BooleanUtils.isNotFalse(request.getAscending())) {
+                    results = petRepository.findAllByBreedContainingAndCustomerIdOrderByNameAsc(request.getBreed(), request.getCustomerId());
+                } else {
+                    results = petRepository.findAllByBreedContainingAndCustomerIdOrderByNameDesc(request.getBreed(), request.getCustomerId());
+                }
+            } else {
+                if (BooleanUtils.isNotFalse(request.getAscending())) {
+                    results = petRepository.findAllByCustomerIdOrderByNameAsc(request.getCustomerId());
+                } else {
+                    results = petRepository.findAllByCustomerIdOrderByNameDesc(request.getCustomerId());
+                }
+            }
         }
 
         final GetPetsResponseDTO response = new GetPetsResponseDTO();
