@@ -193,6 +193,7 @@ public class DatabaseDummyDataInitializer {
                             .color("Black, White/Cream")
                             .description("Say hello to Bizarre! If you love her name, you will love her personality. It fits her perfectly. Bizarre may take a minute to warm up to you, as she shows her interest in you in a funny way. Once she has met you, she will love you forever. Bizarre still needs a little bit of leash work as she will tug on it when she gets excited, but she learns quickly. When Bizarre is happy, she bounces around and will swing her back end into you. We recommend a home willing to work on training and without young kids as she doesn't realize her size and strength. She is a funny girl that will surely make you laugh. Please stop by and ask to meet her today!")
                             .adoptionFee(0d)
+                            .adopted(true)
                             .build());
             Pet jamison = petRepository.save(
                     Pet.builder()
@@ -206,6 +207,7 @@ public class DatabaseDummyDataInitializer {
                             .color("Brown/Chocolate, White/Cream")
                             .description("Meet Jamison! He is a 2 year old terrier mix. This handsome guy just loves people and gets the happiest wiggly butt of excitement. Great on the leash and knows basic commands.")
                             .adoptionFee(250d)
+                            .adopted(false)
                             .build());
             Pet mini = petRepository.save(
                     Pet.builder()
@@ -219,6 +221,7 @@ public class DatabaseDummyDataInitializer {
                             .color("Black, White/Cream")
                             .description("Mini is a sweet older gentleman at 8 years old looking for a quite home to spend his golden years. He enjoys a good belly rub and nap on the couch. He is very loyal to his person and would make someone a wonderful companion. Looking for a mellow guy with lots of love to give? Mini is your man!")
                             .adoptionFee(80d)
+                            .adopted(false)
                             .build());
             Pet phillip = petRepository.save(
                     Pet.builder()
@@ -232,6 +235,7 @@ public class DatabaseDummyDataInitializer {
                             .color(null)
                             .description("Phillip is an active puppy who is coming up with his siblings Will, Carlton, Jazz, Hillary, Ashley and Vivian to find a forever home. He has been very friendly when meeting new adults and very playful with children. Philip gets along with all dogs, but has not been cat tested. He is fine being crated. Philip will thrive in a home where he can be part of all the activities and continue with his training to be his best self.")
                             .adoptionFee(0d)
+                            .adopted(false)
                             .build());
             Pet plinko = petRepository.save(
                     Pet.builder()
@@ -245,6 +249,7 @@ public class DatabaseDummyDataInitializer {
                             .color("Black")
                             .description("According to her foster mom, Plinko is an easy to love cat. She is very sweet and affectionate and will curl right up in your lap on occasion. She is very playful and follows her foster mom around like a puppy sometimes. Plinko will approach people she has never met before as if she has known them forever, including children. She is very gentle and does get along with other cats. Plinko is looking for a home where she can show her affection to her people, as well as receive it often.")
                             .adoptionFee(0d)
+                            .adopted(false)
                             .build());
             Pet gatsby = petRepository.save(
                     Pet.builder()
@@ -258,6 +263,7 @@ public class DatabaseDummyDataInitializer {
                             .color("Black, Gray/Blue/Silver")
                             .description(null)
                             .adoptionFee(0d)
+                            .adopted(false)
                             .build());
             Pet dusk = petRepository.save(
                     Pet.builder()
@@ -271,6 +277,7 @@ public class DatabaseDummyDataInitializer {
                             .color(null)
                             .description(null)
                             .adoptionFee(0d)
+                            .adopted(false)
                             .build());
             Pet remy = petRepository.save(
                     Pet.builder()
@@ -284,6 +291,7 @@ public class DatabaseDummyDataInitializer {
                             .color("Black, White")
                             .description("Remy enjoys being the princess in her foster home, where she is spoiled and has a nice area to play in. She might enjoy having another bun around as she does not show aggressive behavior with the other rabbits in foster. Remy is slow to warm up to humans. She wants to sit and watch, but she comes around, especially for treats. Miss Remy is looking for a home where she can continue to be the princess of her domain.")
                             .adoptionFee(85d)
+                            .adopted(false)
                             .build());
             Pet snowman = petRepository.save(
                     Pet.builder()
@@ -297,6 +305,7 @@ public class DatabaseDummyDataInitializer {
                             .color("White (Dark-Eyed), Blue/Gray")
                             .description("Snowman (Snow) is a sweetheart! He is looking for a loving family to give him all the attention he deserves. We would love a family with a lone male that would open to bonding him with theirs. Alternatively, we would appreciate a family that would be open to adopting a baby boy to bond with him in the event one comes into the rescue!")
                             .adoptionFee(0d)
+                            .adopted(false)
                             .build());
             Pet lory = petRepository.save(
                     Pet.builder()
@@ -310,6 +319,7 @@ public class DatabaseDummyDataInitializer {
                             .color("Blue, Green, Orange")
                             .description("Hi there! I'm a Lorikeet and I am part of a bonded pair. I require daily \"out time\", lots of socialization, specialized feeding, and I can be VERY noisy. I'm looking for a Lorikeet experienced home that will help me calm down so that my feathers can grown back in. (I plucked them because I was unhappy in my former environment).")
                             .adoptionFee(350d)
+                            .adopted(false)
                             .build());
 
 

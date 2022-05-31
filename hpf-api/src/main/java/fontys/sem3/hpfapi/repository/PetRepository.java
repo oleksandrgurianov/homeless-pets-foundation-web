@@ -5,23 +5,25 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PetRepository extends JpaRepository<Pet, Long> {
-    List<Pet> findAllByTypeAndBreedContainingAndCustomerIdOrderByNameAsc(String type, String breed, Long customerId);
+    //All
 
-    List<Pet> findAllByTypeAndBreedContainingAndCustomerIdOrderByNameDesc(String type, String breed, Long customerId);
+    List<Pet> findAllByTypeAndAdoptedOrderByNameAsc(String type, Boolean adopted);
 
-    List<Pet> findAllByTypeAndCustomerIdOrderByNameAsc(String type, Long customerId);
+    List<Pet> findAllByTypeAndAdoptedOrderByNameDesc(String type, Boolean adopted);
 
-    List<Pet> findAllByTypeAndCustomerIdOrderByNameDesc(String type, Long customerId);
+    List<Pet> findAllByTypeAndBreedContainingAndAdoptedOrderByNameAsc(String type, String breed, Boolean adopted);
 
-    List<Pet> findAllByBreedContainingAndCustomerIdOrderByNameAsc(String breed, Long customerId);
+    List<Pet> findAllByTypeAndBreedContainingAndAdoptedOrderByNameDesc(String type, String breed, Boolean adopted);
 
-    List<Pet> findAllByBreedContainingAndCustomerIdOrderByNameDesc(String breed, Long customerId);
+    Pet findByTypeAndNameAndBreed(String type, String name, String breed);
+
+
+    //Customer
 
     List<Pet> findAllByCustomerIdOrderByNameAsc(Long customerId);
 
-    List<Pet> findAllByCustomerIdOrderByNameDesc(Long customerId);
 
-    Pet findByTypeAndNameAndBreed(String type, String name, String breed);
+    //Administrator
 
     Boolean existsByTypeAndNameAndBreed(String type, String name, String breed);
 }

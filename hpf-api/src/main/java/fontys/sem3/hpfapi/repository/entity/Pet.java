@@ -18,7 +18,7 @@ public class Pet {
     private Long id;
 
     @OneToMany(mappedBy = "pet")
-    private List<PetPicture> pictures;
+    private List<PetPicture> petPictures;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -36,7 +36,7 @@ public class Pet {
     @Column(name = "breed")
     private String breed;
 
-    @Column(name = "ageCategory")
+    @Column(name = "age_category")
     private String ageCategory;
 
     @Column(name = "gender")
@@ -51,6 +51,9 @@ public class Pet {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "adoptionFee")
+    @Column(name = "adoption_fee")
     private Double adoptionFee;
+
+    @Column(name = "adopted")
+    private Boolean adopted;
 }

@@ -25,18 +25,18 @@ public class PetController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @DeleteMapping("{petId}")
-    public ResponseEntity<Void> deletePet(@PathVariable int petId) {
-        deletePetUseCase.deletePet(petId);
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deletePet(@PathVariable int id) {
+        deletePetUseCase.deletePet(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public ResponseEntity<GetPetsResponseDTO> getPets(@RequestParam(value = "type", required = false) String type, @RequestParam(value = "breed", required = false) String breed, @RequestParam(value = "customerId", required = false) Long customerId, @RequestParam(value = "ascending", required = false) Boolean ascending) {
+    public ResponseEntity<GetPetsResponseDTO> getPets(@RequestParam(value = "type") String type, @RequestParam(value = "customerId", required = false) Long customerId, @RequestParam(value = "breed", required = false) String breed, @RequestParam(value = "ascending", required = false) Boolean ascending) {
         GetPetsRequestDTO request = new GetPetsRequestDTO();
+        request.setCustomerId(customerId);
         request.setType(type);
         request.setBreed(breed);
-        request.setCustomerId(customerId);
         request.setAscending(ascending);
         return ResponseEntity.ok(getPetsUseCase.getPets(request));
     }

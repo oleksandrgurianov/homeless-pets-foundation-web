@@ -34,9 +34,10 @@ public class PetPictureController {
     }
 
     @GetMapping
-    public ResponseEntity<GetPetPicturesResponseDTO> getPetPictures(@RequestParam(value = "petId", required = false) Long petId) {
+    public ResponseEntity<GetPetPicturesResponseDTO> getPetPictures(@RequestParam(value = "petId") Long petId) {
         GetPetPicturesRequestDTO request = new GetPetPicturesRequestDTO();
         request.setPetId(petId);
         return ResponseEntity.ok(getPetPicturesUseCase.getPetPictures(request));
     }
 }
+

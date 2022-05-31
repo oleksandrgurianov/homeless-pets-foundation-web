@@ -37,10 +37,10 @@ public class Customer {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "cardNumber")
+    @Column(name = "card_number")
     private String cardNumber;
 
-    @Column(name = "expirationDate")
+    @Column(name = "expiration_date")
     private String expirationDate;
 
     @Column(name = "cvv")

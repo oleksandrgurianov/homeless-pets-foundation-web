@@ -22,14 +22,14 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'mysql:mysql-connector-java:8.0.28'
+	implementation 'mysql:mysql-connector-java:8.0.29'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.flywaydb:flyway-core:8.5.9'
-	implementation 'org.flywaydb:flyway-mysql:8.5.5'
+	implementation 'org.flywaydb:flyway-core:8.5.10'
+	implementation 'org.flywaydb:flyway-mysql:8.5.10'
 	implementation 'net.logstash.logback:logstash-logback-encoder:7.1.1'
 	implementation 'ch.qos.logback:logback-classic:1.2.11'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -39,13 +39,6 @@ dependencies {
 test {
 	useJUnitPlatform()
 	finalizedBy jacocoTestReport
-}
-
-sonarqube {
-	properties {
-		property "sonar.projectKey", "individual-track-assignment"
-		property "sonar.qualitygate.wait", true
-	}
 }
 
 jacocoTestReport {

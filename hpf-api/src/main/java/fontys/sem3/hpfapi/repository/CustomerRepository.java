@@ -5,11 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    List<Customer> findAllByUserFullNameContainingAndStatusOrderByUserFullNameAsc(String fullName, Boolean status);
+    //Administrator
 
-    List<Customer> findAllByUserFullNameContainingAndStatusOrderByUserFullNameDesc(String fullName, Boolean status);
+    List<Customer> findAllByStatusOrderByUser_FullNameAsc(Boolean status);
 
-    List<Customer> findAllByStatusOrderByUserFullNameAsc(Boolean status);
+    List<Customer> findAllByStatusOrderByUser_FullNameDesc(Boolean status);
 
-    List<Customer> findAllByStatusOrderByUserFullNameDesc(Boolean status);
+    List<Customer> findAllByUser_FullNameContainingAndStatusOrderByUser_FullNameAsc(String fullName, Boolean status);
+
+    List<Customer> findAllByUser_FullNameContainingAndStatusOrderByUser_FullNameDesc(String fullName, Boolean status);
 }

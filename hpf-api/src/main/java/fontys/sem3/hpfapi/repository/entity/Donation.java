@@ -17,7 +17,7 @@ public class Donation {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @NonNull
@@ -25,7 +25,7 @@ public class Donation {
     private Double amount;
 
     @NonNull
-    @Column(name = "dateOfReceipt")
+    @Column(name = "date_of_receipt")
     private Date dateOfReceipt;
 
     @Column(name = "description")

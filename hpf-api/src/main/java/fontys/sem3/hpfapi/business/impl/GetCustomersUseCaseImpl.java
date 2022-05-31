@@ -23,15 +23,15 @@ public class GetCustomersUseCaseImpl implements GetCustomersUseCase {
 
         if (StringUtils.hasText(request.getUserFullName())) {
             if (BooleanUtils.isNotFalse(request.getAscending())) {
-                results = customerRepository.findAllByUserFullNameContainingAndStatusOrderByUserFullNameAsc(request.getUserFullName(), request.getStatus());
+                results = customerRepository.findAllByUser_FullNameContainingAndStatusOrderByUser_FullNameAsc(request.getUserFullName(), request.getStatus());
             } else {
-                results = customerRepository.findAllByUserFullNameContainingAndStatusOrderByUserFullNameDesc(request.getUserFullName(), request.getStatus());
+                results = customerRepository.findAllByUser_FullNameContainingAndStatusOrderByUser_FullNameDesc(request.getUserFullName(), request.getStatus());
             }
         } else {
             if (BooleanUtils.isNotFalse(request.getAscending())) {
-                results = customerRepository.findAllByStatusOrderByUserFullNameAsc(request.getStatus());
+                results = customerRepository.findAllByStatusOrderByUser_FullNameAsc(request.getStatus());
             } else {
-                results = customerRepository.findAllByStatusOrderByUserFullNameDesc(request.getStatus());
+                results = customerRepository.findAllByStatusOrderByUser_FullNameDesc(request.getStatus());
             }
         }
 

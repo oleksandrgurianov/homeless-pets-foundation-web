@@ -20,7 +20,7 @@ public class User {
     private String avatar;
 
     @NotBlank
-    @Column(name = "fullName")
+    @Column(name = "full_name")
     private String fullName;
 
     @NotBlank
@@ -28,7 +28,7 @@ public class User {
     private String email;
 
     @NotBlank
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @NotBlank

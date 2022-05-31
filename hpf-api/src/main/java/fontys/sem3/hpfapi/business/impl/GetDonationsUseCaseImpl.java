@@ -40,15 +40,15 @@ public class GetDonationsUseCaseImpl implements GetDonationsUseCase {
             } else {
                 if (BooleanUtils.isNotTrue(request.getOrderByDateOfReceipt())) {
                     if (BooleanUtils.isNotFalse(request.getAscending())) {
-                        results = donationRepository.findAllOrderByDateOfReceiptAsc();
+                        results = donationRepository.findAllByOrderByDateOfReceiptAsc();
                     } else {
-                        results = donationRepository.findAllOrderByDateOfReceiptDesc();
+                        results = donationRepository.findAllByOrderByDateOfReceiptDesc();
                     }
                 } else {
                     if (BooleanUtils.isNotFalse(request.getAscending())) {
-                        results = donationRepository.findAllOrderByAmountDesc();
+                        results = donationRepository.findAllByOrderByAmountDesc();
                     } else {
-                        results = donationRepository.findAllOrderByAmountAsc();
+                        results = donationRepository.findAllByOrderByAmountAsc();
                     }
                 }
             }

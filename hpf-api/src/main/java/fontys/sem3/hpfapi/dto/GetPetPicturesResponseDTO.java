@@ -8,5 +8,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetPetPicturesResponseDTO {
-    private List<PetPictureDTO> petPictures;
+    List<PetPictureDTO> petPictures;
 }

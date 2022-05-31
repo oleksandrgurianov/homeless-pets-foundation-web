@@ -1,6 +1,7 @@
 package fontys.sem3.hpfapi.dto;
 
 import lombok.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -18,4 +19,5 @@ public class PetDTO {
     private String color;
     private String description;
     private Double adoptionFee;
+    private Boolean adopted;
 }

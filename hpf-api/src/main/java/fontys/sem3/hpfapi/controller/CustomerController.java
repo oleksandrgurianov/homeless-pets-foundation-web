@@ -28,7 +28,7 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<GetCustomersResponseDTO> getCustomers(@RequestParam(value = "userFullName", required = false) String userFullName, @RequestParam(value = "status", required = false) Boolean status, @RequestParam(value = "ascending", required = false) Boolean ascending) {
+    public ResponseEntity<GetCustomersResponseDTO> getCustomers(@RequestParam(value = "userFullName", required = false) String userFullName, @RequestParam(value = "status") Boolean status, @RequestParam(value = "ascending", required = false) Boolean ascending) {
         GetCustomersRequestDTO request = new GetCustomersRequestDTO();
         request.setUserFullName(userFullName);
         request.setStatus(status);

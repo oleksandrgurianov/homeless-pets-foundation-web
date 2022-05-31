@@ -23,6 +23,6 @@ public class Administrator {
     private User user;
 
     @NotBlank
-    @Column(name = "jobPosition")
+    @Column(name = "job_position")
     private String jobPosition;
 }
