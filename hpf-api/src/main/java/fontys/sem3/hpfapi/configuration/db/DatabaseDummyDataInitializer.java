@@ -76,7 +76,6 @@ public class DatabaseDummyDataInitializer {
                             .cardNumber("5561036905645903")
                             .expirationDate("05/26")
                             .cvv("677")
-                            .status(true)
                             .build());
             customerRepository.save(
                     Customer.builder()
@@ -87,7 +86,6 @@ public class DatabaseDummyDataInitializer {
                             .cardNumber(null)
                             .expirationDate(null)
                             .cvv(null)
-                            .status(true)
                             .build());
             customerRepository.save(
                     Customer.builder()
@@ -98,7 +96,6 @@ public class DatabaseDummyDataInitializer {
                             .cardNumber("5327789050901654")
                             .expirationDate("05/26")
                             .cvv("170")
-                            .status(false)
                             .build());
         }
 

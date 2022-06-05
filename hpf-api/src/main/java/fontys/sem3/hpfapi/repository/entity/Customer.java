@@ -45,8 +45,4 @@ public class Customer {
 
     @Column(name = "cvv")
     private String cvv;
-
-    @NotNull
-    @Column(name = "status")
-    private Boolean status;
 }

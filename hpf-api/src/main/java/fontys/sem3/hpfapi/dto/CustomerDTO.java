@@ -15,5 +15,4 @@ public class CustomerDTO {
     private String cardNumber;
     private String expirationDate;
     private String cvv;
-    private boolean status;
 }

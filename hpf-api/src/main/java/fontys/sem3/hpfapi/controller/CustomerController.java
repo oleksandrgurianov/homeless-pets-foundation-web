@@ -2,7 +2,6 @@ package fontys.sem3.hpfapi.controller;
 
 import fontys.sem3.hpfapi.business.CreateCustomerUseCase;
 import fontys.sem3.hpfapi.business.GetCustomerUseCase;
-import fontys.sem3.hpfapi.business.GetCustomersUseCase;
 import fontys.sem3.hpfapi.business.UpdateCustomerUseCase;
 import fontys.sem3.hpfapi.dto.*;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomerController {
     private final CreateCustomerUseCase createCustomerUseCase;
-    private final GetCustomersUseCase getCustomersUseCase;
     private final GetCustomerUseCase getCustomerUseCase;
     private final UpdateCustomerUseCase updateCustomerUseCase;
 
@@ -25,15 +23,6 @@ public class CustomerController {
     public ResponseEntity<CreateCustomerResponseDTO> createCustomer(@RequestBody @Valid CreateCustomerRequestDTO request) {
         CreateCustomerResponseDTO response = createCustomerUseCase.createCustomer(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
-    @GetMapping
-    public ResponseEntity<GetCustomersResponseDTO> getCustomers(@RequestParam(value = "userFullName", required = false) String userFullName, @RequestParam(value = "status") Boolean status, @RequestParam(value = "ascending", required = false) Boolean ascending) {
-        GetCustomersRequestDTO request = new GetCustomersRequestDTO();
-        request.setUserFullName(userFullName);
-        request.setStatus(status);
-        request.setAscending(ascending);
-        return ResponseEntity.ok(getCustomersUseCase.getCustomers(request));
     }
 
     @GetMapping("{id}")
@@ -58,13 +47,6 @@ public class CustomerController {
     public ResponseEntity<CustomerDTO> updateCustomerBankDetails(@PathVariable("id") long id, @RequestBody @Valid UpdateCustomerBankDetailsRequestDTO request) {
         request.setId(id);
         updateCustomerUseCase.updateCustomerBankDetails(request);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PutMapping("{id}/status")
-    public ResponseEntity<CustomerDTO> updateCustomerStatus(@PathVariable("id") long id, @RequestBody @Valid UpdateCustomerStatusRequestDTO request) {
-        request.setId(id);
-        updateCustomerUseCase.updateCustomerStatus(request);
         return ResponseEntity.noContent().build();
     }
 }

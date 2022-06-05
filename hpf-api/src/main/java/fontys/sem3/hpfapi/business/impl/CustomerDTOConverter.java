@@ -17,7 +17,6 @@ final class CustomerDTOConverter {
                     .cardNumber(customer.getCardNumber())
                     .expirationDate(customer.getExpirationDate())
                     .cvv(customer.getCvv())
-                    .status(customer.getStatus())
                     .build();
         }
 

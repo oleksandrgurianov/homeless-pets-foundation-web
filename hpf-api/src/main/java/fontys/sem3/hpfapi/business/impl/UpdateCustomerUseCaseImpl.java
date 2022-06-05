@@ -2,13 +2,10 @@ package fontys.sem3.hpfapi.business.impl;
 
 import fontys.sem3.hpfapi.business.UpdateCustomerUseCase;
 import fontys.sem3.hpfapi.business.exception.InvalidCustomerException;
-import fontys.sem3.hpfapi.business.exception.InvalidUserException;
 import fontys.sem3.hpfapi.dto.UpdateCustomerAddressRequestDTO;
 import fontys.sem3.hpfapi.dto.UpdateCustomerBankDetailsRequestDTO;
-import fontys.sem3.hpfapi.dto.UpdateCustomerStatusRequestDTO;
 import fontys.sem3.hpfapi.repository.CustomerRepository;
 import fontys.sem3.hpfapi.repository.entity.Customer;
-import fontys.sem3.hpfapi.repository.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -29,11 +26,6 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
         }
 
         Customer customer = customerOptional.get();
-
-        if (customer.getStatus().equals(false)) {
-            throw new InvalidCustomerException("CUSTOMER_STATUS_INVALID");
-        }
-
         customer.setStreet(request.getStreet());
         customer.setPostcode(request.getPostcode());
         customer.setCity(request.getCity());
@@ -50,28 +42,9 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
         }
 
         Customer customer = customerOptional.get();
-
-        if (customer.getStatus().equals(false)) {
-            throw new InvalidCustomerException("CUSTOMER_STATUS_INVALID");
-        }
-
         customer.setCardNumber(request.getCardNumber());
         customer.setExpirationDate(request.getExpirationDate());
         customer.setCvv(request.getCvv());
-        customerRepository.save(customer);
-    }
-
-    @Transactional
-    @Override
-    public void updateCustomerStatus(UpdateCustomerStatusRequestDTO request) {
-        Optional<Customer> customerOptional = customerRepository.findById(request.getId());
-
-        if (customerOptional.isEmpty()) {
-            throw new InvalidCustomerException("CUSTOMER_ID_INVALID");
-        }
-
-        Customer customer = customerOptional.get();
-        customer.setStatus(request.getStatus());
         customerRepository.save(customer);
     }
 }
