@@ -4,7 +4,6 @@ import fontys.sem3.hpfapi.business.UpdateUserUseCase;
 import fontys.sem3.hpfapi.business.exception.InvalidUserException;
 import fontys.sem3.hpfapi.dto.UpdateUserAvatarRequestDTO;
 import fontys.sem3.hpfapi.dto.UpdateUserDetailsRequestDTO;
-import fontys.sem3.hpfapi.dto.UpdateUserPasswordRequestDTO;
 import fontys.sem3.hpfapi.repository.UserRepository;
 import fontys.sem3.hpfapi.repository.entity.User;
 import lombok.RequiredArgsConstructor;
@@ -45,19 +44,6 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
         user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
         user.setPhoneNumber(request.getPhoneNumber());
-        userRepository.save(user);
-    }
-
-    @Transactional
-    @Override
-    public void updateUserPassword(UpdateUserPasswordRequestDTO request) {
-        Optional<User> userOptional = userRepository.findById(request.getId());
-
-        if (userOptional.isEmpty()) {
-            throw new InvalidUserException("USER_ID_INVALID");
-        }
-
-        User user = userOptional.get();
         user.setPassword(request.getPassword());
         userRepository.save(user);
     }

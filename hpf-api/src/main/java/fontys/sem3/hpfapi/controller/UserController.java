@@ -43,11 +43,4 @@ public class UserController {
         updateUserUseCase.updateUserDetails(request);
         return ResponseEntity.noContent().build();
     }
-
-    @PutMapping("{id}/password")
-    public ResponseEntity<UserDTO> updateUserPassword(@PathVariable("id") long id, @RequestBody @Valid UpdateUserPasswordRequestDTO request) {
-        request.setId(id);
-        updateUserUseCase.updateUserPassword(request);
-        return ResponseEntity.noContent().build();
-    }
 }

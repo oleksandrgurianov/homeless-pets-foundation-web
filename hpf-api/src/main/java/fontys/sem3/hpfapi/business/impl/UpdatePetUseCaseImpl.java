@@ -31,7 +31,6 @@ public class UpdatePetUseCaseImpl implements UpdatePetUseCase {
         customerIdValidator.validateId(request.getCustomerId());
         Pet pet = petOptional.get();
         pet.setCustomer(Customer.builder().id(request.getCustomerId()).build());
-        pet.setAdopted(true);
         petRepository.save(pet);
     }
 

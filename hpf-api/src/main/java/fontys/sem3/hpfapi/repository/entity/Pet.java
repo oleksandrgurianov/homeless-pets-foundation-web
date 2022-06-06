@@ -53,7 +53,4 @@ public class Pet {
 
     @Column(name = "adoption_fee")
     private Double adoptionFee;
-
-    @Column(name = "adopted")
-    private Boolean adopted;
 }

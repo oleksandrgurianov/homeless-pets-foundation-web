@@ -2,20 +2,35 @@ package fontys.sem3.hpfapi.repository;
 
 import fontys.sem3.hpfapi.repository.entity.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import java.util.List;
 
 public interface PetRepository extends JpaRepository<Pet, Long> {
     //All
 
-    List<Pet> findAllByTypeAndAdoptedOrderByNameAsc(String type, Boolean adopted);
+    List<Pet> findAllByCustomerIsNullAndTypeOrderByNameAsc(String type);
 
-    List<Pet> findAllByTypeAndAdoptedOrderByNameDesc(String type, Boolean adopted);
+    List<Pet> findAllByCustomerIsNullAndTypeOrderByNameDesc(String type);
 
-    List<Pet> findAllByTypeAndBreedContainingAndAdoptedOrderByNameAsc(String type, String breed, Boolean adopted);
+    List<Pet> findAllByCustomerIsNullAndTypeOrderByAdoptionFeeAsc(String type);
 
-    List<Pet> findAllByTypeAndBreedContainingAndAdoptedOrderByNameDesc(String type, String breed, Boolean adopted);
+    List<Pet> findAllByCustomerIsNullAndTypeOrderByAdoptionFeeDesc(String type);
+
+    List<Pet> findAllByCustomerIsNullAndTypeAndBreedContainingOrderByNameAsc(String type, String breed);
+
+    List<Pet> findAllByCustomerIsNullAndTypeAndBreedContainingOrderByNameDesc(String type, String breed);
+
+    List<Pet> findAllByCustomerIsNullAndTypeAndBreedContainingOrderByAdoptionFeeAsc(String type, String breed);
+
+    List<Pet> findAllByCustomerIsNullAndTypeAndBreedContainingOrderByAdoptionFeeDesc(String type, String breed);
 
     Pet findByTypeAndNameAndBreed(String type, String name, String breed);
+
+    Long countAllByCustomerIsNotNull();
+
+    @Query("SELECT COUNT(DISTINCT customer) FROM Pet")
+    Long countAllByCustomerDistinct();
 
 
     //Customer

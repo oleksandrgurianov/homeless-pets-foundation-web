@@ -32,12 +32,12 @@ public class PetController {
     }
 
     @GetMapping
-    public ResponseEntity<GetPetsResponseDTO> getPets(@RequestParam(value = "type") String type, @RequestParam(value = "customerId", required = false) Long customerId, @RequestParam(value = "breed", required = false) String breed, @RequestParam(value = "ascending", required = false) Boolean ascending) {
+    public ResponseEntity<GetPetsResponseDTO> getPets(@RequestParam(value = "type") String type, @RequestParam(value = "customerId", required = false) Long customerId, @RequestParam(value = "breed", required = false) String breed, @RequestParam(value = "sort", required = false) String sort) {
         GetPetsRequestDTO request = new GetPetsRequestDTO();
         request.setCustomerId(customerId);
         request.setType(type);
         request.setBreed(breed);
-        request.setAscending(ascending);
+        request.setSort(sort);
         return ResponseEntity.ok(getPetsUseCase.getPets(request));
     }
 

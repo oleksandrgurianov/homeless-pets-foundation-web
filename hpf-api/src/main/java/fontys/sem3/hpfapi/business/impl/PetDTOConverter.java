@@ -19,7 +19,6 @@ final class PetDTOConverter {
                 .color(pet.getColor())
                 .description(pet.getDescription())
                 .adoptionFee(pet.getAdoptionFee())
-                .adopted(pet.getAdopted())
                 .build();
     }
 }

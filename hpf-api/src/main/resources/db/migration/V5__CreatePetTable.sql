@@ -11,7 +11,6 @@ CREATE TABLE pet
     color           varchar(255),
     description     text(65535),
     adoption_fee    double,
-    adopted         boolean         NOT NULL DEFAULT 0,
     PRIMARY KEY (id),
     FOREIGN KEY (customer_id) REFERENCES customer (id)
 );

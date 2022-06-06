@@ -15,5 +15,5 @@ public class GetPetsRequestDTO {
 
     private String breed;
 
-    private Boolean ascending;
+    private String sort;
 }

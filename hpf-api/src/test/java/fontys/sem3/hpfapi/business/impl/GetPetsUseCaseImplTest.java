@@ -24,7 +24,7 @@
 //    private GetPetsUseCaseImpl getPetsUseCase;
 //
 //    @Test
-//    void shouldFilterByTypeWhenCustomerIdAndTypeIsInformed() {
+//    void shouldFilterByTypeAndBreedWhenTypeAndBreedIsInformed() {
 //        User cust = User.builder()
 //                .id(2L)
 //                .avatar("https://drive.google.com/file/d/1Rm-dceeyImW5JIBJGBrMiNKUzegRZ_Qo/view?usp=sharing")
