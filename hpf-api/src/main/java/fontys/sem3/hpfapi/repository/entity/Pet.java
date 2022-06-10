@@ -25,6 +25,10 @@ public class Pet {
     private Customer customer;
 
     @NotBlank
+    @Column(name = "icon")
+    private String icon;
+
+    @NotBlank
     @Column(name = "type")
     private String type;
 

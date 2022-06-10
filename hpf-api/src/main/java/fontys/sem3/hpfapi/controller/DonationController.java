@@ -15,6 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/donations")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000/")
 public class DonationController {
     private final CreateDonationUseCase createDonationUseCase;
     private final GetDonationsUseCase getDonationsUseCase;

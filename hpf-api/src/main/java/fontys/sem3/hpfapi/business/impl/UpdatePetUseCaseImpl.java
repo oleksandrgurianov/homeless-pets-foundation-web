@@ -45,6 +45,7 @@ public class UpdatePetUseCaseImpl implements UpdatePetUseCase {
 
         Pet pet = petOptional.get();
         validateTypeAndNameAndBreed(request, pet);
+        pet.setIcon(request.getIcon());
         pet.setType(request.getType());
         pet.setName(request.getName());
         pet.setBreed(request.getBreed());

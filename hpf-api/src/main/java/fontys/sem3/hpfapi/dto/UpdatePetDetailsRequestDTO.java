@@ -11,6 +11,9 @@ public class UpdatePetDetailsRequestDTO {
     private Long id;
 
     @NotBlank
+    private String icon;
+
+    @NotBlank
     private String type;
 
     @NotBlank

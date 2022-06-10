@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/pets")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000/")
 public class PetController {
     private final CreatePetUseCase createPetUseCase;
     private final DeletePetUseCase deletePetUseCase;

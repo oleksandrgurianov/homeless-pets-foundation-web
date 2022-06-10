@@ -1,0 +1,112 @@
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Header h1 {
+    color: black;
+    font-size: 40px;
+    font-weight: normal;
+}
+
+.header-search {
+    height: 35px;
+    width: 150px;
+    margin: 0 15px 0 auto;
+    padding: 0 15px;
+    background: rgba(34, 17, 51, .2);
+    border: 1px solid darkgray;
+    font-size: 15px;
+    border-radius: 50px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.header-dropdown {
+    display: grid;
+    grid-template-areas: "select .dropdown-icon";
+    align-items: center;
+    height: 35px;
+    min-width: auto;
+    border: 1px solid darkgray;
+    border-radius: 50px;
+    background: rgba(34, 17, 51, .8);
+    padding: 0 15px;
+    font-size: 15px;
+    cursor: pointer;
+    line-height: 1.1;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    height: 35px;
+    width: 100%;
+    font-size: inherit;
+    color: white;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+    padding-right: 5px;
+}
+
+.dropdown-icon {
+    grid-area: dropdown-icon;
+    color: white;
+}
+
+.HeaderLine {
+    border: .5px solid lightgrey;
+    margin: 10px 0 30px 0;
+}
+
+.Pets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(21em, .5fr));;
+    grid-row-gap: 30px;
+    grid-column-gap: 30px;
+}
+
+.pets-card {
+    background-color: #f2f2f2;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1), 0 6px 20px 0 rgba(0, 0, 0, .1);
+    transition: .3s ease-in-out;
+}
+
+.pets-card:hover {
+    transform: scale(1.015);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .2);
+}
+
+.pets-card img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
+.card-name {
+    font-size: 22.5px;
+    padding: 10px 15px 5px;
+    color: black;
+}
+
+.card-breed {
+    font-size: 15px;
+    color: grey;
+    padding: 0 15px 15px;
+}
+
+.Loading {
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

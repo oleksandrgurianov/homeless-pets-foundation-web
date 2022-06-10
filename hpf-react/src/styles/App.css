@@ -30,7 +30,7 @@ a {
 .NavBar {
     overflow: hidden;
     position: fixed;
-    background: rgb(34, 17, 51, .8);
+    background: rgba(34, 17, 51, .8);
     height: 44px;
     top: 0;
     left: 0;
@@ -84,12 +84,14 @@ a {
 .pets-dropdown-content {
     display: none;
     position: fixed;
-    margin-top: 15px;
-    padding: 15px;
+    margin-top: 20px;
+    padding: 12px 15px;
     background: rgba(34, 17, 51, .8);
     min-width: 5%;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .2);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 }
 
 .pets-dropdown-content a {
@@ -104,8 +106,8 @@ a {
 }
 
 .pets-dropdown-content hr {
-    border: 0.5px solid dimgrey;
-    margin: 7.5px 0;
+    border: .5px solid dimgrey;
+    margin: 7.25px 0;
 }
 
 .show {
@@ -134,8 +136,8 @@ footer {
     bottom: 0;
     padding: 15px 17%;
     background: rgb(34, 17, 51);
-    align-items: center;
-    transition: 0.3s;
+    align-items: flex-start;
+    transition: .3s;
 }
 
 .row img {
@@ -150,7 +152,7 @@ footer .row {
     float: right;
     display: flex;
     flex-direction: column;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 footer .row:first-child {
@@ -171,7 +173,7 @@ footer .row:nth-child(2) {
     color: dimgrey;
     height: 24px;
     padding: 5px 12px 0 0;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .socials-icon:hover {
@@ -194,7 +196,7 @@ footer .row:nth-child(2) {
     font-size: 15px;
     font-weight: normal;
     text-align: right;
-    transition: 0.3s;
+    transition: .3s;
     padding-bottom: 8px;
 }
 

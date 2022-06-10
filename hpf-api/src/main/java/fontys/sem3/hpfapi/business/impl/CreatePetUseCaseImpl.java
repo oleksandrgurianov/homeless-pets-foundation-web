@@ -24,6 +24,7 @@ public class CreatePetUseCaseImpl implements CreatePetUseCase {
         }
 
         Pet newPet = Pet.builder()
+                .type(request.getIcon())
                 .type(request.getType())
                 .name(request.getName())
                 .breed(request.getBreed())

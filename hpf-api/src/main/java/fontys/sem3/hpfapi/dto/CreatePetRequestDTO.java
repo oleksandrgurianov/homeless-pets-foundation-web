@@ -9,6 +9,9 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class CreatePetRequestDTO {
     @NotBlank
+    private String icon;
+
+    @NotBlank
     private String type;
 
     @NotBlank

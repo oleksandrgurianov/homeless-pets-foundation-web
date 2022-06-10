@@ -16,6 +16,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/petpictures")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000/")
 public class PetPictureController {
     private final CreatePetPictureUseCase createPetPictureUseCase;
     private final DeletePetPictureUseCase deletePetPictureUseCase;

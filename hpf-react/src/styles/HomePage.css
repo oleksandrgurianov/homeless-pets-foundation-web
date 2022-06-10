@@ -1,0 +1,86 @@
+.Loading {
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Analytics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(21em, 1fr));;
+    grid-row-gap: 15px;
+    grid-column-gap: 15px;
+}
+
+.analytics-card {
+    background-color: #f2f2f2;
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1), 0 6px 20px 0 rgba(0, 0, 0, .1);
+    transition: .3s ease-in-out;
+}
+
+.analytics-card:hover {
+    transform: scale(1.015);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .2);
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: grey;
+}
+
+.card-total {
+    font-size: 70px;
+    font-weight: normal;
+    word-break: break-word;
+    align-items: center;
+}
+
+.card-total img {
+    height: 50px;
+    margin-left: 5px;
+}
+
+.AnalyticsLine {
+    border: .5px solid lightgrey;
+    margin: 15px 0 10px 0;
+}
+
+.Categories h1 {
+    font-size: 40px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.categories-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(31em, 1fr));;
+    grid-row-gap: 15px;
+    grid-column-gap: 15px;
+}
+
+.categories-card {
+    background-color: #f2f2f2;
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    color: dodgerblue;
+    font-size: 17px;
+    font-weight: normal;
+    align-items: center;
+    transition: .3s ease-in-out;
+}
+
+.categories-card img{
+    height: 24px;
+    margin-right: 10px;
+}
+
+.categories-card:hover {
+    filter: brightness(95%);
+}

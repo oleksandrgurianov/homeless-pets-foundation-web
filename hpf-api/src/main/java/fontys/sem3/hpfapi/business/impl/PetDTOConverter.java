@@ -10,6 +10,7 @@ final class PetDTOConverter {
         return PetDTO.builder()
                 .id(pet.getId())
                 .customer(CustomerDTOConverter.convertToDTO(pet.getCustomer()))
+                .icon(pet.getIcon())
                 .type(pet.getType())
                 .name(pet.getName())
                 .breed(pet.getBreed())

@@ -181,7 +181,8 @@ public class DatabaseDummyDataInitializer {
             Pet bizarre = petRepository.save(
                     Pet.builder()
                             .customer(customerRepository.findById(1L).orElseThrow())
-                            .type("DOG")
+                            .icon("https://drive.google.com/uc?export=view&id=1MoTatuPI6iXDQkaIGfc-sSLqUaCSqsPR")
+                            .type("DOGS")
                             .name("Bizarre")
                             .breed("Pit Bull Terrier")
                             .ageCategory("Adult")
@@ -194,7 +195,8 @@ public class DatabaseDummyDataInitializer {
             Pet jamison = petRepository.save(
                     Pet.builder()
                             .customer(null)
-                            .type("DOG")
+                            .icon("https://drive.google.com/uc?export=view&id=18G-f5b2AOrHx5DNUVxWSxXYz1TdCt4y8")
+                            .type("DOGS")
                             .name("Jamison")
                             .breed("Terrier Mix")
                             .ageCategory("Young")
@@ -207,7 +209,8 @@ public class DatabaseDummyDataInitializer {
             Pet mini = petRepository.save(
                     Pet.builder()
                             .customer(null)
-                            .type("DOG")
+                            .icon("https://drive.google.com/uc?export=view&id=1XoV_FRuKxOh2yW81sV_vPzcX6TvLhyNC")
+                            .type("DOGS")
                             .name("Mini")
                             .breed("Chihuahua")
                             .ageCategory("Senior")
@@ -220,7 +223,8 @@ public class DatabaseDummyDataInitializer {
             Pet phillip = petRepository.save(
                     Pet.builder()
                             .customer(null)
-                            .type("DOG")
+                            .icon("https://drive.google.com/uc?export=view&id=1S2QbBIDdF-Onvq4FvLIq5m0TrPu9GT-e")
+                            .type("DOGS")
                             .name("Phillip")
                             .breed("Beagle & Rhodesian Ridgeback Mix")
                             .ageCategory("Puppy")
@@ -233,7 +237,8 @@ public class DatabaseDummyDataInitializer {
             Pet plinko = petRepository.save(
                     Pet.builder()
                             .customer(null)
-                            .type("CAT")
+                            .icon("https://drive.google.com/uc?export=view&id=1_ZDhSJzhH5jHkV6oIrSDuhwrkjF_fLPD")
+                            .type("CATS")
                             .name("Plinko")
                             .breed("Domestic Long Hair")
                             .ageCategory("Adult")
@@ -246,7 +251,8 @@ public class DatabaseDummyDataInitializer {
             Pet gatsby = petRepository.save(
                     Pet.builder()
                             .customer(null)
-                            .type("CAT")
+                            .icon("https://drive.google.com/uc?export=view&id=1F5AGdfgLO5B5Bx6xEJV3O2UffVrtsJG5")
+                            .type("CATS")
                             .name("Gatsby")
                             .breed("Domestic Short Hair")
                             .ageCategory("Young")
@@ -259,7 +265,8 @@ public class DatabaseDummyDataInitializer {
             Pet dusk = petRepository.save(
                     Pet.builder()
                             .customer(null)
-                            .type("CAT")
+                            .icon("https://drive.google.com/uc?export=view&id=1R8dnNlNxa2_R95G21G_ryqDhDMBYRwhC")
+                            .type("CATS")
                             .name("Dusk")
                             .breed("Tiger")
                             .ageCategory("Kitten")
@@ -272,7 +279,8 @@ public class DatabaseDummyDataInitializer {
             Pet remy = petRepository.save(
                     Pet.builder()
                             .customer(null)
-                            .type("RABBIT")
+                            .icon("https://drive.google.com/uc?export=view&id=1_Op49ce22_ZcJDkTJZDbZxiANv7RCvSI")
+                            .type("RABBITS")
                             .name("Remy")
                             .breed("Bunny Rabbit Mix")
                             .ageCategory("Young")
@@ -285,7 +293,8 @@ public class DatabaseDummyDataInitializer {
             Pet snowman = petRepository.save(
                     Pet.builder()
                             .customer(null)
-                            .type("RAT")
+                            .icon("https://drive.google.com/uc?export=view&id=19xcGpZpJjov08bGx7U4V6SX7-OL4GO8y")
+                            .type("RATS")
                             .name("Snowman")
                             .breed("Gerbil")
                             .ageCategory("Adult")
@@ -298,7 +307,8 @@ public class DatabaseDummyDataInitializer {
             Pet lory = petRepository.save(
                     Pet.builder()
                             .customer(null)
-                            .type("PARROT")
+                            .icon("https://drive.google.com/uc?export=view&id=1wG47PtUzERxz4-QwLNxR4oG3Y0INru94")
+                            .type("PARROTS")
                             .name("Lory")
                             .breed("Lorikeet")
                             .ageCategory("Adult")
@@ -313,177 +323,177 @@ public class DatabaseDummyDataInitializer {
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(bizarre)
-                            .picture("https://drive.google.com/file/d/1MoTatuPI6iXDQkaIGfc-sSLqUaCSqsPR/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1MoTatuPI6iXDQkaIGfc-sSLqUaCSqsPR")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(bizarre)
-                            .picture("https://drive.google.com/file/d/12GFX_v0jKG9B21Ivd2iEjzkKLffLqKEg/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=12GFX_v0jKG9B21Ivd2iEjzkKLffLqKEg")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(bizarre)
-                            .picture("https://drive.google.com/file/d/1C2BK4pZH1ZuC_UdaP9Gudo-WrY4YL6jD/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1C2BK4pZH1ZuC_UdaP9Gudo-WrY4YL6jD")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(bizarre)
-                            .picture("https://drive.google.com/file/d/17QgStDCMqM3Bqnb56H7itR2JmUjiZ0QO/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=17QgStDCMqM3Bqnb56H7itR2JmUjiZ0QO")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(jamison)
-                            .picture("https://drive.google.com/file/d/18G-f5b2AOrHx5DNUVxWSxXYz1TdCt4y8/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=18G-f5b2AOrHx5DNUVxWSxXYz1TdCt4y8")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(jamison)
-                            .picture("https://drive.google.com/file/d/1n11f5xlcymxbUIBv3AcGqVq42jygiy17/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1n11f5xlcymxbUIBv3AcGqVq42jygiy17")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(jamison)
-                            .picture("https://drive.google.com/file/d/1HSiDMVF4OixBoxxl6-Uh9burDgxS1gHe/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1HSiDMVF4OixBoxxl6-Uh9burDgxS1gHe")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(mini)
-                            .picture("https://drive.google.com/file/d/1XoV_FRuKxOh2yW81sV_vPzcX6TvLhyNC/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1XoV_FRuKxOh2yW81sV_vPzcX6TvLhyNC")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(mini)
-                            .picture("https://drive.google.com/file/d/1HocLQaq4CbbSyI4UcHM2kW6AJ-TuYEQ1/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1HocLQaq4CbbSyI4UcHM2kW6AJ-TuYEQ1")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(mini)
-                            .picture("https://drive.google.com/file/d/1RV4F9E-S1JRLAuL4yQKDKeVdb1O6ZIr8/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1RV4F9E-S1JRLAuL4yQKDKeVdb1O6ZIr8")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(mini)
-                            .picture("https://drive.google.com/file/d/1U59l0Xcdyr_UMXpQQzBzSo9rZBSPHFrH/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1U59l0Xcdyr_UMXpQQzBzSo9rZBSPHFrH")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(mini)
-                            .picture("https://drive.google.com/file/d/1RcU6a42uCraa7dFluqFm4fX1zpRtueSQ/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1RcU6a42uCraa7dFluqFm4fX1zpRtueSQ")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(mini)
-                            .picture("https://drive.google.com/file/d/1ceSmsfWQGPiTQ4ne-iGKMLSVIV_8T15L/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1ceSmsfWQGPiTQ4ne-iGKMLSVIV_8T15L")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(phillip)
-                            .picture("https://drive.google.com/file/d/1S2QbBIDdF-Onvq4FvLIq5m0TrPu9GT-e/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1S2QbBIDdF-Onvq4FvLIq5m0TrPu9GT-e")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(plinko)
-                            .picture("https://drive.google.com/file/d/1_ZDhSJzhH5jHkV6oIrSDuhwrkjF_fLPD/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1_ZDhSJzhH5jHkV6oIrSDuhwrkjF_fLPD")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(plinko)
-                            .picture("https://drive.google.com/file/d/1PxZM4BOWCRyoRpxMt_msLK93zAuSobUD/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1PxZM4BOWCRyoRpxMt_msLK93zAuSobUD")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(plinko)
-                            .picture("https://drive.google.com/file/d/1kVP7jv9EJhGjHwkM_xtBiLvkO1DFdtPx/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1kVP7jv9EJhGjHwkM_xtBiLvkO1DFdtPx")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(plinko)
-                            .picture("https://drive.google.com/file/d/1j43fOdHh9ndqiMPbJ2dPqAIb2-UWe-_x/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1j43fOdHh9ndqiMPbJ2dPqAIb2-UWe-_x")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(plinko)
-                            .picture("https://drive.google.com/file/d/1UGQbZEH9oZf2IRfjKUZcs_p6i_3h9A6C/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1UGQbZEH9oZf2IRfjKUZcs_p6i_3h9A6C")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(plinko)
-                            .picture("https://drive.google.com/file/d/1lHYEJfMMH45WQggbVOiaPYS2JtqbLOJZ/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1lHYEJfMMH45WQggbVOiaPYS2JtqbLOJZ")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(gatsby)
-                            .picture("https://drive.google.com/file/d/1F5AGdfgLO5B5Bx6xEJV3O2UffVrtsJG5/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1F5AGdfgLO5B5Bx6xEJV3O2UffVrtsJG5")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(gatsby)
-                            .picture("https://drive.google.com/file/d/1_6X8gM35cUGCLRuLlcnlcaqIl7hqtWRb/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1_6X8gM35cUGCLRuLlcnlcaqIl7hqtWRb")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(gatsby)
-                            .picture("https://drive.google.com/file/d/1d1MrezQpu5rO4Lmxt59GE5WJFgjQaz1o/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1d1MrezQpu5rO4Lmxt59GE5WJFgjQaz1o")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(gatsby)
-                            .picture("https://drive.google.com/file/d/1MQKNkwYP8rhYNhgqJzIm8a5aZJwqNeFe/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1MQKNkwYP8rhYNhgqJzIm8a5aZJwqNeFe")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(gatsby)
-                            .picture("https://drive.google.com/file/d/1tXUm4i011rvLteByc0fShLO4WYbK5_2w/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1tXUm4i011rvLteByc0fShLO4WYbK5_2w")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(dusk)
-                            .picture("https://drive.google.com/file/d/1R8dnNlNxa2_R95G21G_ryqDhDMBYRwhC/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1R8dnNlNxa2_R95G21G_ryqDhDMBYRwhC")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(remy)
-                            .picture("https://drive.google.com/file/d/1_Op49ce22_ZcJDkTJZDbZxiANv7RCvSI/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1_Op49ce22_ZcJDkTJZDbZxiANv7RCvSI")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(remy)
-                            .picture("https://drive.google.com/file/d/1kLa9LcVwr91YK2pF75-7lSlwMPut8pSf/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1kLa9LcVwr91YK2pF75-7lSlwMPut8pSf")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(remy)
-                            .picture("https://drive.google.com/file/d/1Ck1pUGzkaWheSi5GJdce7jQXXvLt4CW9/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1Ck1pUGzkaWheSi5GJdce7jQXXvLt4CW9")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(snowman)
-                            .picture("https://drive.google.com/file/d/19xcGpZpJjov08bGx7U4V6SX7-OL4GO8y/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=19xcGpZpJjov08bGx7U4V6SX7-OL4GO8y")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(snowman)
-                            .picture("https://drive.google.com/file/d/14i5spoJyXg_d5GSZ8ATERmSWCKYp-7Yi/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=14i5spoJyXg_d5GSZ8ATERmSWCKYp-7Yi")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(snowman)
-                            .picture("https://drive.google.com/file/d/1C3_dnjDQTXv1ffiVdTE6UEgHb98q9dnh/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1C3_dnjDQTXv1ffiVdTE6UEgHb98q9dnh")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(snowman)
-                            .picture("https://drive.google.com/file/d/1VinuIyibqtq3P4XKRsog0aYazvo6gR5C/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1VinuIyibqtq3P4XKRsog0aYazvo6gR5C")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(snowman)
-                            .picture("https://drive.google.com/file/d/1ZbTLG9mBUpR2SSQ45AHfTyocLtTAAFZf/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1ZbTLG9mBUpR2SSQ45AHfTyocLtTAAFZf")
                             .build());
             petPictureRepository.save(
                     PetPicture.builder()
                             .pet(lory)
-                            .picture("https://drive.google.com/file/d/1wG47PtUzERxz4-QwLNxR4oG3Y0INru94/view?usp=sharing")
+                            .picture("https://drive.google.com/uc?export=view&id=1wG47PtUzERxz4-QwLNxR4oG3Y0INru94")
                             .build());
         }
     }

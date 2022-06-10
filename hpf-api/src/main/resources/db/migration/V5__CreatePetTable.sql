@@ -2,6 +2,7 @@ CREATE TABLE pet
 (
     id              int             NOT NULL AUTO_INCREMENT,
     customer_id     int,
+    icon            varchar(255)    NOT NULL,
     type            varchar(255)    NOT NULL,
     name            varchar(255)    NOT NULL,
     breed           varchar(255)    NOT NULL,

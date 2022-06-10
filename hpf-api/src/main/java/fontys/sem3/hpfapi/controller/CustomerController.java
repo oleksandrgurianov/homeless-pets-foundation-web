@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customers")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000/")
 public class CustomerController {
     private final CreateCustomerUseCase createCustomerUseCase;
     private final GetCustomerUseCase getCustomerUseCase;
