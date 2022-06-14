@@ -9,6 +9,7 @@ import fontys.sem3.hpfapi.repository.entity.Donation;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service

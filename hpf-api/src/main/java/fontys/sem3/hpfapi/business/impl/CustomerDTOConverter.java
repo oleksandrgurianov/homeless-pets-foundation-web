@@ -4,7 +4,8 @@ import fontys.sem3.hpfapi.dto.CustomerDTO;
 import fontys.sem3.hpfapi.repository.entity.Customer;
 
 final class CustomerDTOConverter {
-    private CustomerDTOConverter() { }
+    private CustomerDTOConverter() {
+    }
 
     public static CustomerDTO convertToDTO(Customer customer) {
         if (customer != null) {

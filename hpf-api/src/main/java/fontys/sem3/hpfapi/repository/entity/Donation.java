@@ -1,8 +1,10 @@
 package fontys.sem3.hpfapi.repository.entity;
 
 import lombok.*;
+
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "donation")
@@ -20,13 +22,13 @@ public class Donation {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @NonNull
+    @NotNull
     @Column(name = "amount")
     private Double amount;
 
-    @NonNull
+    @NotNull
     @Column(name = "date_of_receipt")
-    private Date dateOfReceipt;
+    private LocalDate dateOfReceipt;
 
     @Column(name = "description")
     private String description;

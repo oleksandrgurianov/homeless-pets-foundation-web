@@ -1,19 +1,32 @@
 import React from 'react'
-import { Link, Routes, Route } from 'react-router-dom'
+import {Link, Routes, Route} from 'react-router-dom'
 import logo from '../images/logo.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import HomePage from '../pages/HomePage'
 import PetsPage from '../pages/PetsPage'
-import DonatePage from '../pages/DonatePage'
-import NotFoundPage from "../pages/NotFoundPage";
+import DonatePage from '../pages/DonatePage/DonatePage'
+import SuccessPage from "../pages/SuccessPage"
+import NotFoundPage from "../pages/NotFoundPage"
 
 function Header() {
     function showContent() {
         document.getElementById('petsDropdown').classList.toggle('show');
     }
 
-    window.onclick = function(e) {
+    window.onclick = function (e) {
+        if (!e.target.matches('.pets-dropdown-button')) {
+            let petsDropdown = document.getElementById('petsDropdown');
+
+            if (petsDropdown != null) {
+                if (petsDropdown.classList.contains('show')) {
+                    petsDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+    window.onclick = function (e) {
         if (!e.target.matches('.pets-dropdown-button')) {
             let petsDropdown = document.getElementById('petsDropdown');
 
@@ -33,17 +46,18 @@ function Header() {
                 </Link>
                 <Link className={'NavLink'} to={'/'}>Home</Link>
                 <div className={'NavPetsDropdown'}>
-                    <button className={'pets-dropdown-button'} onClick={showContent}>Pets<FontAwesomeIcon className={'dropdown-icon'} icon={faCaretDown} /></button>
+                    <button className={'pets-dropdown-button'} onClick={showContent}>Pets<FontAwesomeIcon
+                        className={'dropdown-button-icon'} icon={faCaretDown}/></button>
                     <div className={'pets-dropdown-content'} id={'petsDropdown'}>
-                        <Link to={'/pets/dogs'}>Dogs</Link>
+                        <Link to={'/pets/categories/dogs'}>Dogs</Link>
                         <hr/>
-                        <Link to={'/pets/cats'}>Cats</Link>
+                        <Link to={'/pets/categories/cats'}>Cats</Link>
                         <hr/>
-                        <Link to={'/pets/rabbits'}>Rabbits</Link>
+                        <Link to={'/pets/categories/rabbits'}>Rabbits</Link>
                         <hr/>
-                        <Link to={'/pets/rats'}>Rats</Link>
+                        <Link to={'/pets/categories/rats'}>Rats</Link>
                         <hr/>
-                        <Link to={'/pets/parrots'}>Parrots</Link>
+                        <Link to={'/pets/categories/parrots'}>Parrots</Link>
                     </div>
                 </div>
                 <Link className={'NavLinkDonate'} to={'/donate'}>Donate</Link>
@@ -53,10 +67,11 @@ function Header() {
             </div>
             <div className={'Body'}>
                 <Routes>
-                    <Route path={'/'} element={<HomePage/>} />
-                    <Route path={'/pets/:type'} element={<PetsPage/>} />
-                    <Route path={'/donate'} element={<DonatePage/>} />
-                    <Route path={'/*'} element={<NotFoundPage />} />
+                    <Route path={'/'} element={<HomePage/>}/>
+                    <Route path={'/pets/categories/:type'} element={<PetsPage/>}/>
+                    <Route path={'/donate'} element={<DonatePage/>}/>
+                    <Route path={'/success'} element={<SuccessPage/>}/>
+                    <Route path={'/*'} element={<NotFoundPage/>}/>
                 </Routes>
             </div>
         </>

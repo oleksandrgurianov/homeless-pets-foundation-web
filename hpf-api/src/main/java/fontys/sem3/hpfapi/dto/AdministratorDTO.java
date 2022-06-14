@@ -8,6 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 public class AdministratorDTO {
     private Long id;
+
     private UserDTO user;
+
     private String jobPosition;
 }

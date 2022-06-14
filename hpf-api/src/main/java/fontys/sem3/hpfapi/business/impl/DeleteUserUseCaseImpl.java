@@ -4,6 +4,7 @@ import fontys.sem3.hpfapi.business.DeleteUserUseCase;
 import fontys.sem3.hpfapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 
 @Service
@@ -13,5 +14,7 @@ public class DeleteUserUseCaseImpl implements DeleteUserUseCase {
 
     @Transactional
     @Override
-    public void deleteUser(long userId) { this.userRepository.deleteById(userId); }
+    public void deleteUser(long userId) {
+        this.userRepository.deleteById(userId);
+    }
 }

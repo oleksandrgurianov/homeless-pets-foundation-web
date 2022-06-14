@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 @RestController
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @DeleteMapping("{userId}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable int userId) {
+    public ResponseEntity<Void> deleteUser(@PathVariable int userId) {
         deleteUserUseCase.deleteUser(userId);
         return ResponseEntity.noContent().build();
     }

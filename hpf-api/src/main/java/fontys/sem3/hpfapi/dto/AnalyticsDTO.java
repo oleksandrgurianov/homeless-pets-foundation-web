@@ -8,6 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 public class AnalyticsDTO {
     private Long petsAdoptedTotal;
+
     private Long customersSatisfiedTotal;
+
     private Double donationsReceivedTotal;
 }

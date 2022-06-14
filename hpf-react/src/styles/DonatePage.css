@@ -1,0 +1,88 @@
+h1 {
+    color: black;
+    font-size: 40px;
+    font-weight: normal;
+}
+
+.DonateLine {
+    border: .5px solid lightgrey;
+    margin: 10px 0 30px 0;
+}
+
+.DonateForm {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
+    grid-row-gap: 30px;
+    grid-column-gap: 30px;
+}
+
+.form-card, .form-amount {
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1), 0 6px 20px 0 rgba(0, 0, 0, .1);
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.DonateForm input, .DonateForm textarea {
+    background-color: rgba(255, 255, 255, .3);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(25px);
+}
+
+.card-details input, .form-amount input, .form-amount textarea, .amount-footer button {
+    height: 35px;
+    margin-top: 15px;
+    padding: 0 10px;
+    border: 1px solid darkgray;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.details-footer, .amount-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.details-footer input, .amount-footer button {
+    width: 100%;
+}
+
+.details-footer input:first-child, .footer-send {
+    margin-right: 15px;
+}
+
+.form-amount input {
+    margin-top: 0;
+}
+
+.form-amount textarea {
+    padding: 10px;
+    height: 215px;
+    resize: none;
+}
+
+.amount-footer button {
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.amount-footer button:hover {
+    filter: brightness(90%);
+}
+
+.amount-footer .footer-send {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.amount-footer .footer-cancel {
+    background-color: white;
+    color: dimgray;
+}

@@ -104,6 +104,12 @@ select {
     padding: 0 15px 15px;
 }
 
+.NoMatches h2 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .Loading {
     height: 100px;
     display: block;

@@ -4,7 +4,8 @@ import fontys.sem3.hpfapi.dto.AdministratorDTO;
 import fontys.sem3.hpfapi.repository.entity.Administrator;
 
 final class AdministratorDTOConverter {
-    private AdministratorDTOConverter() { }
+    private AdministratorDTOConverter() {
+    }
 
     public static AdministratorDTO convertToDTO(Administrator administrator) {
         return AdministratorDTO.builder()

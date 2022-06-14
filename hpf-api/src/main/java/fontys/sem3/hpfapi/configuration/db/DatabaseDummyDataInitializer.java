@@ -6,9 +6,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+
 import javax.transaction.Transactional;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 @Component
 @AllArgsConstructor
@@ -26,7 +26,7 @@ public class DatabaseDummyDataInitializer {
         if (userRepository.count() == 0) {
             User admin = userRepository.save(
                     User.builder()
-                            .avatar("https://drive.google.com/file/d/1_dkDl3VGEjdKqyO900DmdmBGg3DbaVVo/view?usp=sharing")
+                            .avatar("https://drive.google.com/uc?export=view&id=1_dkDl3VGEjdKqyO900DmdmBGg3DbaVVo")
                             .fullName("Manna Barnhoorn")
                             .email("admin@hpf.com")
                             .phoneNumber("0641261843")
@@ -35,7 +35,7 @@ public class DatabaseDummyDataInitializer {
                             .build());
             User cust1 = userRepository.save(
                     User.builder()
-                            .avatar("https://drive.google.com/file/d/1Rm-dceeyImW5JIBJGBrMiNKUzegRZ_Qo/view?usp=sharing")
+                            .avatar("https://drive.google.com/uc?export=view&id=1Rm-dceeyImW5JIBJGBrMiNKUzegRZ_Qo")
                             .fullName("Pascal Broeks")
                             .email("cust1@gmail.com")
                             .phoneNumber("0651535133")
@@ -53,7 +53,7 @@ public class DatabaseDummyDataInitializer {
                             .build());
             User cust3 = userRepository.save(
                     User.builder()
-                            .avatar("https://drive.google.com/file/d/1CCXztuaEGv9H95TfMVBuDyDX3ElL4tBc/view?usp=sharing")
+                            .avatar("https://drive.google.com/uc?export=view&id=1CCXztuaEGv9H95TfMVBuDyDX3ElL4tBc")
                             .fullName("Pearl Knijnenburg")
                             .email("cust3@gmail.com")
                             .phoneNumber("0682771024")
@@ -100,81 +100,76 @@ public class DatabaseDummyDataInitializer {
         }
 
         if (donationRepository.count() == 0) {
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(customerRepository.findById(1L).orElseThrow())
-                                .amount(3.59d)
-                                .dateOfReceipt(sdf.parse("13/02/2022"))
-                                .description("Dispassionate extraterrestrial observer Vangelis rings of Uranus Flatland the sky calls to us muse about.")
-                                .build());
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(customerRepository.findById(1L).orElseThrow())
-                                .amount(35.41d)
-                                .dateOfReceipt(sdf.parse("14/02/2022"))
-                                .description("Citizens of distant epochs Euclid of brilliant syntheses stirred by starlight tesseract stirred by starlight.")
-                                .build());
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(customerRepository.findById(1L).orElseThrow())
-                                .amount(44.32d)
-                                .dateOfReceipt(sdf.parse("15/03/2022"))
-                                .description(null)
-                                .build());
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(customerRepository.findById(2L).orElseThrow())
-                                .amount(3.86d)
-                                .dateOfReceipt(sdf.parse("18/03/2022"))
-                                .description("Concept of the number one stirred by starlight another world something incredible is waiting to be known something incredible is waiting to be known great turbulent clouds?")
-                                .build());
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(customerRepository.findById(2L).orElseThrow())
-                                .amount(11.21d)
-                                .dateOfReceipt(sdf.parse("31/03/2022"))
-                                .description(null)
-                                .build());
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(customerRepository.findById(3L).orElseThrow())
-                                .amount(42.7d)
-                                .dateOfReceipt(sdf.parse("01/04/2022"))
-                                .description(null)
-                                .build());
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(null)
-                                .amount(37.02d)
-                                .dateOfReceipt(sdf.parse("07/04/2022"))
-                                .description("Great turbulent clouds great turbulent clouds the only home we've ever known great turbulent clouds invent the universe great turbulent clouds.")
-                                .build());
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(null)
-                                .amount(48.19d)
-                                .dateOfReceipt(sdf.parse("09/04/2022"))
-                                .description(null)
-                                .build());
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(null)
-                                .amount(34.05d)
-                                .dateOfReceipt(sdf.parse("10/04/2022"))
-                                .description("Circumnavigated hydrogen atoms with pretty stories for which there's little good evidence of brilliant syntheses white dwarf citizens of distant epochs.")
-                                .build());
-                donationRepository.save(
-                        Donation.builder()
-                                .customer(null)
-                                .amount(29.14d)
-                                .dateOfReceipt(sdf.parse("29/04/2022"))
-                                .description(null)
-                                .build());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(customerRepository.findById(1L).orElseThrow())
+                            .amount(3.59d)
+                            .dateOfReceipt(LocalDate.parse("2022-02-13"))
+                            .description("Dispassionate extraterrestrial observer Vangelis rings of Uranus Flatland the sky calls to us muse about.")
+                            .build());
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(customerRepository.findById(1L).orElseThrow())
+                            .amount(35.41d)
+                            .dateOfReceipt(LocalDate.parse("2022-02-14"))
+                            .description("Citizens of distant epochs Euclid of brilliant syntheses stirred by starlight tesseract stirred by starlight.")
+                            .build());
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(customerRepository.findById(1L).orElseThrow())
+                            .amount(44.32d)
+                            .dateOfReceipt(LocalDate.parse("2022-03-15"))
+                            .description(null)
+                            .build());
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(customerRepository.findById(2L).orElseThrow())
+                            .amount(3.86d)
+                            .dateOfReceipt(LocalDate.parse("2022-03-18"))
+                            .description("Concept of the number one stirred by starlight another world something incredible is waiting to be known something incredible is waiting to be known great turbulent clouds?")
+                            .build());
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(customerRepository.findById(2L).orElseThrow())
+                            .amount(11.21d)
+                            .dateOfReceipt(LocalDate.parse("2022-03-31"))
+                            .description(null)
+                            .build());
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(customerRepository.findById(3L).orElseThrow())
+                            .amount(42.7d)
+                            .dateOfReceipt(LocalDate.parse("2022-04-01"))
+                            .description(null)
+                            .build());
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(null)
+                            .amount(37.02d)
+                            .dateOfReceipt(LocalDate.parse("2022-04-07"))
+                            .description("Great turbulent clouds great turbulent clouds the only home we've ever known great turbulent clouds invent the universe great turbulent clouds.")
+                            .build());
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(null)
+                            .amount(48.19d)
+                            .dateOfReceipt(LocalDate.parse("2022-04-09"))
+                            .description(null)
+                            .build());
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(null)
+                            .amount(34.05d)
+                            .dateOfReceipt(LocalDate.parse("2022-04-10"))
+                            .description("Circumnavigated hydrogen atoms with pretty stories for which there's little good evidence of brilliant syntheses white dwarf citizens of distant epochs.")
+                            .build());
+            donationRepository.save(
+                    Donation.builder()
+                            .customer(null)
+                            .amount(29.14d)
+                            .dateOfReceipt(LocalDate.parse("2022-04-29"))
+                            .description(null)
+                            .build());
         }
 
         if (petRepository.count() == 0) {
@@ -318,7 +313,6 @@ public class DatabaseDummyDataInitializer {
                             .description("Hi there! I'm a Lorikeet and I am part of a bonded pair. I require daily \"out time\", lots of socialization, specialized feeding, and I can be VERY noisy. I'm looking for a Lorikeet experienced home that will help me calm down so that my feathers can grown back in. (I plucked them because I was unhappy in my former environment).")
                             .adoptionFee(350d)
                             .build());
-
 
             petPictureRepository.save(
                     PetPicture.builder()

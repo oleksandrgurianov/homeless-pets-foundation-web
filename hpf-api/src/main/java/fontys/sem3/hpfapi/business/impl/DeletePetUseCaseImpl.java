@@ -4,6 +4,7 @@ import fontys.sem3.hpfapi.business.DeletePetUseCase;
 import fontys.sem3.hpfapi.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 
 @Service
@@ -13,5 +14,7 @@ public class DeletePetUseCaseImpl implements DeletePetUseCase {
 
     @Transactional
     @Override
-    public void deletePet(long petId) { this.petRepository.deleteById(petId); }
+    public void deletePet(long petId) {
+        this.petRepository.deleteById(petId);
+    }
 }

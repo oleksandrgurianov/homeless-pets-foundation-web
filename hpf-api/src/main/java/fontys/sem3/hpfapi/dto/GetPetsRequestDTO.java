@@ -1,6 +1,7 @@
 package fontys.sem3.hpfapi.dto;
 
 import lombok.*;
+
 import javax.validation.constraints.NotBlank;
 
 @Data
@@ -12,8 +13,4 @@ public class GetPetsRequestDTO {
 
     @NotBlank
     private String type;
-
-    private String breed;
-
-    private String sort;
 }

@@ -4,7 +4,8 @@ import fontys.sem3.hpfapi.dto.PetDTO;
 import fontys.sem3.hpfapi.repository.entity.Pet;
 
 final class PetDTOConverter {
-    private PetDTOConverter() { }
+    private PetDTOConverter() {
+    }
 
     public static PetDTO convertToDTO(Pet pet) {
         return PetDTO.builder()

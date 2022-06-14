@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -32,13 +33,11 @@ public class PetController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<GetPetsResponseDTO> getPets(@RequestParam(value = "type") String type, @RequestParam(value = "customerId", required = false) Long customerId, @RequestParam(value = "breed", required = false) String breed, @RequestParam(value = "sort", required = false) String sort) {
+    @GetMapping("categories/{type}")
+    public ResponseEntity<GetPetsResponseDTO> getPets(@PathVariable("type") String type, @RequestParam(value = "customerId", required = false) Long customerId) {
         GetPetsRequestDTO request = new GetPetsRequestDTO();
-        request.setCustomerId(customerId);
         request.setType(type);
-        request.setBreed(breed);
-        request.setSort(sort);
+        request.setCustomerId(customerId);
         return ResponseEntity.ok(getPetsUseCase.getPets(request));
     }
 

@@ -1,30 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import { useStateWithCallbackLazy } from 'use-state-with-callback'
+import React, {useState, useEffect} from 'react'
+import {useLocation} from "react-router-dom";
 import axios from 'axios'
 import '../styles/PetsPage.css'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {Link} from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import loading from "../images/loading.gif"
 
 const PetsPage = () => {
+    const location = useLocation();
+
     const [pets, setPets] = useState([]);
 
-    const [breed, setBreed] = useStateWithCallbackLazy('');
+    const [search, setSearch] = useState('');
 
-    const [sort, setSort] = useStateWithCallbackLazy('');
+    const [sort, setSort] = useState('');
+
+    const [filteredPets, setFilteredPets] = useState([]);
+
+    useEffect(() => {
+        getPets();
+    }, [location]);
 
     const getPets = () => {
         const pathname = new URL(window.location.href).pathname;
 
-        const pathnameArray = pathname.split('/');
-
-        const type = pathnameArray[2];
-
-        axios.get(`http://localhost:8080/pets?type=${type}&breed=${breed}&sort=${sort}`)
+        axios.get(`http://localhost:8080${pathname}`)
             .then(res => {
-                setPets(res.data);
-                console.log(res.data);
+                setPets(res.data.pets);
+                console.log(res.data.pets);
             })
             .catch(err => {
                 console.log(err);
@@ -33,27 +37,38 @@ const PetsPage = () => {
 
     useEffect(() => {
         getPets();
-    }, [pets]);
+    }, []);
 
-    function searchPets(e) {
-        setBreed(e, () => {
-            getPets();
-        })
-    }
+    useEffect(() => {
+        const filteredResults = pets.filter(pet => {
+            if (search === '') {
+                return pet;
+            } else {
+                return pet.breed.toLowerCase().includes(search.toLowerCase());
+            }
+        }).sort((a, b) => {
+            if (sort === 'nameAsc') {
+                return a.name > b.name ? 1 : -1;
+            } else if (sort === 'nameDesc') {
+                return a.name > b.name ? -1 : 1;
+            } else if (sort === 'adoptionFeeAsc') {
+                return a.adoptionFee > b.adoptionFee ? 1 : -1;
+            } else if (sort === 'adoptionFeeDesc') {
+                return a.adoptionFee > b.adoptionFee ? -1 : 1;
+            }
+        });
 
-    function sortPets(e) {
-        setSort(e, () => {
-            getPets();
-        })
-    }
+        setFilteredPets(filteredResults);
+    }, [pets, search, sort])
 
     return (
         <>
             <div className={'Header'}>
                 <h1>Pets</h1>
-                <input className={'header-search'} type={'text'} placeholder={'Search'} onChange={e => searchPets(e.target.value)}/>
+                <input className={'header-search'} type={'text'} placeholder={'Search'}
+                       onChange={e => setSearch(e.target.value)}/>
                 <div className={'header-dropdown'}>
-                    <select onChange={e => sortPets(e.target.value)}>
+                    <select onChange={e => setSort(e.target.value)}>
                         <option value={'nameAsc'}>Name &uarr;</option>
                         <option value={'nameDesc'}>Name &darr;</option>
                         <option value={'adoptionFeeAsc'}>Adoption Fee &uarr;</option>
@@ -63,17 +78,26 @@ const PetsPage = () => {
                 </div>
             </div>
             <hr className={'HeaderLine'}/>
-            {pets.pets ? (
-                <div className={'Pets'}>
-                    {pets.pets.map((pet) => (
-                        <Link className='pets-card' to={`/*`}>
-                            <img src={pet.icon}/>
-                            <p className={'card-name'}>{pet.name}</p>
-                            <p className={'card-breed'}>{pet.breed}</p>
-                        </Link>
-                    ))}
-                </div>
-            ) : (
+            {pets.length ? (
+                (
+                    filteredPets.length ? (
+                        <div className={'Pets'}>
+                            {
+                                filteredPets.map((pet) => (
+                                    <Link className='pets-card' to={`/*`} key={pet.id}>
+                                        <img src={pet.icon}/>
+                                        <p className={'card-name'}>{pet.name}</p>
+                                        <p className={'card-breed'}>{pet.breed}</p>
+                                    </Link>
+                                ))}
+                        </div>
+                    ) : (
+                        <div className={'NoMatches'}>
+                            <h2>Sorry, no matches were found.</h2>
+                            <h2>Try a new search or use our suggestions.</h2>
+                        </div>
+                    )
+                )) : (
                 <img className={"Loading"} src={loading}/>
             )}
         </>

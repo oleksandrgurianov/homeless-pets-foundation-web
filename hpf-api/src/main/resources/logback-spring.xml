@@ -9,7 +9,7 @@
             <level value="debug"/>
         </logger>
         <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
-            <level value="debug" />
+            <level value="debug"/>
         </logger>
 
         <root level="info">

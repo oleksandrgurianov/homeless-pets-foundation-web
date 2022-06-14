@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import '../styles/HomePage.css'
 import {Link} from 'react-router-dom'
@@ -36,15 +36,20 @@ const HomePage = () => {
                 <div className={'Analytics'}>
                     <div className={'analytics-card'}>
                         <p className={'card-title'}>PETS ADOPTED</p>
-                        <p className={'card-total'}>{analytics.petsAdoptedTotal}<img src={pawPrints} alt={'guide dog emoji'}/></p>
+                        <p className={'card-total'}>{analytics.petsAdoptedTotal}<img src={pawPrints}
+                                                                                     alt={'guide dog emoji'}/></p>
                     </div>
                     <div className={'analytics-card'}>
                         <p className={'card-title'}>CUSTOMERS SATISFIED</p>
-                        <p className={'card-total'}>{analytics.customersSatisfiedTotal}<img src={manRaisingHand} alt={'man raising hand emoji'}/></p>
+                        <p className={'card-total'}>{analytics.customersSatisfiedTotal}<img src={manRaisingHand}
+                                                                                            alt={'man raising hand emoji'}/>
+                        </p>
                     </div>
                     <div className={'analytics-card'}>
                         <p className={'card-title'}>DONATIONS RECEIVED</p>
-                        <p className={'card-total'}>&euro;{analytics.donationsReceivedTotal}<img src={moneyWithWings} alt={'money with wings emoji'}/></p>
+                        <p className={'card-total'}>&euro;{analytics.donationsReceivedTotal}<img src={moneyWithWings}
+                                                                                                 alt={'money with wings emoji'}/>
+                        </p>
                     </div>
                 </div>
             ) : (
@@ -54,11 +59,11 @@ const HomePage = () => {
             <div className={'Categories'}>
                 <h1>Categories</h1>
                 <div className={'categories-list'}>
-                    <Link className={'categories-card'} to={'/pets/dogs'}><img src={dog} alt={'dog emoji'}/>Dogs</Link>
-                    <Link className={'categories-card'} to={'/pets/cats'}><img src={cat} alt={'cat emoji'}/>Cats</Link>
-                    <Link className={'categories-card'} to={'/pets/rabbits'}><img src={rabbit} alt={'rabbit emoji'}/>Rabbits</Link>
-                    <Link className={'categories-card'} to={'/pets/rats'}><img src={rat} alt={'rat emoji'}/>Rats</Link>
-                    <Link className={'categories-card'} to={'/pets/parrots'}><img src={parrot} alt={'parrot emoji'}/>Parrots</Link>
+                    <Link className={'categories-card'} to={'/pets/categories/dogs'}><img src={dog} alt={'dog emoji'}/>Dogs</Link>
+                    <Link className={'categories-card'} to={'/pets/categories/cats'}><img src={cat} alt={'cat emoji'}/>Cats</Link>
+                    <Link className={'categories-card'} to={'/pets/categories/rabbits'}><img src={rabbit} alt={'rabbit emoji'}/>Rabbits</Link>
+                    <Link className={'categories-card'} to={'/pets/categories/rats'}><img src={rat} alt={'rat emoji'}/>Rats</Link>
+                    <Link className={'categories-card'} to={'/pets/categories/parrots'}><img src={parrot} alt={'parrot emoji'}/>Parrots</Link>
                 </div>
             </div>
         </>

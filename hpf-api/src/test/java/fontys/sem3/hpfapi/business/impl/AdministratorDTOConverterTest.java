@@ -5,6 +5,7 @@ import fontys.sem3.hpfapi.dto.UserDTO;
 import fontys.sem3.hpfapi.repository.entity.Administrator;
 import fontys.sem3.hpfapi.repository.entity.User;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AdministratorDTOConverterTest {
@@ -14,7 +15,7 @@ public class AdministratorDTOConverterTest {
                 .id(1L)
                 .user(User.builder()
                         .id(1L)
-                        .avatar("https://drive.google.com/file/d/1_dkDl3VGEjdKqyO900DmdmBGg3DbaVVo/view?usp=sharing")
+                        .avatar("https://drive.google.com/uc?export=view&id=1_dkDl3VGEjdKqyO900DmdmBGg3DbaVVo")
                         .fullName("Manna Barnhoorn")
                         .email("admin@hpf.com")
                         .phoneNumber("0641261843")
@@ -30,7 +31,7 @@ public class AdministratorDTOConverterTest {
                 .id(1L)
                 .user(UserDTO.builder()
                         .id(1L)
-                        .avatar("https://drive.google.com/file/d/1_dkDl3VGEjdKqyO900DmdmBGg3DbaVVo/view?usp=sharing")
+                        .avatar("https://drive.google.com/uc?export=view&id=1_dkDl3VGEjdKqyO900DmdmBGg3DbaVVo")
                         .fullName("Manna Barnhoorn")
                         .email("admin@hpf.com")
                         .phoneNumber("0641261843")

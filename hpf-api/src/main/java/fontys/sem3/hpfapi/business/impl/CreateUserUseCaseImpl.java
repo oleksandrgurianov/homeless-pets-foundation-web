@@ -8,6 +8,7 @@ import fontys.sem3.hpfapi.repository.UserRepository;
 import fontys.sem3.hpfapi.repository.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 
 @Service

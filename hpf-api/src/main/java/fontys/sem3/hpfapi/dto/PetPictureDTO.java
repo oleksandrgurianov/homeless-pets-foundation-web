@@ -8,5 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 public class PetPictureDTO {
     private Long id;
+
     private String picture;
 }

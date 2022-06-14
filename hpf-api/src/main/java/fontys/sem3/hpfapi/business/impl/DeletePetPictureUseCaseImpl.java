@@ -4,6 +4,7 @@ import fontys.sem3.hpfapi.business.DeletePetPictureUseCase;
 import fontys.sem3.hpfapi.repository.PetPictureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 
 @Service
@@ -13,5 +14,7 @@ public class DeletePetPictureUseCaseImpl implements DeletePetPictureUseCase {
 
     @Transactional
     @Override
-    public void deletePetPicture(long petPictureId) { this.petPictureRepository.deleteById(petPictureId); }
+    public void deletePetPicture(long petPictureId) {
+        this.petPictureRepository.deleteById(petPictureId);
+    }
 }
