@@ -18,10 +18,6 @@ const PetsPage = () => {
 
     const [filteredPets, setFilteredPets] = useState([]);
 
-    useEffect(() => {
-        getPets();
-    }, [location]);
-
     const getPets = () => {
         const pathname = new URL(window.location.href).pathname;
 
@@ -37,7 +33,7 @@ const PetsPage = () => {
 
     useEffect(() => {
         getPets();
-    }, []);
+    }, [location]);
 
     useEffect(() => {
         const filteredResults = pets.filter(pet => {
@@ -66,7 +62,7 @@ const PetsPage = () => {
             <div className={'Header'}>
                 <h1>Pets</h1>
                 <input className={'header-search'} type={'text'} placeholder={'Search'}
-                       onChange={e => setSearch(e.target.value)}/>
+                       value={search} onChange={e => setSearch(e.target.value)}/>
                 <div className={'header-dropdown'}>
                     <select onChange={e => setSort(e.target.value)}>
                         <option value={'nameAsc'}>Name &uarr;</option>

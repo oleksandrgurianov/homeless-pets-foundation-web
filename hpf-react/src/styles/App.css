@@ -56,7 +56,7 @@ a {
     margin: 0;
 }
 
-.NavLink, .NavPetsDropdown, .pets-dropdown-button, .NavLinkDonate, .NavButton, .log-in-button {
+.NavLink, .NavPetsDropdown, .pets-dropdown-button, .NavLinkDonate, .NavLinkLogIn {
     color: darkgrey;
     font-size: 15px;
     font-weight: normal;
@@ -64,11 +64,11 @@ a {
     margin: 0 3%;
 }
 
-.NavLink:hover, .pets-dropdown-button:hover, .pets-dropdown-content a:hover, .NavLinkDonate:hover, .log-in-button:hover {
+.NavLink:hover, .pets-dropdown-button:hover, .pets-dropdown-content a:hover, .NavLinkDonate:hover, .NavLinkLogIn:hover {
     color: white;
 }
 
-.pets-dropdown-button, .log-in-button {
+.pets-dropdown-button {
     cursor: pointer;
     border: none;
     outline: none;
@@ -118,7 +118,7 @@ a {
     margin-left: auto;
 }
 
-.NavButton, footer .row:last-child {
+.NavLinkLogIn, footer .row:last-child {
     margin-right: 0;
 }
 

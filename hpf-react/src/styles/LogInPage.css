@@ -1,0 +1,64 @@
+.LogIn {
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    margin: 15vh auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1), 0 6px 20px 0 rgba(0, 0, 0, .1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.LogIn h1 {
+    font-size: 40px;
+    font-weight: normal;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.LogInForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.LogInForm input, .LogInForm button {
+    height: 35px;
+    margin-top: 15px;
+    padding: 0 10px;
+    border: 1px solid darkgray;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, .6);
+}
+
+.LogInForm button {
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    background-color: dodgerblue;
+    color: white;
+}
+
+.LogInForm button:hover, .LogInLink:hover {
+    filter: brightness(90%);
+}
+
+.LogInLine {
+    border: .5px solid lightgray;
+    margin: 20px 0 15px 0;
+    width: 100%;
+}
+
+.LogIn p {
+    font-size: 15px;
+    color: white;
+}
+
+.LogInLink {
+    color: dodgerblue;
+    transition: 0.3s;
+}
+

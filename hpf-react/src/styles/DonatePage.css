@@ -32,8 +32,6 @@ h1 {
 
 .DonateForm input, .DonateForm textarea {
     background-color: rgba(255, 255, 255, .3);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(25px);
 }
 
 .card-details input, .form-amount input, .form-amount textarea, .amount-footer button {
@@ -58,13 +56,13 @@ h1 {
     margin-right: 15px;
 }
 
-.form-amount input {
+.form-amount input:first-child {
     margin-top: 0;
 }
 
 .form-amount textarea {
     padding: 10px;
-    height: 215px;
+    height: 165px;
     resize: none;
 }
 

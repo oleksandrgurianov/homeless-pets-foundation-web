@@ -21,6 +21,8 @@ const DonatePage = () => {
 
     const [focus, setFocus] = useState('');
 
+    const [email, setEmail] = useState('')
+
     const [amount, setAmount] = useState('');
 
     const [description, setDescription] = useState('')
@@ -73,13 +75,18 @@ const DonatePage = () => {
             'description': description
         };
 
-        axios.post(`http://localhost:8080/donations`, donation)
-            .then(function () {
-            })
-            .catch(function () {
-            });
+        if (donation.amount > 0) {
+            axios.post(`http://localhost:8080/donations`, donation)
+                .then(function () {
+                })
+                .catch(function () {
+                });
 
-        navigate('/success');
+            alert("Thank you!\nYour donation has been received.\nWe will update you shortly.");
+            navigate('/');
+        } else {
+            alert("Please fill out amount")
+        }
     }
 
     const cancelDonation = () => {
@@ -87,7 +94,8 @@ const DonatePage = () => {
         setFullName('');
         setExpirationDate('');
         setCvv('');
-        setAmount('')
+        setEmail('');
+        setAmount('');
         setDescription('');
     }
 
@@ -106,10 +114,9 @@ const DonatePage = () => {
                     />
                     <div className={'card-details'}>
                         <input
-                            name='number'
-                            type='tel'
-                            pattern='[\d| ]{16,22}'
-                            placeholder='Card Number *'
+                            type={'tel'}
+                            name={'number'}
+                            placeholder={'Card Number *'}
                             value={cardNumber}
                             onChange={handleNumberChange}
                             onFocus={(e) => setFocus(e.target.name)}
@@ -117,9 +124,9 @@ const DonatePage = () => {
                             required
                         />
                         <input
-                            name='name'
-                            type='text'
-                            placeholder='Full Name *'
+                            type={'text'}
+                            name={'name'}
+                            placeholder={'Full Name *'}
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
                             onFocus={(e) => setFocus(e.target.name)}
@@ -127,20 +134,18 @@ const DonatePage = () => {
                         />
                         <div className={'details-footer'}>
                             <input
-                                name='expiry'
-                                type='text'
-                                pattern='\d\d/\d\d'
-                                placeholder='MM/YY *'
+                                type={'text'}
+                                name={'expiry'}
+                                placeholder={'MM/YY *'}
                                 value={expirationDate}
                                 onChange={handleExpiryChange}
                                 onFocus={(e) => setFocus(e.target.name)}
                                 required
                             />
                             <input
-                                name='cvc'
-                                type='tel'
-                                pattern='\d{3,4}'
-                                placeholder='CVV *'
+                                type={'tel'}
+                                name={'cvc'}
+                                placeholder={'CVV *'}
                                 value={cvv}
                                 onChange={handleCvcChange}
                                 onFocus={(e) => setFocus(e.target.name)}
@@ -151,13 +156,23 @@ const DonatePage = () => {
                 </div>
                 <div className={'form-amount'}>
                     <input
-                        type="text"
+                        type={'email'}
+                        name={'email'}
+                        placeholder={'Email *'}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <input
+                        type={'text'}
+                        name={'amount'}
                         placeholder={'Amount (in EUR) *'}
                         value={amount}
                         onChange={handleAmountChange}
                         required
                     />
                     <textarea
+                        name={'description'}
                         placeholder={'Description'}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
