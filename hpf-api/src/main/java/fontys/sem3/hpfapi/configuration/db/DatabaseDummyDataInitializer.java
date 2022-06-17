@@ -5,6 +5,7 @@ import fontys.sem3.hpfapi.repository.entity.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -19,6 +20,7 @@ public class DatabaseDummyDataInitializer {
     private PetPictureRepository petPictureRepository;
     private PetRepository petRepository;
     private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
@@ -30,7 +32,7 @@ public class DatabaseDummyDataInitializer {
                             .fullName("Manna Barnhoorn")
                             .email("admin@hpf.com")
                             .phoneNumber("0641261843")
-                            .password("password")
+                            .password(passwordEncoder.encode("password"))
                             .role("ADMIN")
                             .build());
             User cust1 = userRepository.save(
@@ -39,7 +41,7 @@ public class DatabaseDummyDataInitializer {
                             .fullName("Pascal Broeks")
                             .email("cust1@gmail.com")
                             .phoneNumber("0651535133")
-                            .password("password")
+                            .password(passwordEncoder.encode("password"))
                             .role("CUST")
                             .build());
             User cust2 = userRepository.save(
@@ -48,7 +50,7 @@ public class DatabaseDummyDataInitializer {
                             .fullName("Ingemar Coumans")
                             .email("cust2@gmail.com")
                             .phoneNumber("0616816346")
-                            .password("password")
+                            .password(passwordEncoder.encode("password"))
                             .role("CUST")
                             .build());
             User cust3 = userRepository.save(
@@ -57,7 +59,7 @@ public class DatabaseDummyDataInitializer {
                             .fullName("Pearl Knijnenburg")
                             .email("cust3@gmail.com")
                             .phoneNumber("0682771024")
-                            .password("password")
+                            .password(passwordEncoder.encode("password"))
                             .role("CUST")
                             .build());
 

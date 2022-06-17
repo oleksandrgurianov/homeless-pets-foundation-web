@@ -31,7 +31,7 @@ h1 {
 }
 
 .DonateForm input, .DonateForm textarea {
-    background-color: rgba(255, 255, 255, .3);
+    background-color: rgba(255, 255, 255, .6);
 }
 
 .card-details input, .form-amount input, .form-amount textarea, .amount-footer button {
@@ -68,7 +68,7 @@ h1 {
 
 .amount-footer button {
     cursor: pointer;
-    transition: .3s ease-in-out;
+    transition: .3s;
 }
 
 .amount-footer button:hover {

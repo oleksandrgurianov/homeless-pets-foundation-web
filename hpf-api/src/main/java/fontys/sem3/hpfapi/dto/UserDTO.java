@@ -2,6 +2,8 @@ package fontys.sem3.hpfapi.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -19,5 +21,5 @@ public class UserDTO {
 
     private String password;
 
-    private String role;
+    private List<String> roles;
 }

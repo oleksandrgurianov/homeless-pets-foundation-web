@@ -19,6 +19,11 @@
     margin-bottom: 10px;
 }
 
+.LogIn p {
+    font-size: 15px;
+    color: white;
+}
+
 .LogInForm {
     display: flex;
     flex-direction: column;
@@ -37,7 +42,7 @@
 
 .LogInForm button {
     cursor: pointer;
-    transition: .3s ease-in-out;
+    transition: .3s;
     background-color: dodgerblue;
     color: white;
 }
@@ -47,18 +52,13 @@
 }
 
 .LogInLine {
-    border: .5px solid lightgray;
+    border: .5px solid darkgray;
     margin: 20px 0 15px 0;
     width: 100%;
 }
 
-.LogIn p {
-    font-size: 15px;
-    color: white;
-}
-
-.LogInLink {
+.SignUpLink {
     color: dodgerblue;
-    transition: 0.3s;
+    transition: .3s;
 }
 

@@ -3,6 +3,8 @@ package fontys.sem3.hpfapi.business.impl;
 import fontys.sem3.hpfapi.dto.UserDTO;
 import fontys.sem3.hpfapi.repository.entity.User;
 
+import java.util.List;
+
 final class UserDTOConverter {
     private UserDTOConverter() {
     }
@@ -15,7 +17,7 @@ final class UserDTOConverter {
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
                 .password(user.getPassword())
-                .role(user.getRole())
+                .roles(List.of(user.getRole()))
                 .build();
     }
 }

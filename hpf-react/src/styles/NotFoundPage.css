@@ -19,7 +19,7 @@
 
 .not-found-link {
     color: dodgerblue;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .not-found-link:hover {

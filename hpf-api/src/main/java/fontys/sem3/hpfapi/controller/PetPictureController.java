@@ -3,6 +3,7 @@ package fontys.sem3.hpfapi.controller;
 import fontys.sem3.hpfapi.business.CreatePetPictureUseCase;
 import fontys.sem3.hpfapi.business.DeletePetPictureUseCase;
 import fontys.sem3.hpfapi.business.GetPetPicturesUseCase;
+import fontys.sem3.hpfapi.configuration.security.isauthenticated.IsAuthenticated;
 import fontys.sem3.hpfapi.dto.CreatePetPictureRequestDTO;
 import fontys.sem3.hpfapi.dto.CreatePetPictureResponseDTO;
 import fontys.sem3.hpfapi.dto.GetPetPicturesRequestDTO;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 @RestController
@@ -23,18 +25,24 @@ public class PetPictureController {
     private final DeletePetPictureUseCase deletePetPictureUseCase;
     private final GetPetPicturesUseCase getPetPicturesUseCase;
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping()
     public ResponseEntity<CreatePetPictureResponseDTO> createPet(@RequestBody @Valid CreatePetPictureRequestDTO request) {
         CreatePetPictureResponseDTO response = createPetPictureUseCase.createPetPicture(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_ADMIN"})
     @DeleteMapping("{petPictureId}")
     public ResponseEntity<Void> deletePetPicture(@PathVariable int petPictureId) {
         deletePetPictureUseCase.deletePetPicture(petPictureId);
         return ResponseEntity.noContent().build();
     }
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_CUST"})
     @GetMapping
     public ResponseEntity<GetPetPicturesResponseDTO> getPetPictures(@RequestParam(value = "petId") Long petId) {
         GetPetPicturesRequestDTO request = new GetPetPicturesRequestDTO();

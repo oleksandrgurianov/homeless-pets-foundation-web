@@ -6,6 +6,8 @@ import fontys.sem3.hpfapi.repository.entity.Administrator;
 import fontys.sem3.hpfapi.repository.entity.User;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AdministratorDTOConverterTest {
@@ -36,7 +38,7 @@ public class AdministratorDTOConverterTest {
                         .email("admin@hpf.com")
                         .phoneNumber("0641261843")
                         .password("password")
-                        .role("ADMIN")
+                        .roles(List.of("ADMIN"))
                         .build())
                 .jobPosition("Client Service Representative")
                 .build();

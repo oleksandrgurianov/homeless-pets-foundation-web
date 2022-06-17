@@ -1,6 +1,6 @@
 <configuration>
-    <!-- local machine: dev environment -->
-    <springProfile name="dev">
+    <!-- local environment -->
+    <springProfile name="!prod">
         <include resource="org/springframework/boot/logging/logback/base.xml"/>
         <logger name="fontys.sem3.hpfapi">
             <level value="debug"/>
@@ -9,7 +9,7 @@
             <level value="debug"/>
         </logger>
         <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
-            <level value="debug"/>
+            <level value="debug" />
         </logger>
 
         <root level="info">
@@ -17,8 +17,8 @@
         </root>
     </springProfile>
 
-    <!-- used in other environments, like: test, acc, prod -->
-    <springProfile name="!dev">
+    <!-- used in prod like environments -->
+    <springProfile name="prod">
         <!-- Use this appender in order to log in json -->
         <appender name="JSON_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
             <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>

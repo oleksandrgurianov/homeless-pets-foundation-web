@@ -2,11 +2,12 @@ import React from 'react'
 import {Link, Routes, Route} from 'react-router-dom'
 import logo from '../images/logo.png'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCaretDown, faCircleXmark} from '@fortawesome/free-solid-svg-icons'
+import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import HomePage from '../pages/HomePage'
 import PetsPage from '../pages/PetsPage'
 import DonatePage from '../pages/DonatePage/DonatePage'
 import LogInPage from '../pages/LogInPage'
+import SignUpPage from "../pages/SignUpPage"
 import NotFoundPage from "../pages/NotFoundPage"
 
 function Header() {
@@ -57,6 +58,7 @@ function Header() {
                     <Route path={'/pets/categories/:type'} element={<PetsPage/>}/>
                     <Route path={'/donate'} element={<DonatePage/>}/>
                     <Route path={'/logIn'} element={<LogInPage/>}/>
+                    <Route path={'/signUp'} element={<SignUpPage/>}/>
                     <Route path={'/*'} element={<NotFoundPage/>}/>
                 </Routes>
             </div>
