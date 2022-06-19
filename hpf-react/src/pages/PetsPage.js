@@ -28,7 +28,7 @@ const PetsPage = () => {
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
 
     useEffect(() => {
@@ -55,7 +55,15 @@ const PetsPage = () => {
         });
 
         setFilteredPets(filteredResults);
-    }, [pets, search, sort])
+    }, [pets, search, sort]);
+
+    const getPetLink = (e) => {
+        if(localStorage.getItem('role') === 'ADMIN' || localStorage.getItem('role') === 'CUST') {
+            return '/pet/' + e;
+        } else {
+            return '/logIn';
+        }
+    }
 
     return (
         <>
@@ -80,7 +88,8 @@ const PetsPage = () => {
                         <div className={'Pets'}>
                             {
                                 filteredPets.map((pet) => (
-                                    <Link className='pets-card' to={`/*`} key={pet.id}>
+                                    <Link className='pets-card'
+                                          to={getPetLink(pet.name)} key={pet.id}>
                                         <img src={pet.icon}/>
                                         <p className={'card-name'}>{pet.name}</p>
                                         <p className={'card-breed'}>{pet.breed}</p>

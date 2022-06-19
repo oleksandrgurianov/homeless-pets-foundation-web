@@ -1,7 +1,7 @@
 package fontys.sem3.hpfapi.controller;
 
-import fontys.sem3.hpfapi.business.GetAnalyticsUseCase;
-import fontys.sem3.hpfapi.dto.AnalyticsDTO;
+import fontys.sem3.hpfapi.business.analytics.GetAnalyticsUseCase;
+import fontys.sem3.hpfapi.dto.analytics.AnalyticsDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

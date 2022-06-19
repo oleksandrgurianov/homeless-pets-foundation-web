@@ -56,7 +56,7 @@ a {
     margin: 0;
 }
 
-.NavLink, .NavPetsDropdown, .pets-dropdown-button, .NavLinkDonate, .NavLinkLogIn {
+.NavLink, .NavPetsDropdown, .pets-dropdown-button, .NavLinkDonate, .NavLinkLogIn, .NavAccountDropdown, .account-dropdown-button {
     color: darkgrey;
     font-size: 15px;
     font-weight: normal;
@@ -64,11 +64,12 @@ a {
     margin: 0 3%;
 }
 
-.NavLink:hover, .pets-dropdown-button:hover, .pets-dropdown-content a:hover, .NavLinkDonate:hover, .NavLinkLogIn:hover {
+.NavLink:hover, .pets-dropdown-button:hover, .pets-dropdown-content a:hover, .NavLinkDonate:hover, .NavLinkLogIn:hover, .account-dropdown-button:hover, .account-dropdown-content a:hover {
+    cursor: pointer;
     color: white;
 }
 
-.pets-dropdown-button {
+.pets-dropdown-button, .account-dropdown-button {
     cursor: pointer;
     border: none;
     outline: none;
@@ -81,7 +82,7 @@ a {
     padding-left: 5px;
 }
 
-.pets-dropdown-content {
+.pets-dropdown-content, .account-dropdown-content {
     display: none;
     position: fixed;
     margin-top: 20px;
@@ -94,7 +95,7 @@ a {
     backdrop-filter: blur(5px);
 }
 
-.pets-dropdown-content a {
+.pets-dropdown-content a, .account-dropdown-content a {
     float: none;
     text-decoration: none;
     display: block;
@@ -105,7 +106,7 @@ a {
     transition: 0.3s;
 }
 
-.pets-dropdown-content hr {
+.pets-dropdown-content hr, .account-dropdown-content hr {
     border: .5px solid dimgrey;
     margin: 7.25px 0;
 }
@@ -118,7 +119,7 @@ a {
     margin-left: auto;
 }
 
-.NavLinkLogIn, footer .row:last-child {
+.NavLinkLogIn, .NavAccountDropdown, .account-dropdown-button, footer .row:last-child {
     margin-right: 0;
 }
 

@@ -1,7 +1,9 @@
 package fontys.sem3.hpfapi.configuration.security.isauthenticated;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
@@ -18,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Order(value = Ordered.HIGHEST_PRECEDENCE)
 @Component
 public class IsAuthenticatedAspect {
+
     private final static Logger LOGGER = LoggerFactory.getLogger(IsAuthenticatedAspect.class);
 
     @Pointcut("@annotation(fontys.sem3.hpfapi.configuration.security.isauthenticated.IsAuthenticated)")
@@ -31,14 +34,12 @@ public class IsAuthenticatedAspect {
     @Around("(annotatedMethod() || annotatedClass()) && execution(* *(..))")
     public Object interceptMethod(final ProceedingJoinPoint interceptedMethod) throws Throwable {
         final SecurityContext context = SecurityContextHolder.getContext();
-
         if (context == null) {
             LOGGER.error("No security context found. No user authenticated.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
 
         final Authentication authentication = context.getAuthentication();
-
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             LOGGER.error("Authentication token null. No user authenticated.");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);

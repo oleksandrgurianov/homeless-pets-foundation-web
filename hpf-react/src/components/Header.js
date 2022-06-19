@@ -1,18 +1,33 @@
 import React from 'react'
-import {Link, Routes, Route} from 'react-router-dom'
+import {Link, Routes, Route, useNavigate} from 'react-router-dom'
 import logo from '../images/logo.png'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import HomePage from '../pages/HomePage'
 import PetsPage from '../pages/PetsPage'
-import DonatePage from '../pages/DonatePage/DonatePage'
+import DonatePage from '../pages/DonatePage'
 import LogInPage from '../pages/LogInPage'
-import SignUpPage from "../pages/SignUpPage"
-import NotFoundPage from "../pages/NotFoundPage"
+import SignUpPage from '../pages/SignUpPage'
+import DonateCustPage from '../pages/Customer/DonateCustPage'
+import NotFoundPage from '../pages/NotFoundPage'
 
 function Header() {
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        localStorage.removeItem('email');
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        alert('You\'ve been logged out');
+        navigate('/');
+    }
+
     function showPetsDropdown() {
         document.getElementById('petsDropdown').classList.toggle('show');
+    }
+
+    function showAccountDropdown() {
+        document.getElementById('accountDropdown').classList.toggle('show');
     }
 
     window.onclick = function (e) {
@@ -22,6 +37,16 @@ function Header() {
             if (petsDropdown != null) {
                 if (petsDropdown.classList.contains('show')) {
                     petsDropdown.classList.remove('show');
+                }
+            }
+        }
+
+        if (!e.target.matches('.account-dropdown-button')) {
+            let accountDropdown = document.getElementById('accountDropdown');
+
+            if (accountDropdown != null) {
+                if (accountDropdown.classList.contains('show')) {
+                    accountDropdown.classList.remove('show');
                 }
             }
         }
@@ -49,17 +74,66 @@ function Header() {
                         <Link to={'/pets/categories/parrots'}>Parrots</Link>
                     </div>
                 </div>
-                <Link className={'NavLinkDonate'} to={'/donate'}>Donate</Link>
-                <Link className={'NavLinkLogIn'} to={'/logIn'}>Log In</Link>
+                {(localStorage.getItem('role') === 'ADMIN') ? (
+                    <>
+                        <Link className={'NavLinkDonate'} to={'/donations'}>Donations</Link>
+                        <div className={'NavAccountDropdown'}>
+                            <button className={'account-dropdown-button'} onClick={showAccountDropdown}>{localStorage.getItem('email')}<FontAwesomeIcon
+                                className={'dropdown-button-icon'} icon={faCaretDown}/></button>
+                            <div className={'account-dropdown-content'} id={'accountDropdown'}>
+                                <Link to={'/myAccount'}>My Account</Link>
+                                <hr/>
+                                <a onClick={logOut}>Log Out</a>
+                            </div>
+                        </div>
+                    </>
+                ) : (localStorage.getItem('role') === 'CUST') ? (
+                    <>
+                        <Link className={'NavLinkDonate'} to={'/donateCustomer'}>Donate</Link>
+                        <div className={'NavAccountDropdown'}>
+                            <button className={'account-dropdown-button'} onClick={showAccountDropdown}>{localStorage.getItem('email')}<FontAwesomeIcon
+                                className={'dropdown-button-icon'} icon={faCaretDown}/></button>
+                            <div className={'account-dropdown-content'} id={'accountDropdown'}>
+                                <Link to={'/myAccount'}>My Account</Link>
+                                <hr/>
+                                <Link to={'/myPets'}>My Pets</Link>
+                                <hr/>
+                                <Link to={'/myDonations'}>My Donations</Link>
+                                <hr/>
+                                <a onClick={logOut}>Log Out</a>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <Link className={'NavLinkDonate'} to={'/donate'}>Donate</Link>
+                        <Link className={'NavLinkLogIn'} to={'/logIn'}>Log In</Link>
+                    </>
+                )}
             </div>
             <div className={'Body'}>
                 <Routes>
                     <Route path={'/'} element={<HomePage/>}/>
                     <Route path={'/pets/categories/:type'} element={<PetsPage/>}/>
-                    <Route path={'/donate'} element={<DonatePage/>}/>
-                    <Route path={'/logIn'} element={<LogInPage/>}/>
-                    <Route path={'/signUp'} element={<SignUpPage/>}/>
+                    {/*<Route path={'/pet'} element={<PetPage/>}/>*/}
                     <Route path={'/*'} element={<NotFoundPage/>}/>
+                    {(localStorage.getItem('role') === 'ADMIN') ? (
+                        <>
+                            {/*<Route path={'/addPet'} element={<AddPetPage/>}/>*/}
+                            {/*<Route path={'/updatePet'} element={<UpdatePetPage/>}/>*/}
+                            {/*<Route path={'/donations'} element={<DonationsPage/>}/>*/}
+                        </>
+                    ) : (localStorage.getItem('role') === 'CUST') ? (
+                        <>
+                            <Route path={'/donateCust'} element={<DonateCustPage/>}/>
+                        </>
+                    ) : (
+                        <>
+                            <Route path={'/donate'} element={<DonatePage/>}/>
+                            <Route path={'/logIn'} element={<LogInPage/>}/>
+                            {/*<Route path={'/signUp'} element={<SignUpPage/>}/>*/}
+                        </>
+                    )}
                 </Routes>
             </div>
         </>

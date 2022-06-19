@@ -1,7 +1,9 @@
 package fontys.sem3.hpfapi.configuration.security.auth;
 
-import fontys.sem3.hpfapi.dto.AccessTokenDTO;
-import org.springframework.context.annotation.*;
+import fontys.sem3.hpfapi.dto.login.AccessTokenDTO;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -10,23 +12,21 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Configuration
 public class RequestAuthenticatedUserProvider {
+
     @Bean
     @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public AccessTokenDTO getAuthenticatedUserInRequest() {
         final SecurityContext context = SecurityContextHolder.getContext();
-
         if (context == null) {
             return null;
         }
 
         final Authentication authentication = context.getAuthentication();
-
         if (authentication == null) {
             return null;
         }
 
         final Object details = authentication.getDetails();
-
         if (!(details instanceof AccessTokenDTO)) {
             return null;
         }

@@ -1,16 +1,14 @@
 package fontys.sem3.hpfapi.controller;
 
-import fontys.sem3.hpfapi.business.CreateCustomerUseCase;
-import fontys.sem3.hpfapi.business.GetCustomerUseCase;
-import fontys.sem3.hpfapi.business.UpdateCustomerUseCase;
-import fontys.sem3.hpfapi.configuration.security.isauthenticated.IsAuthenticated;
-import fontys.sem3.hpfapi.dto.*;
+import fontys.sem3.hpfapi.business.customer.CreateCustomerUseCase;
+import fontys.sem3.hpfapi.business.customer.GetCustomerUseCase;
+import fontys.sem3.hpfapi.business.customer.UpdateCustomerUseCase;
+import fontys.sem3.hpfapi.dto.customer.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -29,8 +27,6 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_CUST"})
     @GetMapping("{id}")
     public ResponseEntity<CustomerDTO> getCustomer(@PathVariable(value = "id") final long id) {
         final Optional<CustomerDTO> customerOptional = getCustomerUseCase.getCustomer(id);
@@ -42,8 +38,6 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerOptional.get());
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_CUST"})
     @PutMapping("{id}/address")
     public ResponseEntity<CustomerDTO> updateCustomerAddress(@PathVariable("id") long id, @RequestBody @Valid UpdateCustomerAddressRequestDTO request) {
         request.setId(id);
@@ -51,8 +45,6 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_CUST"})
     @PutMapping("{id}/bankDetails")
     public ResponseEntity<CustomerDTO> updateCustomerBankDetails(@PathVariable("id") long id, @RequestBody @Valid UpdateCustomerBankDetailsRequestDTO request) {
         request.setId(id);

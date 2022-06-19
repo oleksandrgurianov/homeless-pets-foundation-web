@@ -18,7 +18,9 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
@@ -62,19 +64,18 @@ public class RestCustomExceptionHandler extends ResponseEntityExceptionHandler {
     private List<ValidationErrorDTO> convertToResponseBody(final MethodArgumentNotValidException error) {
         final BindingResult bindingResult = error.getBindingResult();
         final List<ValidationErrorDTO> result = new ArrayList<>();
-
         if (bindingResult.hasErrors()) {
-            bindingResult.getAllErrors().forEach(validationError -> {
-                if (validationError instanceof final FieldError fieldError) {
-                    result.add(new ValidationErrorDTO(fieldError.getField(), fieldError.getDefaultMessage()));
-                } else {
-                    result.add(new ValidationErrorDTO(validationError.getObjectName(), validationError.getDefaultMessage()));
-                }
-            });
+            bindingResult.getAllErrors()
+                    .forEach(validationError -> {
+                        if (validationError instanceof final FieldError fieldError) {
+                            result.add(new ValidationErrorDTO(fieldError.getField(), fieldError.getDefaultMessage()));
+                        } else {
+                            result.add(new ValidationErrorDTO(validationError.getObjectName(), validationError.getDefaultMessage()));
+                        }
+                    });
         } else {
             log.warn("MethodArgumentNotValidException without binding result errors {}", kv(ERROR_LOG_FIELD, error));
         }
-
         return result;
     }
 

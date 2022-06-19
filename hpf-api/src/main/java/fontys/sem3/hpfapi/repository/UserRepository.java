@@ -4,7 +4,7 @@ import fontys.sem3.hpfapi.repository.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    //Administrator
+    //All
 
     User findByEmail(String email);
 

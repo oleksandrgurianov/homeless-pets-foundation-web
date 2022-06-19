@@ -1,8 +1,8 @@
 package fontys.sem3.hpfapi.controller;
 
-import fontys.sem3.hpfapi.business.LoginUseCase;
-import fontys.sem3.hpfapi.dto.LoginRequestDTO;
-import fontys.sem3.hpfapi.dto.LoginResponseDTO;
+import fontys.sem3.hpfapi.business.login.LoginUseCase;
+import fontys.sem3.hpfapi.dto.login.LoginRequestDTO;
+import fontys.sem3.hpfapi.dto.login.LoginResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/logIn")
+@RequestMapping("/login")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000/")
 public class LoginController {
-
     private final LoginUseCase loginUseCase;
 
     @PostMapping

@@ -1,8 +1,11 @@
 package fontys.sem3.hpfapi.controller;
 
-import fontys.sem3.hpfapi.business.*;
+import fontys.sem3.hpfapi.business.user.CreateUserUseCase;
+import fontys.sem3.hpfapi.business.user.DeleteUserUseCase;
+import fontys.sem3.hpfapi.business.user.GetUserUseCase;
+import fontys.sem3.hpfapi.business.user.UpdateUserUseCase;
 import fontys.sem3.hpfapi.configuration.security.isauthenticated.IsAuthenticated;
-import fontys.sem3.hpfapi.dto.*;
+import fontys.sem3.hpfapi.dto.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +31,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_CUST"})
     @DeleteMapping("{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable int userId) {
         deleteUserUseCase.deleteUser(userId);
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @IsAuthenticated
-    @RolesAllowed({"ROLE_CUST"})
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_CUST"})
     @GetMapping("{id}")
     public ResponseEntity<UserDTO> getUser(@PathVariable(value = "id") final long id) {
         final Optional<UserDTO> userOptional = getUserUseCase.getUser(id);
@@ -49,8 +50,6 @@ public class UserController {
         return ResponseEntity.ok().body(userOptional.get());
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_CUST"})
     @PutMapping("{id}/avatar")
     public ResponseEntity<UserDTO> updateUserAvatar(@PathVariable("id") long id, @RequestBody @Valid UpdateUserAvatarRequestDTO request) {
         request.setId(id);
@@ -58,8 +57,6 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_CUST"})
     @PutMapping("{id}/details")
     public ResponseEntity<UserDTO> updateUserDetails(@PathVariable("id") long id, @RequestBody @Valid UpdateUserDetailsRequestDTO request) {
         request.setId(id);

@@ -1,8 +1,8 @@
 package fontys.sem3.hpfapi.configuration.security.auth;
 
-import fontys.sem3.hpfapi.business.AccessTokenDecoder;
+import fontys.sem3.hpfapi.business.login.AccessTokenDecoder;
 import fontys.sem3.hpfapi.business.exception.InvalidAccessTokenException;
-import fontys.sem3.hpfapi.dto.AccessTokenDTO;
+import fontys.sem3.hpfapi.dto.login.AccessTokenDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,9 +27,10 @@ public class AuthenticationRequestFilter extends OncePerRequestFilter {
     private AccessTokenDecoder accessTokenDecoder;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        final String requestTokenHeader = request.getHeader("Authorization");
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws ServletException, IOException {
 
+        final String requestTokenHeader = request.getHeader("Authorization");
         if (requestTokenHeader == null || !requestTokenHeader.startsWith("Bearer ")) {
             chain.doFilter(request, response);
             return;
@@ -53,11 +54,14 @@ public class AuthenticationRequestFilter extends OncePerRequestFilter {
     }
 
     private void setupSpringSecurityContext(AccessTokenDTO accessTokenDTO) {
-        UserDetails userDetails = new User(accessTokenDTO.getSubject(), "", accessTokenDTO.getRoles()
-                .stream()
-                .map(role -> new SimpleGrantedAuthority(SPRING_SECURITY_ROLE_PREFIX + role))
-                .toList());
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        UserDetails userDetails = new User(accessTokenDTO.getSubject(), "",
+                accessTokenDTO.getRoles()
+                        .stream()
+                        .map(role -> new SimpleGrantedAuthority(SPRING_SECURITY_ROLE_PREFIX + role))
+                        .toList());
+
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                userDetails, null, userDetails.getAuthorities());
         usernamePasswordAuthenticationToken.setDetails(accessTokenDTO);
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
     }
