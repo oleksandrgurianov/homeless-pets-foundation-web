@@ -9,13 +9,5 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetDonationsRequestDTO {
-    private Long customerId;
-
-    private Date startDate;
-
-    private Date endDate;
-
-    private Boolean orderByDateOfReceipt;
-
-    private Boolean ascending;
+    private Long userId;
 }

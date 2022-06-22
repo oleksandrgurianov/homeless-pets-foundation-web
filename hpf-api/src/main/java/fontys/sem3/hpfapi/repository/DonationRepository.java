@@ -16,23 +16,10 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     //Customer
 
-    List<Donation> findAllByCustomerIdOrderByDateOfReceiptDesc(Long customerId);
+    List<Donation> findAllByCustomerUserIdOrderByDateOfReceiptDesc(Long userId);
 
 
     //Administrator
-    List<Donation> findAllByOrderByDateOfReceiptAsc();
 
     List<Donation> findAllByOrderByDateOfReceiptDesc();
-
-    List<Donation> findAllByOrderByAmountAsc();
-
-    List<Donation> findAllByOrderByAmountDesc();
-
-    List<Donation> findAllByDateOfReceiptBetweenOrderByDateOfReceiptAsc(Date startDate, Date endDate);
-
-    List<Donation> findAllByDateOfReceiptBetweenOrderByDateOfReceiptDesc(Date startDate, Date endDate);
-
-    List<Donation> findAllByDateOfReceiptBetweenOrderByAmountAsc(Date startDate, Date endDate);
-
-    List<Donation> findAllByDateOfReceiptBetweenOrderByAmountDesc(Date startDate, Date endDate);
 }

@@ -56,6 +56,24 @@ h1 {
     margin-right: 15px;
 }
 
+.details-checkbox {
+    height: auto;
+    cursor: pointer;
+    color: white;
+    margin-top: 10px;
+    transition: .3s;
+}
+
+.details-checkbox:hover {
+    filter: brightness(90%);
+}
+
+.details-checkbox input {
+    cursor: pointer;
+    height: auto;
+    margin: 0 5px 0 0;
+}
+
 .form-amount input:first-child {
     margin-top: 0;
 }
@@ -64,6 +82,9 @@ h1 {
     padding: 10px;
     height: 165px;
     resize: none;
+}
+.form-amount .donate-cust-textarea{
+    height: 240px;
 }
 
 .amount-footer button {

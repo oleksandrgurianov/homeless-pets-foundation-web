@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetPetsRequestDTO {
-    private Long customerId;
+    private Long userId;
 
     @NotBlank
     private String type;

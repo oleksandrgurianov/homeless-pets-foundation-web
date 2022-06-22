@@ -1,14 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import '../styles/DonatePage.css'
+import '../../styles/All/DonatePage.css'
 import Cards from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css'
 import {
     formatCreditCardNumber,
     formatCVC,
     formatExpirationDate
-} from '../services/DonationService'
+} from '../../services/DonationService'
 
 const DonatePage = () => {
     const [cardNumber, setCardNumber] = useState('');

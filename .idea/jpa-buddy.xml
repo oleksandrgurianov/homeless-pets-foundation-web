@@ -2,5 +2,7 @@
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig">
     <option name="defaultUnitInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="d1b05eef-fd2c-4cf2-b92c-89424481e8d8" />
+    <option name="reLastEntityCreationPackage" value="hpf-api/src/main/java/fontys/sem3/hpfapi" />
   </component>
 </project>

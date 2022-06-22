@@ -3,13 +3,13 @@ import {Link, Routes, Route, useNavigate} from 'react-router-dom'
 import logo from '../images/logo.png'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
-import HomePage from '../pages/HomePage'
-import PetsPage from '../pages/PetsPage'
-import DonatePage from '../pages/DonatePage'
-import LogInPage from '../pages/LogInPage'
-import SignUpPage from '../pages/SignUpPage'
+import HomePage from '../pages/All/HomePage'
+import PetsPage from '../pages/All/PetsPage'
+import DonatePage from '../pages/All/DonatePage'
+import LogInPage from '../pages/All/LogInPage'
 import DonateCustPage from '../pages/Customer/DonateCustPage'
-import NotFoundPage from '../pages/NotFoundPage'
+import DonationsPage from '../pages/Administrator/DonationsPage'
+import NotFoundPage from '../pages/All/NotFoundPage'
 
 function Header() {
     const navigate = useNavigate();
@@ -18,6 +18,7 @@ function Header() {
         localStorage.removeItem('email');
         localStorage.removeItem('token');
         localStorage.removeItem('role');
+        localStorage.removeItem('userId')
         alert('You\'ve been logged out');
         navigate('/');
     }
@@ -89,7 +90,7 @@ function Header() {
                     </>
                 ) : (localStorage.getItem('role') === 'CUST') ? (
                     <>
-                        <Link className={'NavLinkDonate'} to={'/donateCustomer'}>Donate</Link>
+                        <Link className={'NavLinkDonate'} to={'/donateCust'}>Donate</Link>
                         <div className={'NavAccountDropdown'}>
                             <button className={'account-dropdown-button'} onClick={showAccountDropdown}>{localStorage.getItem('email')}<FontAwesomeIcon
                                 className={'dropdown-button-icon'} icon={faCaretDown}/></button>
@@ -121,7 +122,7 @@ function Header() {
                         <>
                             {/*<Route path={'/addPet'} element={<AddPetPage/>}/>*/}
                             {/*<Route path={'/updatePet'} element={<UpdatePetPage/>}/>*/}
-                            {/*<Route path={'/donations'} element={<DonationsPage/>}/>*/}
+                            <Route path={'/donations'} element={<DonationsPage/>}/>
                         </>
                     ) : (localStorage.getItem('role') === 'CUST') ? (
                         <>
@@ -131,7 +132,6 @@ function Header() {
                         <>
                             <Route path={'/donate'} element={<DonatePage/>}/>
                             <Route path={'/logIn'} element={<LogInPage/>}/>
-                            {/*<Route path={'/signUp'} element={<SignUpPage/>}/>*/}
                         </>
                     )}
                 </Routes>

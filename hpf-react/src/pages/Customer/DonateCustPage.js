@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import '../../styles/DonatePage.css'
+import '../../styles/All/DonatePage.css'
 import Cards from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css'
 import {
@@ -11,6 +11,8 @@ import {
 } from '../../services/DonationService'
 
 const DonateCustPage = () => {
+    const [customer, setCustomer] = useState({});
+
     const [cardNumber, setCardNumber] = useState('');
 
     const [fullName, setFullName] = useState('');
@@ -21,17 +23,36 @@ const DonateCustPage = () => {
 
     const [focus, setFocus] = useState('');
 
-    const [email, setEmail] = useState('')
+    const [saveBankDetails, setSaveBankDetails] = useState(false);
 
     const [amount, setAmount] = useState('');
 
-    const [description, setDescription] = useState('')
+    const [description, setDescription] = useState('');
 
     const ref = useRef(null);
+
+    const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    };
 
     let navigate = useNavigate();
 
     let start = 0;
+
+    const getUser = () => {
+        axios.get(`http://localhost:8080/customers/${localStorage.getItem('userId')}`, config)
+            .then(res => {
+                setCustomer(res.data);
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    useEffect(() => {
+        getUser();
+    }, []);
 
     useEffect(() => {
         ref.current.focus();
@@ -40,16 +61,44 @@ const DonateCustPage = () => {
     const handleNumberChange = (e) => {
         const result = formatCreditCardNumber(e.target.value);
         setCardNumber(result);
+
+        if(document.getElementById('useCheckbox') !== null) {
+            document.getElementById('useCheckbox').checked = false;
+        } else {
+            document.getElementById('saveCheckbox').checked = false;
+        }
+    };
+
+    const handleFullNameChange = (e) => {
+        setFullName(e.target.value);
+
+        if(document.getElementById('useCheckbox') !== null) {
+            document.getElementById('useCheckbox').checked = false;
+        } else {
+            document.getElementById('saveCheckbox').checked = false;
+        }
     };
 
     const handleExpiryChange = (e) => {
         const result = formatExpirationDate(e.target.value);
         setExpirationDate(result);
+
+        if(document.getElementById('useCheckbox') !== null) {
+            document.getElementById('useCheckbox').checked = false;
+        } else {
+            document.getElementById('saveCheckbox').checked = false;
+        }
     };
 
     const handleCvcChange = (e) => {
         const result = formatCVC(e.target.value);
         setCvv(result);
+
+        if(document.getElementById('useCheckbox') !== null) {
+            document.getElementById('useCheckbox').checked = false;
+        } else {
+            document.getElementById('saveCheckbox').checked = false;
+        }
     };
 
     const handleAmountChange = (e) => {
@@ -69,17 +118,61 @@ const DonateCustPage = () => {
         }
     }
 
+    const handleUseCheckboxChange = () => {
+        const useCheckbox = document.getElementById('useCheckbox');
+
+        if (useCheckbox.checked) {
+            setCardNumber(customer.cardNumber);
+            setFullName(customer.user.fullName);
+            setExpirationDate(customer.expirationDate);
+            setCvv(customer.cvv);
+        } else {
+            setCardNumber('');
+            setFullName('');
+            setExpirationDate('');
+            setCvv('');
+        }
+    }
+
+    const handleSaveCheckboxChange = () => {
+        const saveCheckbox = document.getElementById('saveCheckbox');
+
+        if (saveCheckbox.checked) {
+            setSaveBankDetails(true);
+        } else {
+            setSaveBankDetails(false);
+        }
+    }
+
     const sendDonation = () => {
         let donation = {
+            'customerId': customer.id,
             'amount': amount,
             'description': description
         };
 
         if (donation.amount > 0) {
-            axios.post(`http://localhost:8080/donations`, donation)
-                .then(res => {
-                    console.log(res.data);
+            if (saveBankDetails) {
+                let bankDetails = {
+                    'cardNumber': cardNumber,
+                    'expirationDate': expirationDate,
+                    'cvv': cvv
+                }
 
+                axios.put(`http://localhost:8080/customers/${localStorage.getItem('userId')}/bankDetails`, bankDetails, config)
+                    .then(res => {
+                        setCustomer(res.data);
+                        console.log(res.data);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            }
+
+            axios.post(`http://localhost:8080/donations`, donation, config)
+                .then(res => {
+                    setCustomer(res.data);
+                    console.log(res.data);
                 })
                 .catch(err => {
                     console.log(err);
@@ -97,7 +190,13 @@ const DonateCustPage = () => {
         setFullName('');
         setExpirationDate('');
         setCvv('');
-        setEmail('');
+
+        if(document.getElementById('useCheckbox') !== null) {
+            document.getElementById('useCheckbox').checked = false;
+        } else {
+            document.getElementById('saveCheckbox').checked = false;
+        }
+
         setAmount('');
         setDescription('');
     }
@@ -131,7 +230,7 @@ const DonateCustPage = () => {
                             name={'name'}
                             placeholder={'Full Name *'}
                             value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
+                            onChange={handleFullNameChange}
                             onFocus={(e) => setFocus(e.target.name)}
                             required
                         />
@@ -155,17 +254,30 @@ const DonateCustPage = () => {
                                 required
                             />
                         </div>
+                        {(customer.cardNumber !== null) ? (
+                            <label className={'details-checkbox'}>
+                                <input
+                                    type="checkbox"
+                                    name='useCheckbox'
+                                    id='useCheckbox'
+                                    onChange={handleUseCheckboxChange}
+                                />
+                                Use saved payment method
+                            </label>
+                        ) : (
+                            <label className={'details-checkbox'}>
+                                <input
+                                    type="checkbox"
+                                    name='saveCheckbox'
+                                    id='saveCheckbox'
+                                    onChange={handleSaveCheckboxChange}
+                                />
+                                Save payment method
+                            </label>
+                        )}
                     </div>
                 </div>
                 <div className={'form-amount'}>
-                    <input
-                        type={'email'}
-                        name={'email'}
-                        placeholder={'Email *'}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
                     <input
                         type={'text'}
                         name={'amount'}
@@ -176,6 +288,7 @@ const DonateCustPage = () => {
                     />
                     <textarea
                         name={'description'}
+                        className={'donate-cust-textarea'}
                         placeholder={'Description'}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}

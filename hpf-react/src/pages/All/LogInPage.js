@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import '../styles/LogInPage.css'
+import '../../styles/All/LogInPage.css'
 import axios from 'axios'
 
 const LogInPage = () => {
@@ -26,9 +26,11 @@ const LogInPage = () => {
             .then(res => {
                 const token = res.data.accessToken;
                 const role = res.data.role;
+                const userId = res.data.userId;
                 localStorage.setItem('email', email);
                 localStorage.setItem('token', token);
                 localStorage.setItem('role', role);
+                localStorage.setItem('userId', userId);
                 navigate('/');
             })
             .catch(err => {

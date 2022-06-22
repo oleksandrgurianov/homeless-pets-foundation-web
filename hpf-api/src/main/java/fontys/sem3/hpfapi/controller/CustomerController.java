@@ -1,14 +1,16 @@
 package fontys.sem3.hpfapi.controller;
 
-import fontys.sem3.hpfapi.business.customer.CreateCustomerUseCase;
+//import fontys.sem3.hpfapi.business.customer.CreateCustomerUseCase;
 import fontys.sem3.hpfapi.business.customer.GetCustomerUseCase;
 import fontys.sem3.hpfapi.business.customer.UpdateCustomerUseCase;
+import fontys.sem3.hpfapi.configuration.security.isauthenticated.IsAuthenticated;
 import fontys.sem3.hpfapi.dto.customer.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -17,19 +19,21 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
 public class CustomerController {
-    private final CreateCustomerUseCase createCustomerUseCase;
+//    private final CreateCustomerUseCase createCustomerUseCase;
     private final GetCustomerUseCase getCustomerUseCase;
     private final UpdateCustomerUseCase updateCustomerUseCase;
 
-    @PostMapping()
-    public ResponseEntity<CreateCustomerResponseDTO> createCustomer(@RequestBody @Valid CreateCustomerRequestDTO request) {
-        CreateCustomerResponseDTO response = createCustomerUseCase.createCustomer(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
+//    @PostMapping()
+//    public ResponseEntity<CreateCustomerResponseDTO> createCustomer(@RequestBody @Valid CreateCustomerRequestDTO request) {
+//        CreateCustomerResponseDTO response = createCustomerUseCase.createCustomer(request);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+//    }
 
-    @GetMapping("{id}")
-    public ResponseEntity<CustomerDTO> getCustomer(@PathVariable(value = "id") final long id) {
-        final Optional<CustomerDTO> customerOptional = getCustomerUseCase.getCustomer(id);
+    @IsAuthenticated
+    @RolesAllowed({"CUST"})
+    @GetMapping("{userId}")
+    public ResponseEntity<CustomerDTO> getCustomer(@PathVariable(value = "userId") final long userId) {
+        final Optional<CustomerDTO> customerOptional = getCustomerUseCase.getCustomer(userId);
 
         if (customerOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -38,16 +42,20 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerOptional.get());
     }
 
-    @PutMapping("{id}/address")
-    public ResponseEntity<CustomerDTO> updateCustomerAddress(@PathVariable("id") long id, @RequestBody @Valid UpdateCustomerAddressRequestDTO request) {
-        request.setId(id);
+    @IsAuthenticated
+    @RolesAllowed({"CUST"})
+    @PutMapping("{userId}/address")
+    public ResponseEntity<CustomerDTO> updateCustomerAddress(@PathVariable("userId") long userId, @RequestBody @Valid UpdateCustomerAddressRequestDTO request) {
+        request.setUserId(userId);
         updateCustomerUseCase.updateCustomerAddress(request);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{id}/bankDetails")
-    public ResponseEntity<CustomerDTO> updateCustomerBankDetails(@PathVariable("id") long id, @RequestBody @Valid UpdateCustomerBankDetailsRequestDTO request) {
-        request.setId(id);
+    @IsAuthenticated
+    @RolesAllowed({"CUST"})
+    @PutMapping("{userId}/bankDetails")
+    public ResponseEntity<CustomerDTO> updateCustomerBankDetails(@PathVariable("userId") long userId, @RequestBody @Valid UpdateCustomerBankDetailsRequestDTO request) {
+        request.setUserId(userId);
         updateCustomerUseCase.updateCustomerBankDetails(request);
         return ResponseEntity.noContent().build();
     }

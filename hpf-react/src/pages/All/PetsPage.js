@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {useLocation} from "react-router-dom";
+import {useLocation, Link} from 'react-router-dom'
 import axios from 'axios'
-import '../styles/PetsPage.css'
-import {Link} from 'react-router-dom'
+import '../../styles/All/PetsPage.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
-import loading from "../images/loading.gif"
+import loading from "../../images/loading.gif"
 
 const PetsPage = () => {
     const location = useLocation();
@@ -36,7 +35,7 @@ const PetsPage = () => {
     }, [location]);
 
     useEffect(() => {
-        const filteredResults = pets.filter(pet => {
+        const filteredResults = [].concat(pets).filter(pet => {
             if (search === '') {
                 return pet;
             } else {
@@ -56,14 +55,6 @@ const PetsPage = () => {
 
         setFilteredPets(filteredResults);
     }, [pets, search, sort]);
-
-    const getPetLink = (e) => {
-        if(localStorage.getItem('role') === 'ADMIN' || localStorage.getItem('role') === 'CUST') {
-            return '/pet/' + e;
-        } else {
-            return '/logIn';
-        }
-    }
 
     return (
         <>
@@ -89,8 +80,8 @@ const PetsPage = () => {
                             {
                                 filteredPets.map((pet) => (
                                     <Link className='pets-card'
-                                          to={getPetLink(pet.name)} key={pet.id}>
-                                        <img src={pet.icon}/>
+                                          to={'/pets/' + pet.name} key={pet.id}>
+                                        <img src={pet.icon} alt={'pet icon'}/>
                                         <p className={'card-name'}>{pet.name}</p>
                                         <p className={'card-breed'}>{pet.breed}</p>
                                     </Link>
@@ -103,7 +94,7 @@ const PetsPage = () => {
                         </div>
                     )
                 )) : (
-                <img className={"Loading"} src={loading}/>
+                <img className={"Loading"} src={loading} alt={'loading gif'}/>
             )}
         </>
     )

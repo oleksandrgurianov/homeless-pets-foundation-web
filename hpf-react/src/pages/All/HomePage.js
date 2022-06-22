@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import '../styles/HomePage.css'
+import '../../styles/All/HomePage.css'
 import {Link} from 'react-router-dom'
-import dog from '../images/dog.png'
-import cat from '../images/cat.png'
-import rabbit from '../images/rabbit.png'
-import rat from '../images/rat.png'
-import parrot from '../images/parrot.png'
-import pawPrints from '../images/paw-prints.png'
-import manRaisingHand from '../images/man-raising-hand.png'
-import moneyWithWings from '../images/money-with-wings.png'
-import loading from "../images/loading.gif";
+import dog from '../../images/dog.png'
+import cat from '../../images/cat.png'
+import rabbit from '../../images/rabbit.png'
+import rat from '../../images/rat.png'
+import parrot from '../../images/parrot.png'
+import pawPrints from '../../images/paw-prints.png'
+import manRaisingHand from '../../images/man-raising-hand.png'
+import moneyWithWings from '../../images/money-with-wings.png'
+import loading from "../../images/loading.gif";
 
 const HomePage = () => {
     const [analytics, setAnalytics] = useState([]);
@@ -53,7 +53,7 @@ const HomePage = () => {
                     </div>
                 </div>
             ) : (
-                <img className={"Loading"} src={loading}/>
+                <img className={"Loading"} src={loading} alt={'loading gif'}/>
             )}
             <hr className={'AnalyticsLine'}/>
             <div className={'Categories'}>

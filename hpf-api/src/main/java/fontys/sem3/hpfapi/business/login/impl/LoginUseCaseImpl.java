@@ -36,6 +36,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
         return LoginResponseDTO.builder()
                 .accessToken(accessToken)
                 .role(user.getRole())
+                .userId(user.getId())
                 .build();
     }
 

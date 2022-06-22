@@ -21,7 +21,7 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
 
     //Customer
 
-    List<Pet> findAllByCustomerIdOrderByNameAsc(Long customerId);
+    List<Pet> findAllByCustomerUserIdOrderByNameAsc(Long userId);
 
 
     //Administrator

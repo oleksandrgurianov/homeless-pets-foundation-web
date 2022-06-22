@@ -1,6 +1,6 @@
 import React from 'react';
-import "../styles/NotFoundPage.css";
-import notFound from "../images/404.gif";
+import "../../styles/All/NotFoundPage.css";
+import notFound from "../../images/404.gif";
 import {Link} from "react-router-dom";
 
 const NotFoundPage = () => {

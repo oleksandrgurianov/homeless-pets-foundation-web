@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCustomerAddressRequestDTO {
-    private Long id;
+    private Long userId;
 
     private String street;
 

@@ -3,5 +3,10 @@ package fontys.sem3.hpfapi.repository;
 import fontys.sem3.hpfapi.repository.entity.Administrator;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface AdministratorRepository extends JpaRepository<Administrator, Long> {
+    //Administrator
+
+    Optional<Administrator> findByUserId(long userId);
 }
