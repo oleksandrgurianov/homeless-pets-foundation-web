@@ -3,7 +3,7 @@ import {useLocation, Link} from 'react-router-dom'
 import axios from 'axios'
 import '../../styles/All/PetsPage.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
+import {faCirclePlus, faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import loading from "../../images/loading.gif"
 
 const PetsPage = () => {
@@ -60,6 +60,9 @@ const PetsPage = () => {
         <>
             <div className={'Header'}>
                 <h1>Pets</h1>
+                {(localStorage.getItem('role') === 'ADMIN') &&
+                    <Link to='/pets/addPet'><FontAwesomeIcon className='add-icon' icon={faCirclePlus}/></Link>
+                }
                 <input className={'header-search'} type={'text'} placeholder={'Search'}
                        value={search} onChange={e => setSearch(e.target.value)}/>
                 <div className={'header-dropdown'}>
@@ -80,7 +83,7 @@ const PetsPage = () => {
                             {
                                 filteredPets.map((pet) => (
                                     <Link className='pets-card'
-                                          to={'/pets/' + pet.name} key={pet.id}>
+                                          to={`${pet.id}`} key={pet.id}>
                                         <img src={pet.icon} alt={'pet icon'}/>
                                         <p className={'card-name'}>{pet.name}</p>
                                         <p className={'card-breed'}>{pet.breed}</p>

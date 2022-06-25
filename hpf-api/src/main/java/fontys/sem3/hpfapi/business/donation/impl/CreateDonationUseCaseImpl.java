@@ -4,6 +4,7 @@ import fontys.sem3.hpfapi.business.donation.CreateDonationUseCase;
 import fontys.sem3.hpfapi.business.validator.CustomerIdValidator;
 import fontys.sem3.hpfapi.dto.donation.CreateDonationRequestDTO;
 import fontys.sem3.hpfapi.dto.donation.CreateDonationResponseDTO;
+import fontys.sem3.hpfapi.dto.login.AccessTokenDTO;
 import fontys.sem3.hpfapi.repository.DonationRepository;
 import fontys.sem3.hpfapi.repository.entity.Customer;
 import fontys.sem3.hpfapi.repository.entity.Donation;
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 public class CreateDonationUseCaseImpl implements CreateDonationUseCase {
     private final DonationRepository donationRepository;
     private final CustomerIdValidator customerIdValidator;
+    private AccessTokenDTO requestAccessToken;
 
     @Transactional
     @Override

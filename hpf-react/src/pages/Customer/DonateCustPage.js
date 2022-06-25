@@ -8,7 +8,7 @@ import {
     formatCreditCardNumber,
     formatCVC,
     formatExpirationDate
-} from '../../services/DonationService'
+} from '../../services/CardService'
 
 const DonateCustPage = () => {
     const [customer, setCustomer] = useState({});
@@ -39,7 +39,7 @@ const DonateCustPage = () => {
 
     let start = 0;
 
-    const getUser = () => {
+    const getCustomer = () => {
         axios.get(`http://localhost:8080/customers/${localStorage.getItem('userId')}`, config)
             .then(res => {
                 setCustomer(res.data);
@@ -51,7 +51,7 @@ const DonateCustPage = () => {
     }
 
     useEffect(() => {
-        getUser();
+        getCustomer();
     }, []);
 
     useEffect(() => {
@@ -64,8 +64,6 @@ const DonateCustPage = () => {
 
         if(document.getElementById('useCheckbox') !== null) {
             document.getElementById('useCheckbox').checked = false;
-        } else {
-            document.getElementById('saveCheckbox').checked = false;
         }
     };
 
@@ -74,8 +72,6 @@ const DonateCustPage = () => {
 
         if(document.getElementById('useCheckbox') !== null) {
             document.getElementById('useCheckbox').checked = false;
-        } else {
-            document.getElementById('saveCheckbox').checked = false;
         }
     };
 
@@ -85,8 +81,6 @@ const DonateCustPage = () => {
 
         if(document.getElementById('useCheckbox') !== null) {
             document.getElementById('useCheckbox').checked = false;
-        } else {
-            document.getElementById('saveCheckbox').checked = false;
         }
     };
 
@@ -96,8 +90,6 @@ const DonateCustPage = () => {
 
         if(document.getElementById('useCheckbox') !== null) {
             document.getElementById('useCheckbox').checked = false;
-        } else {
-            document.getElementById('saveCheckbox').checked = false;
         }
     };
 
@@ -171,7 +163,6 @@ const DonateCustPage = () => {
 
             axios.post(`http://localhost:8080/donations`, donation, config)
                 .then(res => {
-                    setCustomer(res.data);
                     console.log(res.data);
                 })
                 .catch(err => {

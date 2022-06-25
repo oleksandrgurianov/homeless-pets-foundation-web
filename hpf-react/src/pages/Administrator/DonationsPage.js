@@ -75,7 +75,11 @@ const DonationsPage = () => {
                                 ) : (
                                     <p className={'card-full-name'}>Anonymous</p>
                                 )}
-                                <p className={'card-description'}>{donation.description}</p>
+                                {donation.description ? (
+                                    <p className={'card-description'}>{donation.description}</p>
+                                ) : (
+                                    <p className={'card-description'}>&#8212;</p>
+                                )}
                             </div>
                             <div>
                                 <p className={'card-date-of-receipt'}>{donation.dateOfReceipt}</p>

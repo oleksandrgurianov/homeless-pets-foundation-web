@@ -8,7 +8,7 @@ import {
     formatCreditCardNumber,
     formatCVC,
     formatExpirationDate
-} from '../../services/DonationService'
+} from '../../services/CardService'
 
 const DonatePage = () => {
     const [cardNumber, setCardNumber] = useState('');

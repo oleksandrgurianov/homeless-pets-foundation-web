@@ -32,7 +32,7 @@ const HomePage = () => {
 
     return (
         <>
-            {analytics.length !== 0 ? (
+            {(analytics.length !== 0) ? (
                 <div className={'Analytics'}>
                     <div className={'analytics-card'}>
                         <p className={'card-title'}>PETS ADOPTED</p>

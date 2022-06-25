@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import HomePage from '../pages/All/HomePage'
 import PetsPage from '../pages/All/PetsPage'
+import PetPage from '../pages/All/PetPage'
 import DonatePage from '../pages/All/DonatePage'
 import LogInPage from '../pages/All/LogInPage'
 import DonateCustPage from '../pages/Customer/DonateCustPage'
@@ -116,12 +117,12 @@ function Header() {
                 <Routes>
                     <Route path={'/'} element={<HomePage/>}/>
                     <Route path={'/pets/categories/:type'} element={<PetsPage/>}/>
-                    {/*<Route path={'/pet'} element={<PetPage/>}/>*/}
+                    <Route path={'/pets/categories/:type/:id'} element={<PetPage/>}/>
                     <Route path={'/*'} element={<NotFoundPage/>}/>
                     {(localStorage.getItem('role') === 'ADMIN') ? (
                         <>
-                            {/*<Route path={'/addPet'} element={<AddPetPage/>}/>*/}
-                            {/*<Route path={'/updatePet'} element={<UpdatePetPage/>}/>*/}
+                            {/*<Route path={'/pets/addPet'} element={<AddPetPage/>}/>*/}
+                            {/*<Route path={'/pets/categories/:type/:id/updatePet} element={<UpdatePetPage/>}/>*/}
                             <Route path={'/donations'} element={<DonationsPage/>}/>
                         </>
                     ) : (localStorage.getItem('role') === 'CUST') ? (

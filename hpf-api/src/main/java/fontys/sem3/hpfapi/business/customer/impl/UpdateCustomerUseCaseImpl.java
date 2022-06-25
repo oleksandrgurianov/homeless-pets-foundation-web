@@ -29,11 +29,12 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
         if (customerOptional.isEmpty()) {
             throw new InvalidCustomerException("USER_ID_INVALID");
         } else {
+            Customer customer = customerOptional.get();
+
             if (requestAccessToken.hasRole("CUST")) {
                 if (!Objects.equals(requestAccessToken.getUserId(), customerOptional.get().getId())) {
                     throw new UnauthorizedDataAccessException("USER_ID_NOT_FROM_LOGGED_IN_USER");
                 } else {
-                    Customer customer = customerOptional.get();
                     customer.setStreet(request.getStreet());
                     customer.setPostcode(request.getPostcode());
                     customer.setCity(request.getCity());

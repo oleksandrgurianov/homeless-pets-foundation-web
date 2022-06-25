@@ -1,8 +1,10 @@
 package fontys.sem3.hpfapi.business.pet.impl;
 
+import fontys.sem3.hpfapi.business.exception.UnauthorizedDataAccessException;
 import fontys.sem3.hpfapi.business.validator.CustomerIdValidator;
 import fontys.sem3.hpfapi.business.pet.UpdatePetUseCase;
 import fontys.sem3.hpfapi.business.exception.InvalidPetException;
+import fontys.sem3.hpfapi.dto.login.AccessTokenDTO;
 import fontys.sem3.hpfapi.dto.pet.UpdatePetCustomerRequestDTO;
 import fontys.sem3.hpfapi.dto.pet.UpdatePetDetailsRequestDTO;
 import fontys.sem3.hpfapi.repository.PetRepository;
@@ -19,44 +21,53 @@ import java.util.Optional;
 public class UpdatePetUseCaseImpl implements UpdatePetUseCase {
     private final PetRepository petRepository;
     private final CustomerIdValidator customerIdValidator;
+    private final AccessTokenDTO requestAccessToken;
 
     @Transactional
     @Override
     public void updatePetCustomer(UpdatePetCustomerRequestDTO request) {
-        Optional<Pet> petOptional = petRepository.findById(request.getId());
+        if (requestAccessToken.hasRole("CUST")) {
+            Optional<Pet> petOptional = petRepository.findById(request.getId());
 
-        if (petOptional.isEmpty()) {
-            throw new InvalidPetException("PET_ID_INVALID");
+            if (petOptional.isEmpty()) {
+                throw new InvalidPetException("PET_ID_INVALID");
+            }
+
+            customerIdValidator.validateId(request.getCustomerId());
+            Pet pet = petOptional.get();
+            pet.setCustomer(Customer.builder().id(request.getCustomerId()).build());
+            petRepository.save(pet);
+        } else {
+            throw new UnauthorizedDataAccessException("ACCESS_DENIED");
         }
-
-        customerIdValidator.validateId(request.getCustomerId());
-        Pet pet = petOptional.get();
-        pet.setCustomer(Customer.builder().id(request.getCustomerId()).build());
-        petRepository.save(pet);
     }
 
     @Transactional
     @Override
     public void updatePetDetails(UpdatePetDetailsRequestDTO request) {
-        Optional<Pet> petOptional = petRepository.findById(request.getId());
+        if (requestAccessToken.hasRole("ADMIN")) {
+            Optional<Pet> petOptional = petRepository.findById(request.getId());
 
-        if (petOptional.isEmpty()) {
-            throw new InvalidPetException("PET_ID_INVALID");
+            if (petOptional.isEmpty()) {
+                throw new InvalidPetException("PET_ID_INVALID");
+            }
+
+            Pet pet = petOptional.get();
+            validateTypeAndNameAndBreed(request, pet);
+            pet.setIcon(request.getIcon());
+            pet.setType(request.getType());
+            pet.setName(request.getName());
+            pet.setBreed(request.getBreed());
+            pet.setAgeCategory(request.getAgeCategory());
+            pet.setGender(request.getGender());
+            pet.setSize(request.getSize());
+            pet.setColor(request.getColor());
+            pet.setDescription(request.getDescription());
+            pet.setAdoptionFee(request.getAdoptionFee());
+            petRepository.save(pet);
+        } else {
+            throw new UnauthorizedDataAccessException("ACCESS_DENIED");
         }
-
-        Pet pet = petOptional.get();
-        validateTypeAndNameAndBreed(request, pet);
-        pet.setIcon(request.getIcon());
-        pet.setType(request.getType());
-        pet.setName(request.getName());
-        pet.setBreed(request.getBreed());
-        pet.setAgeCategory(request.getAgeCategory());
-        pet.setGender(request.getGender());
-        pet.setSize(request.getSize());
-        pet.setColor(request.getColor());
-        pet.setDescription(request.getDescription());
-        pet.setAdoptionFee(request.getAdoptionFee());
-        petRepository.save(pet);
     }
 
     private void validateTypeAndNameAndBreed(UpdatePetDetailsRequestDTO request, Pet pet) {

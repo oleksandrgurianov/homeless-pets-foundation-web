@@ -43,8 +43,8 @@ public class PetPictureController {
 
     @IsAuthenticated
     @RolesAllowed({"ADMIN", "CUST"})
-    @GetMapping
-    public ResponseEntity<GetPetPicturesResponseDTO> getPetPictures(@RequestParam(value = "petId") Long petId) {
+    @GetMapping("{petId}")
+    public ResponseEntity<GetPetPicturesResponseDTO> getPetPictures(@PathVariable(value = "petId") final long petId) {
         GetPetPicturesRequestDTO request = new GetPetPicturesRequestDTO();
         request.setPetId(petId);
         return ResponseEntity.ok(getPetPicturesUseCase.getPetPictures(request));

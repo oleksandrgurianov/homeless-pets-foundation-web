@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PetRepository extends JpaRepository<Pet, Long> {
     //All
@@ -17,6 +18,8 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
 
     @Query("SELECT COUNT(DISTINCT customer) FROM Pet")
     Long countAllByCustomerDistinct();
+
+    Optional<Pet> findByIdAndCustomerIsNull(long petId);
 
 
     //Customer

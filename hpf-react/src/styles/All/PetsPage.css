@@ -10,6 +10,17 @@
     font-weight: normal;
 }
 
+.add-icon {
+    height: 25px;
+    margin: 5px 15px 0 10px;
+    color: rgba(34, 17, 51, .8);
+    transition: .3s;
+}
+
+.add-icon:hover {
+    opacity: 90%;
+}
+
 .header-search {
     height: 35px;
     width: 150px;

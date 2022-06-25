@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  db:
+    container_name: dbcontainer
+    image: mysql
+    restart: always
+    ports:
+      - '3308:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'P@ssw0rd2003'
+      MYSQL_DATABASE: 'hpf'
+
+
+
+  backend:
+    container_name: backend
+    image: backend
+    restart: always
+    build: hpf-api/.
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://dbcontainer:3306/hpf
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=P@ssw0rd2003
+
+
+
+  frontend:
+    container_name: frontend
+    ports:
+      - '3000:3000'
+    build: hpf-react/.
+    image: frontend
+    restart: always
+    depends_on:
+      - backend

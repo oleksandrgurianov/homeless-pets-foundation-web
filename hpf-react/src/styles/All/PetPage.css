@@ -1,0 +1,204 @@
+.PetPictures {
+    height: 420px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.pictures-list {
+    height: inherit;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: inherit;
+    padding: 0;
+}
+
+.pictures-list .list-item {
+    display: inline-block;
+    width: 40em;
+    height: 400px;
+    margin-right: 15px;
+}
+
+.pictures-list .list-item:last-child {
+    margin-right: 0;
+}
+
+.pictures-list .list-item img {
+    width: inherit;
+    height: inherit;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.HeaderLine {
+    border: .5px solid lightgrey;
+    margin: 10px 0 15px 0;
+}
+
+.header-link {
+    height: 33px;
+    line-height: 33px;
+    border: 1px solid darkgray;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .3s;
+    background-color: dodgerblue;
+    color: white;
+    margin: 0 15px 0 auto;
+    width: 10%;
+}
+
+.Header .header-button {
+    width: 10%;
+    color: white;
+    background-color: red;
+}
+
+.details-row {
+    display: flex;
+    flex-direction: row;
+    font-size: 17px;
+    color: grey;
+}
+
+.details-row .row-separator {
+    padding: 0 5px;
+}
+
+.details-item {
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.details-item:nth-child(2) {
+    margin-top: 30px;
+}
+
+.PetDetailsLine {
+    border: .5px solid lightgrey;
+    margin: 15px 0 10px 0;
+}
+
+.PetDescription h2{
+    margin-bottom: 10px;
+}
+
+.PetDescription p {
+    font-size: 17px;
+}
+
+.PetDescriptionLine {
+    border: .5px solid lightgrey;
+    margin: 15px 0;
+}
+
+.overlay-icon {
+    position: absolute;
+    margin-top: 15px;
+    left: 80%;
+    color: dodgerblue;
+    z-index: 1;
+}
+
+.Collapsible__trigger {
+    cursor: pointer;
+    background-color: #f2f2f2;
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    color: dodgerblue;
+    font-size: 17px;
+    align-items: center;
+    transition: .3s ease-in-out;
+}
+
+.Collapsible__trigger:hover, .trigger-opened {
+    filter: brightness(95%);
+}
+
+.Collapsible__contentOuter {
+    background-color: #f2f2f2;
+    margin-top: 15px;
+    padding: 0 15px;
+    border-radius: 25px;
+}
+
+.adoption-address, .adoption-card {
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    margin-top: 15px;
+}
+
+.adoption-address {
+    flex-direction: column;
+}
+
+.adoption-address .address-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.adoption-address .address-details input {
+    background-color: rgba(255, 255, 255, .6);
+    height: 35px;
+    padding: 0 10px;
+    border: 1px solid darkgray;
+    font-size: 15px;
+    border-radius: 5px;
+    width: 25%;
+    margin-left: 15px;
+}
+
+.adoption-address .address-details input:first-child {
+    margin-left: 0;
+    width: 50%;
+}
+
+.adoption-card .card-details {
+    margin-left: 30px;
+}
+
+.adoption-card .card-details input {
+    background-color: rgba(255, 255, 255, .6);
+}
+
+.adoption-buttons {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-button, .adoption-buttons button {
+    height: 35px;
+    padding: 0 10px;
+    border: 1px solid darkgray;
+    font-size: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .3s;
+    width: 15%;
+}
+
+.header-link:hover, .header-button:hover, .adoption-buttons button:hover {
+    filter: brightness(90%);
+}
+
+.adoption-buttons .buttons-adopt {
+    background-color: dodgerblue;
+    color: white;
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.adoption-buttons .buttons-cancel {
+    background-color: white;
+    color: dimgray;
+}
+
