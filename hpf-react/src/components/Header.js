@@ -9,6 +9,7 @@ import PetPage from '../pages/All/PetPage'
 import DonatePage from '../pages/All/DonatePage'
 import LogInPage from '../pages/All/LogInPage'
 import DonateCustPage from '../pages/Customer/DonateCustPage'
+import AddPetPage from '../pages/Administrator/AddPetPage'
 import DonationsPage from '../pages/Administrator/DonationsPage'
 import NotFoundPage from '../pages/All/NotFoundPage'
 
@@ -76,11 +77,13 @@ function Header() {
                         <Link to={'/pets/categories/parrots'}>Parrots</Link>
                     </div>
                 </div>
-                {(localStorage.getItem('role') === 'ADMIN') ? (
+                {(
+                    localStorage.getItem('role') === 'ADMIN') ? (
                     <>
                         <Link className={'NavLinkDonate'} to={'/donations'}>Donations</Link>
                         <div className={'NavAccountDropdown'}>
-                            <button className={'account-dropdown-button'} onClick={showAccountDropdown}>{localStorage.getItem('email')}<FontAwesomeIcon
+                            <button className={'account-dropdown-button'}
+                                    onClick={showAccountDropdown}>{localStorage.getItem('email')}<FontAwesomeIcon
                                 className={'dropdown-button-icon'} icon={faCaretDown}/></button>
                             <div className={'account-dropdown-content'} id={'accountDropdown'}>
                                 <Link to={'/myAccount'}>My Account</Link>
@@ -89,11 +92,13 @@ function Header() {
                             </div>
                         </div>
                     </>
-                ) : (localStorage.getItem('role') === 'CUST') ? (
+                ) : (
+                    localStorage.getItem('role') === 'CUST') ? (
                     <>
                         <Link className={'NavLinkDonate'} to={'/donateCust'}>Donate</Link>
                         <div className={'NavAccountDropdown'}>
-                            <button className={'account-dropdown-button'} onClick={showAccountDropdown}>{localStorage.getItem('email')}<FontAwesomeIcon
+                            <button className={'account-dropdown-button'}
+                                    onClick={showAccountDropdown}>{localStorage.getItem('email')}<FontAwesomeIcon
                                 className={'dropdown-button-icon'} icon={faCaretDown}/></button>
                             <div className={'account-dropdown-content'} id={'accountDropdown'}>
                                 <Link to={'/myAccount'}>My Account</Link>
@@ -119,13 +124,15 @@ function Header() {
                     <Route path={'/pets/categories/:type'} element={<PetsPage/>}/>
                     <Route path={'/pets/categories/:type/:id'} element={<PetPage/>}/>
                     <Route path={'/*'} element={<NotFoundPage/>}/>
-                    {(localStorage.getItem('role') === 'ADMIN') ? (
+                    {(
+                        localStorage.getItem('role') === 'ADMIN') ? (
                         <>
-                            {/*<Route path={'/pets/addPet'} element={<AddPetPage/>}/>*/}
+                            <Route path={'/pets/addPet'} element={<AddPetPage/>}/>
                             {/*<Route path={'/pets/categories/:type/:id/updatePet} element={<UpdatePetPage/>}/>*/}
                             <Route path={'/donations'} element={<DonationsPage/>}/>
                         </>
-                    ) : (localStorage.getItem('role') === 'CUST') ? (
+                    ) : (
+                        localStorage.getItem('role') === 'CUST') ? (
                         <>
                             <Route path={'/donateCust'} element={<DonateCustPage/>}/>
                         </>

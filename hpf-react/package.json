@@ -10,7 +10,8 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
-    "firebase": "^9.8.3",
+    "firebase": "^9.8.4",
+    "net": "^1.0.2",
     "payment": "^2.4.6",
     "react": "^18.0.0",
     "react-collapsible": "^2.10.0",
@@ -19,7 +20,10 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "reactjs-popup": "^2.0.5",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
     "use-state-with-callback": "^3.0.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -53,7 +53,7 @@ CREATE TABLE pet
 (
     id           int          NOT NULL AUTO_INCREMENT,
     customer_id  int,
-    icon         varchar(255) NOT NULL,
+    icon         text(65535) NOT NULL,
     type         varchar(255) NOT NULL,
     name         varchar(255) NOT NULL,
     breed        varchar(255) NOT NULL,
@@ -69,9 +69,9 @@ CREATE TABLE pet
 
 CREATE TABLE pet_picture
 (
-    id      int          NOT NULL AUTO_INCREMENT,
-    pet_id  int          NOT NULL,
-    picture varchar(255) NOT NULL,
+    id      int            NOT NULL AUTO_INCREMENT,
+    pet_id  int            NOT NULL,
+    picture text(65535) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (pet_id) REFERENCES pet (id)
         ON DELETE CASCADE

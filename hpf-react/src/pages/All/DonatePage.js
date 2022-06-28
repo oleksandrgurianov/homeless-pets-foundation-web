@@ -82,6 +82,16 @@ const DonatePage = () => {
 
                 })
                 .catch(err => {
+                    if (!err?.response) {
+                        alert('There was an error connecting to the HPF server.');
+                    } else if (err.response?.status === 400) {
+                        alert('Please fill out all the required fields.');
+                    } else if (err.response?.status === 401) {
+                        alert('You are not authorized');
+                    } else {
+                        alert('An unknown error occurred.')
+                    }
+
                     console.log(err);
                 });
 

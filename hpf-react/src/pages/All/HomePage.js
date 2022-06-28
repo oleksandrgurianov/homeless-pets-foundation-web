@@ -10,7 +10,7 @@ import parrot from '../../images/parrot.png'
 import pawPrints from '../../images/paw-prints.png'
 import manRaisingHand from '../../images/man-raising-hand.png'
 import moneyWithWings from '../../images/money-with-wings.png'
-import loading from "../../images/loading.gif";
+import loading from '../../images/loading.gif'
 
 const HomePage = () => {
     const [analytics, setAnalytics] = useState([]);

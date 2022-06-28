@@ -16,12 +16,21 @@ const LogInPage = () => {
         emailRef.current.focus();
     }, [])
 
+    const logOut = () => {
+        localStorage.removeItem('email');
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        localStorage.removeItem('userId')
+        alert('You\'ve been logged out.');
+        navigate('/');
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         axios.post(`http://localhost:8080/login`, {
-            "email": email,
-            "password": password
+            'email': email,
+            'password': password
         })
             .then(res => {
                 const token = res.data.accessToken;
@@ -31,6 +40,14 @@ const LogInPage = () => {
                 localStorage.setItem('token', token);
                 localStorage.setItem('role', role);
                 localStorage.setItem('userId', userId);
+
+                setTimeout(() => {
+                    if (localStorage.getItem('token') !== null) {
+                        logOut();
+                        navigate('/');
+                    }
+                }, 1800000);
+
                 navigate('/');
             })
             .catch(err => {

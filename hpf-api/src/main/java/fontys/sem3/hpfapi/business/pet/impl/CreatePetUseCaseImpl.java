@@ -1,7 +1,9 @@
 package fontys.sem3.hpfapi.business.pet.impl;
 
+import fontys.sem3.hpfapi.business.exception.UnauthorizedDataAccessException;
 import fontys.sem3.hpfapi.business.pet.CreatePetUseCase;
 import fontys.sem3.hpfapi.business.exception.InvalidPetException;
+import fontys.sem3.hpfapi.dto.login.AccessTokenDTO;
 import fontys.sem3.hpfapi.dto.pet.CreatePetRequestDTO;
 import fontys.sem3.hpfapi.dto.pet.CreatePetResponseDTO;
 import fontys.sem3.hpfapi.repository.PetRepository;
@@ -15,31 +17,36 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class CreatePetUseCaseImpl implements CreatePetUseCase {
     private final PetRepository petRepository;
+    private final AccessTokenDTO requestAccessToken;
 
     @Transactional
     @Override
     public CreatePetResponseDTO createPet(CreatePetRequestDTO request) {
-        if (petRepository.existsByTypeAndNameAndBreed(request.getType(), request.getName(), request.getBreed())) {
-            throw new InvalidPetException("PET_DUPLICATED");
+        if (requestAccessToken.hasRole("ADMIN")) {
+            if (petRepository.existsByTypeAndNameAndBreed(request.getType(), request.getName(), request.getBreed())) {
+                throw new InvalidPetException("PET_DUPLICATED");
+            }
+
+            Pet newPet = Pet.builder()
+                    .icon(request.getIcon())
+                    .type(request.getType())
+                    .name(request.getName())
+                    .breed(request.getBreed())
+                    .ageCategory(request.getAgeCategory())
+                    .gender(request.getGender())
+                    .size(request.getSize())
+                    .color(request.getColor())
+                    .description(request.getDescription())
+                    .adoptionFee(request.getAdoptionFee())
+                    .build();
+
+            Pet savedPet = petRepository.save(newPet);
+
+            return CreatePetResponseDTO.builder()
+                    .petId(savedPet.getId())
+                    .build();
+        } else {
+            throw new UnauthorizedDataAccessException("ACCESS_DENIED");
         }
-
-        Pet newPet = Pet.builder()
-                .type(request.getIcon())
-                .type(request.getType())
-                .name(request.getName())
-                .breed(request.getBreed())
-                .ageCategory(request.getAgeCategory())
-                .gender(request.getGender())
-                .size(request.getSize())
-                .color(request.getColor())
-                .description(request.getDescription())
-                .adoptionFee(request.getAdoptionFee())
-                .build();
-
-        Pet savedPet = petRepository.save(newPet);
-
-        return CreatePetResponseDTO.builder()
-                .petId(savedPet.getId())
-                .build();
     }
 }

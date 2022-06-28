@@ -19,7 +19,6 @@ import java.time.LocalDate;
 public class CreateDonationUseCaseImpl implements CreateDonationUseCase {
     private final DonationRepository donationRepository;
     private final CustomerIdValidator customerIdValidator;
-    private AccessTokenDTO requestAccessToken;
 
     @Transactional
     @Override

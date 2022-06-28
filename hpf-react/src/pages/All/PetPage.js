@@ -48,14 +48,16 @@ const PetPage = () => {
     let navigate = useNavigate();
 
     const getCustomer = () => {
-        axios.get(`http://localhost:8080/customers/${localStorage.getItem('userId')}`, config)
-            .then(res => {
-                setCustomer(res.data);
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        if (localStorage.getItem('role') === 'CUST') {
+            axios.get(`http://localhost:8080/customers/${localStorage.getItem('userId')}`, config)
+                .then(res => {
+                    setCustomer(res.data);
+                    console.log(res.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
     }
 
     useEffect(() => {
@@ -97,12 +99,25 @@ const PetPage = () => {
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
 
     useEffect(() => {
         getPet();
     }, []);
+
+    const deletePet = () => {
+        axios.delete(`http://localhost:8080/pets/${pet.id}`, config)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        alert("This pet has been successfully deleted.");
+        navigate(`/pets/categories/${pet.type}`);
+    }
 
     const handleStreetChange = (e) => {
         setStreet(e.target.value);
@@ -231,6 +246,16 @@ const PetPage = () => {
                     console.log(res.data);
                 })
                 .catch(err => {
+                    if (!err?.response) {
+                        alert('There was an error connecting to the HPF server.');
+                    } else if (err.response?.status === 400) {
+                        alert('Please fill out all the required fields.');
+                    } else if (err.response?.status === 401) {
+                        alert('You are not authorized');
+                    } else {
+                        alert('An unknown error occurred.')
+                    }
+
                     console.log(err);
                 });
         }
@@ -248,6 +273,16 @@ const PetPage = () => {
                     console.log(res.data);
                 })
                 .catch(err => {
+                    if (!err?.response) {
+                        alert('There was an error connecting to the HPF server.');
+                    } else if (err.response?.status === 400) {
+                        alert('Please fill out all the required fields.');
+                    } else if (err.response?.status === 401) {
+                        alert('You are not authorized');
+                    } else {
+                        alert('An unknown error occurred.')
+                    }
+
                     console.log(err);
                 });
         }
@@ -257,6 +292,16 @@ const PetPage = () => {
                 console.log(res.data);
             })
             .catch(err => {
+                if (!err?.response) {
+                    alert('There was an error connecting to the HPF server.');
+                } else if (err.response?.status === 400) {
+                    alert('Please fill out all the required fields.');
+                } else if (err.response?.status === 401) {
+                    alert('You are not authorized');
+                } else {
+                    alert('An unknown error occurred.')
+                }
+
                 console.log(err);
             });
 
@@ -314,7 +359,7 @@ const PetPage = () => {
                                     localStorage.getItem('role') === 'ADMIN') ? (
                                     <>
                                         <Link className='header-link' to={`updatePet`}>Edit</Link>
-                                        <button className='header-button'>Delete</button>
+                                        <button className='header-button' onClick={deletePet}>Delete</button>
                                     </>
                                 ) : (
                                     <></>
