@@ -7,8 +7,11 @@ import {storage} from '../../services/firebase'
 import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
 import {v4} from 'uuid'
 import axios from 'axios'
+import useAuth from '../../hooks/useAuth'
 
 const AddPetPage = () => {
+    const {auth} = useAuth();
+
     const [petPictures, setPetPictures] = useState([]);
 
     const [previewPetPictures, setPreviewPetPictures] = useState([]);
@@ -38,7 +41,7 @@ const AddPetPage = () => {
     const navigate = useNavigate();
 
     const config = {
-        headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        headers: {Authorization: `Bearer ${auth?.token}`}
     };
 
     let start = 0;

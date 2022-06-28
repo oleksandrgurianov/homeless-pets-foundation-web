@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import axios from "axios";
 import '../../styles/All/DonatePage.css'
 import Cards from 'react-credit-cards'
@@ -9,8 +9,11 @@ import {
     formatCVC,
     formatExpirationDate
 } from '../../services/CardService'
+import useAuth from '../../hooks/useAuth'
 
 const DonatePage = () => {
+    const {auth} = useAuth();
+
     const [cardNumber, setCardNumber] = useState('');
 
     const [fullName, setFullName] = useState('');
@@ -69,7 +72,14 @@ const DonatePage = () => {
         }
     }
 
-    const sendDonation = () => {
+    const sendDonation = (e) => {
+        e.preventDefault();
+
+        if (!cardNumber || !fullName || !expirationDate || !cvv || !email) {
+            alert('Please fill out all the required fields.')
+            return;
+        }
+
         let donation = {
             'amount': amount,
             'description': description
@@ -114,88 +124,94 @@ const DonatePage = () => {
 
     return (
         <>
-            <h1>Donate</h1>
-            <hr className={'DonateLine'}/>
-            <form className={'DonateForm'}>
-                <div className={'form-card'}>
-                    <Cards
-                        number={cardNumber}
-                        name={fullName}
-                        expiry={expirationDate}
-                        cvc={cvv}
-                        focused={focus}
-                    />
-                    <div className={'card-details'}>
-                        <input
-                            type={'tel'}
-                            name={'number'}
-                            placeholder={'Card Number *'}
-                            value={cardNumber}
-                            onChange={handleNumberChange}
-                            onFocus={(e) => setFocus(e.target.name)}
-                            ref={ref}
-                            required
-                        />
-                        <input
-                            type={'text'}
-                            name={'name'}
-                            placeholder={'Full Name *'}
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            onFocus={(e) => setFocus(e.target.name)}
-                            required
-                        />
-                        <div className={'details-footer'}>
+            {!auth?.role ? (
+                <>
+                    <h1>Donate</h1>
+                    <hr className={'DonateLine'}/>
+                    <form className={'DonateForm'}>
+                        <div className={'form-card'}>
+                            <Cards
+                                number={cardNumber}
+                                name={fullName}
+                                expiry={expirationDate}
+                                cvc={cvv}
+                                focused={focus}
+                            />
+                            <div className={'card-details'}>
+                                <input
+                                    type={'tel'}
+                                    name={'number'}
+                                    placeholder={'Card Number *'}
+                                    value={cardNumber}
+                                    onChange={handleNumberChange}
+                                    onFocus={(e) => setFocus(e.target.name)}
+                                    ref={ref}
+                                    required
+                                />
+                                <input
+                                    type={'text'}
+                                    name={'name'}
+                                    placeholder={'Full Name *'}
+                                    value={fullName}
+                                    onChange={(e) => setFullName(e.target.value)}
+                                    onFocus={(e) => setFocus(e.target.name)}
+                                    required
+                                />
+                                <div className={'details-footer'}>
+                                    <input
+                                        type={'text'}
+                                        name={'expiry'}
+                                        placeholder={'MM/YY *'}
+                                        value={expirationDate}
+                                        onChange={handleExpiryChange}
+                                        onFocus={(e) => setFocus(e.target.name)}
+                                        required
+                                    />
+                                    <input
+                                        type={'tel'}
+                                        name={'cvc'}
+                                        placeholder={'CVV *'}
+                                        value={cvv}
+                                        onChange={handleCvcChange}
+                                        onFocus={(e) => setFocus(e.target.name)}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className={'form-amount'}>
+                            <input
+                                type={'email'}
+                                name={'email'}
+                                placeholder={'Email *'}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
                             <input
                                 type={'text'}
-                                name={'expiry'}
-                                placeholder={'MM/YY *'}
-                                value={expirationDate}
-                                onChange={handleExpiryChange}
-                                onFocus={(e) => setFocus(e.target.name)}
+                                name={'amount'}
+                                placeholder={'Amount (in EUR) *'}
+                                value={amount}
+                                onChange={handleAmountChange}
                                 required
                             />
-                            <input
-                                type={'tel'}
-                                name={'cvc'}
-                                placeholder={'CVV *'}
-                                value={cvv}
-                                onChange={handleCvcChange}
-                                onFocus={(e) => setFocus(e.target.name)}
-                                required
+                            <textarea
+                                name={'description'}
+                                placeholder={'Description'}
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
                             />
+                            <div className={'amount-footer'}>
+                                <button className={'footer-send'} onClick={sendDonation}>Send</button>
+                                <button className={'footer-cancel'} onClick={cancelDonation}>Cancel</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className={'form-amount'}>
-                    <input
-                        type={'email'}
-                        name={'email'}
-                        placeholder={'Email *'}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <input
-                        type={'text'}
-                        name={'amount'}
-                        placeholder={'Amount (in EUR) *'}
-                        value={amount}
-                        onChange={handleAmountChange}
-                        required
-                    />
-                    <textarea
-                        name={'description'}
-                        placeholder={'Description'}
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                    <div className={'amount-footer'}>
-                        <button className={'footer-send'} onClick={sendDonation}>Send</button>
-                        <button className={'footer-cancel'} onClick={cancelDonation}>Cancel</button>
-                    </div>
-                </div>
-            </form>
+                    </form>
+                </>
+            ) : (
+                <Navigate to={'/notFound'} replace={true}/>
+            )}
         </>
     )
 }

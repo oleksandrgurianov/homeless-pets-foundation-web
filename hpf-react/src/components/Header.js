@@ -1,26 +1,19 @@
 import React from 'react'
-import {Link, Routes, Route, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import logo from '../images/logo.png'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
-import HomePage from '../pages/All/HomePage'
-import PetsPage from '../pages/All/PetsPage'
-import PetPage from '../pages/All/PetPage'
-import DonatePage from '../pages/All/DonatePage'
-import LogInPage from '../pages/All/LogInPage'
-import DonateCustPage from '../pages/Customer/DonateCustPage'
-import AddPetPage from '../pages/Administrator/AddPetPage'
-import DonationsPage from '../pages/Administrator/DonationsPage'
-import NotFoundPage from '../pages/All/NotFoundPage'
+import useAuth from '../hooks/useAuth'
 
 function Header() {
+    const {auth} = useAuth();
+
+    const {setAuth} = useAuth();
+
     const navigate = useNavigate();
 
     const logOut = () => {
-        localStorage.removeItem('email');
-        localStorage.removeItem('token');
-        localStorage.removeItem('role');
-        localStorage.removeItem('userId')
+        setAuth({});
         alert('You\'ve been logged out');
         navigate('/');
     }
@@ -78,12 +71,12 @@ function Header() {
                     </div>
                 </div>
                 {(
-                    localStorage.getItem('role') === 'ADMIN') ? (
+                    auth?.role === 'ADMIN') ? (
                     <>
                         <Link className={'NavLinkDonate'} to={'/donations'}>Donations</Link>
                         <div className={'NavAccountDropdown'}>
                             <button className={'account-dropdown-button'}
-                                    onClick={showAccountDropdown}>{localStorage.getItem('email')}<FontAwesomeIcon
+                                    onClick={showAccountDropdown}>{auth?.email}<FontAwesomeIcon
                                 className={'dropdown-button-icon'} icon={faCaretDown}/></button>
                             <div className={'account-dropdown-content'} id={'accountDropdown'}>
                                 <Link to={'/myAccount'}>My Account</Link>
@@ -93,12 +86,12 @@ function Header() {
                         </div>
                     </>
                 ) : (
-                    localStorage.getItem('role') === 'CUST') ? (
+                    auth?.role === 'CUST') ? (
                     <>
                         <Link className={'NavLinkDonate'} to={'/donateCust'}>Donate</Link>
                         <div className={'NavAccountDropdown'}>
                             <button className={'account-dropdown-button'}
-                                    onClick={showAccountDropdown}>{localStorage.getItem('email')}<FontAwesomeIcon
+                                    onClick={showAccountDropdown}>{auth?.email}<FontAwesomeIcon
                                 className={'dropdown-button-icon'} icon={faCaretDown}/></button>
                             <div className={'account-dropdown-content'} id={'accountDropdown'}>
                                 <Link to={'/myAccount'}>My Account</Link>
@@ -117,32 +110,6 @@ function Header() {
                         <Link className={'NavLinkLogIn'} to={'/logIn'}>Log In</Link>
                     </>
                 )}
-            </div>
-            <div className={'Body'}>
-                <Routes>
-                    <Route path={'/'} element={<HomePage/>}/>
-                    <Route path={'/pets/categories/:type'} element={<PetsPage/>}/>
-                    <Route path={'/pets/categories/:type/:id'} element={<PetPage/>}/>
-                    <Route path={'/*'} element={<NotFoundPage/>}/>
-                    {(
-                        localStorage.getItem('role') === 'ADMIN') ? (
-                        <>
-                            <Route path={'/pets/addPet'} element={<AddPetPage/>}/>
-                            {/*<Route path={'/pets/categories/:type/:id/updatePet} element={<UpdatePetPage/>}/>*/}
-                            <Route path={'/donations'} element={<DonationsPage/>}/>
-                        </>
-                    ) : (
-                        localStorage.getItem('role') === 'CUST') ? (
-                        <>
-                            <Route path={'/donateCust'} element={<DonateCustPage/>}/>
-                        </>
-                    ) : (
-                        <>
-                            <Route path={'/donate'} element={<DonatePage/>}/>
-                            <Route path={'/logIn'} element={<LogInPage/>}/>
-                        </>
-                    )}
-                </Routes>
             </div>
         </>
     );

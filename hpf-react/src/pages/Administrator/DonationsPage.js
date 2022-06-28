@@ -5,8 +5,11 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import loading from "../../images/loading.gif"
 import moneyWithWings from "../../images/money-with-wings.png";
+import useAuth from '../../hooks/useAuth'
 
 const DonationsPage = () => {
+    const {auth} = useAuth();
+
     const [donations, setDonations] = useState([]);
 
     const [sort, setSort] = useState('');
@@ -14,7 +17,7 @@ const DonationsPage = () => {
     const [filteredDonations, setFilteredDonations] = useState([]);
 
     const config = {
-        headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        headers: {Authorization: `Bearer ${auth?.token}`}
     };
 
     const getDonations = () => {

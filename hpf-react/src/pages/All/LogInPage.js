@@ -1,9 +1,12 @@
 import React, {useRef, useState, useEffect} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, Navigate, useNavigate} from 'react-router-dom'
 import '../../styles/All/LogInPage.css'
 import axios from 'axios'
+import useAuth from '../../hooks/useAuth'
 
 const LogInPage = () => {
+    const {setAuth} = useAuth();
+
     const navigate = useNavigate();
 
     const emailRef = useRef();
@@ -17,10 +20,7 @@ const LogInPage = () => {
     }, [])
 
     const logOut = () => {
-        localStorage.removeItem('email');
-        localStorage.removeItem('token');
-        localStorage.removeItem('role');
-        localStorage.removeItem('userId')
+        setAuth({});
         alert('You\'ve been logged out.');
         navigate('/');
     }
@@ -36,13 +36,10 @@ const LogInPage = () => {
                 const token = res.data.accessToken;
                 const role = res.data.role;
                 const userId = res.data.userId;
-                localStorage.setItem('email', email);
-                localStorage.setItem('token', token);
-                localStorage.setItem('role', role);
-                localStorage.setItem('userId', userId);
+                setAuth({email, token, role, userId});
 
                 setTimeout(() => {
-                    if (localStorage.getItem('token') !== null) {
+                    if (setAuth?.token !== null) {
                         logOut();
                         navigate('/');
                     }
@@ -67,31 +64,37 @@ const LogInPage = () => {
 
     return (
         <>
-            <div className={'LogIn'}>
-                <h1>Log In</h1>
-                <form className={'LogInForm'} onSubmit={handleSubmit}>
-                    <input
-                        type={'email'}
-                        id={'email'}
-                        ref={emailRef}
-                        placeholder={'Email *'}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <input
-                        type={'password'}
-                        id={'password'}
-                        placeholder={'Password *'}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <button>Log In</button>
-                </form>
-                <hr className={'LogInLine'}/>
-                <p>Don't have an account? <Link className={'LogInLink'} to={'/signUp'}>Sign Up.</Link></p>
-            </div>
+            {!setAuth?.role ? (
+                <>
+                    <div className={'LogIn'}>
+                        <h1>Log In</h1>
+                        <form className={'LogInForm'} onSubmit={handleSubmit}>
+                            <input
+                                type={'email'}
+                                id={'email'}
+                                ref={emailRef}
+                                placeholder={'Email *'}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                            <input
+                                type={'password'}
+                                id={'password'}
+                                placeholder={'Password *'}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                            <button>Log In</button>
+                        </form>
+                        <hr className={'LogInLine'}/>
+                        <p>Don't have an account? <Link className={'LogInLink'} to={'/signUp'}>Sign Up.</Link></p>
+                    </div>
+                </>
+            ) : (
+                <Navigate to={'/notFound'} replace={true}/>
+            )}
         </>
     );
 }

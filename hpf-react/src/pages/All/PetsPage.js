@@ -5,8 +5,11 @@ import '../../styles/All/PetsPage.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCirclePlus, faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import loading from "../../images/loading.gif"
+import useAuth from '../../hooks/useAuth'
 
 const PetsPage = () => {
+    const {auth} = useAuth();
+
     const location = useLocation();
 
     const [pets, setPets] = useState([]);
@@ -60,7 +63,7 @@ const PetsPage = () => {
         <>
             <div className={'Header'}>
                 <h1>Pets</h1>
-                {(localStorage.getItem('role') === 'ADMIN') &&
+                {(auth?.role === 'ADMIN') &&
                     <Link to='/pets/addPet'><FontAwesomeIcon className='add-icon' icon={faCirclePlus}/></Link>
                 }
                 <input className={'header-search'} type={'text'} placeholder={'Search'}

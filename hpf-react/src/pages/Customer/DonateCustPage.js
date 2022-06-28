@@ -9,8 +9,11 @@ import {
     formatCVC,
     formatExpirationDate
 } from '../../services/CardService'
+import useAuth from '../../hooks/useAuth'
 
 const DonateCustPage = () => {
+    const {auth} = useAuth();
+
     const [customer, setCustomer] = useState({});
 
     const [cardNumber, setCardNumber] = useState('');
@@ -32,7 +35,7 @@ const DonateCustPage = () => {
     const ref = useRef(null);
 
     const config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: {Authorization: `Bearer ${auth?.token}`}
     };
 
     let navigate = useNavigate();
@@ -40,7 +43,7 @@ const DonateCustPage = () => {
     let start = 0;
 
     const getCustomer = () => {
-        axios.get(`http://localhost:8080/customers/${localStorage.getItem('userId')}`, config)
+        axios.get(`http://localhost:8080/customers/${auth?.userId}`, config)
             .then(res => {
                 setCustomer(res.data);
                 console.log(res.data);
@@ -62,7 +65,7 @@ const DonateCustPage = () => {
         const result = formatCreditCardNumber(e.target.value);
         setCardNumber(result);
 
-        if(document.getElementById('useCheckbox') !== null) {
+        if (document.getElementById('useCheckbox') !== null) {
             document.getElementById('useCheckbox').checked = false;
         }
     };
@@ -70,7 +73,7 @@ const DonateCustPage = () => {
     const handleFullNameChange = (e) => {
         setFullName(e.target.value);
 
-        if(document.getElementById('useCheckbox') !== null) {
+        if (document.getElementById('useCheckbox') !== null) {
             document.getElementById('useCheckbox').checked = false;
         }
     };
@@ -79,7 +82,7 @@ const DonateCustPage = () => {
         const result = formatExpirationDate(e.target.value);
         setExpirationDate(result);
 
-        if(document.getElementById('useCheckbox') !== null) {
+        if (document.getElementById('useCheckbox') !== null) {
             document.getElementById('useCheckbox').checked = false;
         }
     };
@@ -88,7 +91,7 @@ const DonateCustPage = () => {
         const result = formatCVC(e.target.value);
         setCvv(result);
 
-        if(document.getElementById('useCheckbox') !== null) {
+        if (document.getElementById('useCheckbox') !== null) {
             document.getElementById('useCheckbox').checked = false;
         }
     };
@@ -136,7 +139,14 @@ const DonateCustPage = () => {
         }
     }
 
-    const sendDonation = () => {
+    const sendDonation = (e) => {
+        e.preventDefault();
+
+        if (!cardNumber || !fullName || !expirationDate || !cvv) {
+            alert('Please fill out all the required fields.');
+            return;
+        }
+
         let donation = {
             'customerId': customer.id,
             'amount': amount,
@@ -151,7 +161,7 @@ const DonateCustPage = () => {
                     'cvv': cvv
                 }
 
-                axios.put(`http://localhost:8080/customers/${localStorage.getItem('userId')}/bankDetails`, bankDetails, config)
+                axios.put(`http://localhost:8080/customers/${auth?.userId}/bankDetails`, bankDetails, config)
                     .then(res => {
                         setCustomer(res.data);
                         console.log(res.data);
@@ -202,7 +212,7 @@ const DonateCustPage = () => {
         setExpirationDate('');
         setCvv('');
 
-        if(document.getElementById('useCheckbox') !== null) {
+        if (document.getElementById('useCheckbox') !== null) {
             document.getElementById('useCheckbox').checked = false;
         } else {
             document.getElementById('saveCheckbox').checked = false;
@@ -265,7 +275,8 @@ const DonateCustPage = () => {
                                 required
                             />
                         </div>
-                        {(customer.cardNumber !== null) ? (
+                        {(
+                            customer.cardNumber !== null) ? (
                             <label className={'details-checkbox'}>
                                 <input
                                     type="checkbox"

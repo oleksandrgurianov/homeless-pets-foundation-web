@@ -12,9 +12,12 @@ import {
     formatCVC,
     formatExpirationDate
 } from '../../services/CardService'
+import useAuth from '../../hooks/useAuth'
 
 
 const PetPage = () => {
+    const {auth} = useAuth();
+
     const [petPictures, setPetPictures] = useState([]);
 
     const [pet, setPet] = useState({});
@@ -42,14 +45,14 @@ const PetPage = () => {
     const [saveBankDetails, setSaveBankDetails] = useState(false);
 
     const config = {
-        headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        headers: {Authorization: `Bearer ${auth?.token}`}
     };
 
     let navigate = useNavigate();
 
     const getCustomer = () => {
-        if (localStorage.getItem('role') === 'CUST') {
-            axios.get(`http://localhost:8080/customers/${localStorage.getItem('userId')}`, config)
+        if (auth?.role === 'CUST') {
+            axios.get(`http://localhost:8080/customers/${auth?.userId}`, config)
                 .then(res => {
                     setCustomer(res.data);
                     console.log(res.data);
@@ -228,7 +231,9 @@ const PetPage = () => {
         }
     }
 
-    const adoptPet = () => {
+    const adoptPet = (e) => {
+        e.preventDefault();
+
         let adoption = {
             'customerId': customer.id
         };
@@ -240,7 +245,7 @@ const PetPage = () => {
                 'city': city
             }
 
-            axios.put(`http://localhost:8080/customers/${localStorage.getItem('userId')}/address`, address, config)
+            axios.put(`http://localhost:8080/customers/${auth?.userId}/address`, address, config)
                 .then(res => {
                     setCustomer(res.data);
                     console.log(res.data);
@@ -267,7 +272,7 @@ const PetPage = () => {
                 'cvv': cvv
             }
 
-            axios.put(`http://localhost:8080/customers/${localStorage.getItem('userId')}/bankDetails`, bankDetails, config)
+            axios.put(`http://localhost:8080/customers/${auth?.userId}/bankDetails`, bankDetails, config)
                 .then(res => {
                     setCustomer(res.data);
                     console.log(res.data);
@@ -336,7 +341,7 @@ const PetPage = () => {
 
     return (
         <>
-            {localStorage.getItem('role') ? (
+            {auth?.role ? (
                 <>
                     {petPictures.length ? (
                         <div className={'PetPictures'}>
@@ -356,7 +361,7 @@ const PetPage = () => {
                             <div className={'Header'}>
                                 <h1>{pet.name}</h1>
                                 {(
-                                    localStorage.getItem('role') === 'ADMIN') ? (
+                                    auth?.role === 'ADMIN') ? (
                                     <>
                                         <Link className='header-link' to={`updatePet`}>Edit</Link>
                                         <button className='header-button' onClick={deletePet}>Delete</button>
@@ -408,7 +413,7 @@ const PetPage = () => {
                                 </>
                             }
                             {(
-                                    localStorage.getItem('role') === 'CUST') &&
+                                    auth?.role === 'CUST') &&
                                 <div className={'collapsible-overlay'}>
                                     <hr className={'PetDescriptionLine'}/>
                                     <FontAwesomeIcon className={'overlay-icon'} icon={faChevronDown}/>
