@@ -8,6 +8,8 @@ import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
 import {v4} from 'uuid'
 import axios from 'axios'
 import useAuth from '../../hooks/useAuth'
+import SockJS from 'sockjs-client'
+import Stomp from 'stompjs'
 
 const AddPetPage = () => {
     const {auth} = useAuth();
@@ -196,6 +198,7 @@ const AddPetPage = () => {
                             })
                         });
 
+                        sendNotification();
                         alert("This pet has been successfully added.");
                         navigate(`/pets/categories/${pet.type}`);
                     })
@@ -214,6 +217,33 @@ const AddPetPage = () => {
                     });
             });
         });
+    }
+
+    const socket = new SockJS('http://localhost:8080/ws');
+
+    const stompClient = Stomp.over(socket);
+
+    const email = auth?.email;
+
+    const [userData, setUserData] = useState({
+        email: email,
+        connected: true
+    });
+
+    useEffect(() => {
+        console.log(userData);
+    }, [userData]);
+
+    const sendNotification = () => {
+        if (stompClient) {
+            const notificationBody = {
+                receiverRole: 'CUST',
+                message: type
+            };
+
+            stompClient.send('/app/message', {}, JSON.stringify(notificationBody));
+            setUserData({...userData, 'message': ''});
+        }
     }
 
     const cancelAddition = () => {

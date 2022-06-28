@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import '../../styles/Administrator/DonationsPage.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
-import loading from "../../images/loading.gif"
-import moneyWithWings from "../../images/money-with-wings.png";
+import loading from '../../images/loading.gif'
+import moneyWithWings from '../../images/money-with-wings.png'
 import useAuth from '../../hooks/useAuth'
 
 const DonationsPage = () => {

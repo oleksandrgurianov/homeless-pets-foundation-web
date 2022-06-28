@@ -4,6 +4,7 @@ import logo from '../images/logo.png'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import useAuth from '../hooks/useAuth'
+import Notification from './Notification'
 
 function Header() {
     const {auth} = useAuth();
@@ -110,6 +111,9 @@ function Header() {
                         <Link className={'NavLinkLogIn'} to={'/logIn'}>Log In</Link>
                     </>
                 )}
+                {auth?.role &&
+                    <Notification/>
+                }
             </div>
         </>
     );

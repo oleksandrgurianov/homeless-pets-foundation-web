@@ -14,7 +14,6 @@ import {
 } from '../../services/CardService'
 import useAuth from '../../hooks/useAuth'
 
-
 const PetPage = () => {
     const {auth} = useAuth();
 

@@ -1,53 +1,58 @@
 import React, {useEffect, useState} from 'react'
+import useAuth from '../hooks/useAuth'
 import SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
 
-// Set the backend location
-const ENDPOINT = 'http://localhost:8080/ws'
+let stompClient;
 
 const Notification = () => {
-    const [stompClient, setStompClient] = useState(null);
+    const {auth} = useAuth();
 
-    const [msgToSend, setSendMessage] = useState("Enter your message here!");
+    const email = auth?.email;
 
+    const role = auth?.role;
+
+    const [userData, setUserData] = useState({
+        email: email,
+        role: role,
+        connected: false
+    });
 
     useEffect(() => {
-        // use SockJS as the websocket client
-        const socket = SockJS(ENDPOINT);
+        console.log(userData);
+    }, [userData]);
 
-        // Set stomp to use websockets
-        const stompClient = Stomp.over(socket);
+    const connect = () => {
+        const socket = new SockJS('http://localhost:8080/ws');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, onConnected, onError);
+    }
 
-        // connect to the backend
-        stompClient.connect({}, () => {
-            // subscribe to the backend
-            stompClient.subscribe('/topic/greetings', (data) => {
-                console.log(data);
-                onMessageReceived(data);
-            });
-        });
-
-        // maintain the client for sending and receiving
-        setStompClient(stompClient);
+    useEffect(() => {
+        connect();
     }, []);
 
-    // send the data using Stomp
-    function sendMessage() {
-        stompClient.send("/app/hello", {}, JSON.stringify({'name': msgToSend}));
+    const onConnected = () => {
+        setUserData({...userData, 'connected': true});
+        stompClient.subscribe('/notifications/messages', onPrivateNotification);
     }
 
-    // display the received data
-    function onMessageReceived(data) {
-        const result = JSON.parse(data.body);
-        alert(result.content)
+    const onPrivateNotification = (payload) => {
+        const payloadData = JSON.parse(payload.body);
+        setUserData({...userData, 'connected': true});
+
+        if (role === payloadData.receiverRole) {
+            const message = payloadData.message.toLowerCase().slice(0, -1);
+            alert('A new ' + message + ' has been added.\n Check it out!');
+            console.log(payload);
+        }
     }
 
-    return (
-        <>
-            <input onChange={(event) => setSendMessage(event.target.value)}/>
-            <button onClick={sendMessage}>Send</button>
-        </>
-    );
+    const onError = (err) => {
+        console.log(err);
+    }
+
+    return null;
 }
 
 export default Notification
