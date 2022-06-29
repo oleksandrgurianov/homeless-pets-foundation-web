@@ -6,7 +6,6 @@ import fontys.sem3.hpfapi.business.pet.UpdatePetUseCase;
 import fontys.sem3.hpfapi.business.exception.InvalidPetException;
 import fontys.sem3.hpfapi.dto.login.AccessTokenDTO;
 import fontys.sem3.hpfapi.dto.pet.UpdatePetCustomerRequestDTO;
-import fontys.sem3.hpfapi.dto.pet.UpdatePetDetailsRequestDTO;
 import fontys.sem3.hpfapi.repository.PetRepository;
 import fontys.sem3.hpfapi.repository.entity.Customer;
 import fontys.sem3.hpfapi.repository.entity.Pet;
@@ -39,41 +38,6 @@ public class UpdatePetUseCaseImpl implements UpdatePetUseCase {
             petRepository.save(pet);
         } else {
             throw new UnauthorizedDataAccessException("ACCESS_DENIED");
-        }
-    }
-
-    @Transactional
-    @Override
-    public void updatePetDetails(UpdatePetDetailsRequestDTO request) {
-        if (requestAccessToken.hasRole("ADMIN")) {
-            Optional<Pet> petOptional = petRepository.findById(request.getId());
-
-            if (petOptional.isEmpty()) {
-                throw new InvalidPetException("PET_ID_INVALID");
-            }
-
-            Pet pet = petOptional.get();
-            validateTypeAndNameAndBreed(request, pet);
-            pet.setIcon(request.getIcon());
-            pet.setType(request.getType());
-            pet.setName(request.getName());
-            pet.setBreed(request.getBreed());
-            pet.setAgeCategory(request.getAgeCategory());
-            pet.setGender(request.getGender());
-            pet.setSize(request.getSize());
-            pet.setColor(request.getColor());
-            pet.setDescription(request.getDescription());
-            pet.setAdoptionFee(request.getAdoptionFee());
-            petRepository.save(pet);
-        } else {
-            throw new UnauthorizedDataAccessException("ACCESS_DENIED");
-        }
-    }
-
-    private void validateTypeAndNameAndBreed(UpdatePetDetailsRequestDTO request, Pet pet) {
-        Pet petWithSameTypeAndNameAndBreed = petRepository.findByTypeAndNameAndBreed(request.getType(), request.getName(), request.getBreed());
-        if (petWithSameTypeAndNameAndBreed != null && !petWithSameTypeAndNameAndBreed.getId().equals(pet.getId())) {
-            throw new InvalidPetException("OTHER_PET_SAME_TYPE_AND_NAME_AND_BREED");
         }
     }
 }

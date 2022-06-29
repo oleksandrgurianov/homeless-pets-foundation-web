@@ -1,7 +1,6 @@
 package fontys.sem3.hpfapi.dto.customer;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 @Data
 @Builder

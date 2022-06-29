@@ -43,7 +43,7 @@ const Notification = () => {
 
         if (role === payloadData.receiverRole) {
             const message = payloadData.message.toLowerCase().slice(0, -1);
-            alert('A new ' + message + ' has been added.\n Check it out!');
+            alert('A new ' + message + ' has been added.\nCheck it out!');
             console.log(payload);
         }
     }

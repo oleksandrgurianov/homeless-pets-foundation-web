@@ -1,7 +1,6 @@
 package fontys.sem3.hpfapi.controller;
 
 import fontys.sem3.hpfapi.business.petPicture.CreatePetPictureUseCase;
-import fontys.sem3.hpfapi.business.petPicture.DeletePetPictureUseCase;
 import fontys.sem3.hpfapi.business.petPicture.GetPetPicturesUseCase;
 import fontys.sem3.hpfapi.configuration.security.isauthenticated.IsAuthenticated;
 import fontys.sem3.hpfapi.dto.petPicture.CreatePetPictureRequestDTO;
@@ -22,7 +21,6 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "http://localhost:3000/")
 public class PetPictureController {
     private final CreatePetPictureUseCase createPetPictureUseCase;
-    private final DeletePetPictureUseCase deletePetPictureUseCase;
     private final GetPetPicturesUseCase getPetPicturesUseCase;
 
     @IsAuthenticated
@@ -31,14 +29,6 @@ public class PetPictureController {
     public ResponseEntity<CreatePetPictureResponseDTO> createPetPicture(@RequestBody @Valid CreatePetPictureRequestDTO request) {
         CreatePetPictureResponseDTO response = createPetPictureUseCase.createPetPicture(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
-    @IsAuthenticated
-    @RolesAllowed({"ADMIN"})
-    @DeleteMapping("{petPictureId}")
-    public ResponseEntity<Void> deletePetPicture(@PathVariable int petPictureId) {
-        deletePetPictureUseCase.deletePetPicture(petPictureId);
-        return ResponseEntity.noContent().build();
     }
 
     @IsAuthenticated

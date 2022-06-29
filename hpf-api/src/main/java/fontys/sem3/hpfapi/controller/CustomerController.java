@@ -1,12 +1,10 @@
 package fontys.sem3.hpfapi.controller;
 
-//import fontys.sem3.hpfapi.business.customer.CreateCustomerUseCase;
 import fontys.sem3.hpfapi.business.customer.GetCustomerUseCase;
 import fontys.sem3.hpfapi.business.customer.UpdateCustomerUseCase;
 import fontys.sem3.hpfapi.configuration.security.isauthenticated.IsAuthenticated;
 import fontys.sem3.hpfapi.dto.customer.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,15 +17,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
 public class CustomerController {
-//    private final CreateCustomerUseCase createCustomerUseCase;
     private final GetCustomerUseCase getCustomerUseCase;
     private final UpdateCustomerUseCase updateCustomerUseCase;
-
-//    @PostMapping()
-//    public ResponseEntity<CreateCustomerResponseDTO> createCustomer(@RequestBody @Valid CreateCustomerRequestDTO request) {
-//        CreateCustomerResponseDTO response = createCustomerUseCase.createCustomer(request);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-//    }
 
     @IsAuthenticated
     @RolesAllowed({"CUST"})

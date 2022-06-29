@@ -1,7 +1,6 @@
 package fontys.sem3.hpfapi.controller;
 
 import fontys.sem3.hpfapi.business.donation.CreateDonationUseCase;
-//import fontys.sem3.hpfapi.business.donation.GetDonationUseCase;
 import fontys.sem3.hpfapi.business.donation.GetDonationsUseCase;
 import fontys.sem3.hpfapi.configuration.security.isauthenticated.IsAuthenticated;
 import fontys.sem3.hpfapi.dto.donation.*;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-import java.util.Date;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/donations")
@@ -22,7 +19,6 @@ import java.util.Optional;
 public class DonationController {
     private final CreateDonationUseCase createDonationUseCase;
     private final GetDonationsUseCase getDonationsUseCase;
-//    private final GetDonationUseCase getDonationUseCase;
 
     @PostMapping()
     public ResponseEntity<CreateDonationResponseDTO> createDonation(@RequestBody @Valid CreateDonationRequestDTO request) {
@@ -38,15 +34,4 @@ public class DonationController {
         request.setUserId(userId);
         return ResponseEntity.ok(getDonationsUseCase.getDonations(request));
     }
-
-//    @GetMapping("{id}")
-//    public ResponseEntity<DonationDTO> getDonation(@PathVariable(value = "id") final long id) {
-//        final Optional<DonationDTO> donationOptional = getDonationUseCase.getDonation(id);
-//
-//        if (donationOptional.isEmpty()) {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        return ResponseEntity.ok().body(donationOptional.get());
-//    }
 }

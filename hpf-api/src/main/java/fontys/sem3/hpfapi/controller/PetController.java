@@ -68,13 +68,4 @@ public class PetController {
         updatePetUseCase.updatePetCustomer(request);
         return ResponseEntity.noContent().build();
     }
-
-    @IsAuthenticated
-    @RolesAllowed({"ADMIN"})
-    @PutMapping("{id}/details")
-    public ResponseEntity<PetDTO> updatePetDetails(@PathVariable("id") long id, @RequestBody @Valid UpdatePetDetailsRequestDTO request) {
-        request.setId(id);
-        updatePetUseCase.updatePetDetails(request);
-        return ResponseEntity.noContent().build();
-    }
 }

@@ -1,6 +1,5 @@
 package fontys.sem3.hpfapi.dto.donation;
 
-import fontys.sem3.hpfapi.dto.donation.DonationDTO;
 import lombok.*;
 
 import java.util.List;
