@@ -1,6 +1,5 @@
 package fontys.sem3.hpfapi.business.converter;
 
-import fontys.sem3.hpfapi.business.converter.AdministratorDTOConverter;
 import fontys.sem3.hpfapi.dto.administrator.AdministratorDTO;
 import fontys.sem3.hpfapi.dto.user.UserDTO;
 import fontys.sem3.hpfapi.repository.entity.Administrator;
@@ -11,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AdministratorDTOConverterTest {
+class AdministratorDTOConverterTest {
     @Test
     void shouldConvertAllAdministratorFieldsToDTO() {
         Administrator administratorToBeConverted = Administrator.builder()
