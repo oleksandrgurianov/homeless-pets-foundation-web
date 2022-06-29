@@ -32,7 +32,7 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
             Customer customer = customerOptional.get();
 
             if (requestAccessToken.hasRole("CUST")) {
-                if (!Objects.equals(requestAccessToken.getUserId(), customerOptional.get().getId())) {
+                if (!Objects.equals(requestAccessToken.getUserId(), customerOptional.get().getUser().getId())) {
                     throw new UnauthorizedDataAccessException("USER_ID_NOT_FROM_LOGGED_IN_USER");
                 } else {
                     customer.setStreet(request.getStreet());

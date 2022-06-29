@@ -1,6 +1,5 @@
 package fontys.sem3.hpfapi.dto.pet;
 
-import fontys.sem3.hpfapi.dto.pet.PetDTO;
 import lombok.*;
 
 import java.util.List;
