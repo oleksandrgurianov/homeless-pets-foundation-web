@@ -40,10 +40,9 @@ public class PetController {
     }
 
     @GetMapping("categories/{type}")
-    public ResponseEntity<GetPetsResponseDTO> getPets(@PathVariable("type") String type, @RequestParam(value = "userId", required = false) Long userId) {
+    public ResponseEntity<GetPetsResponseDTO> getPets(@PathVariable("type") String type) {
         GetPetsRequestDTO request = new GetPetsRequestDTO();
         request.setType(type);
-        request.setUserId(userId);
         return ResponseEntity.ok(getPetsUseCase.getPets(request));
     }
 

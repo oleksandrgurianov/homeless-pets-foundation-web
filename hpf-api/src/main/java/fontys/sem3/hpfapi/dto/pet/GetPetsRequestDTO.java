@@ -9,8 +9,6 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetPetsRequestDTO {
-    private Long userId;
-
     @NotBlank
     private String type;
 }

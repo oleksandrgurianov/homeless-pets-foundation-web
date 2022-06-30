@@ -26,7 +26,7 @@ public class UpdatePetUseCaseImpl implements UpdatePetUseCase {
     @Override
     public void updatePetCustomer(UpdatePetCustomerRequestDTO request) {
         if (requestAccessToken.hasRole("CUST")) {
-            Optional<Pet> petOptional = petRepository.findById(request.getId());
+            Optional<Pet> petOptional = petRepository.findByIdAndCustomerIsNull(request.getId());
 
             if (petOptional.isEmpty()) {
                 throw new InvalidPetException("PET_ID_INVALID");

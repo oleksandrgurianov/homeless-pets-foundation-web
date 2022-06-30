@@ -19,14 +19,7 @@ public class GetPetsUseCaseImpl implements GetPetsUseCase {
 
     @Override
     public GetPetsResponseDTO getPets(GetPetsRequestDTO request) {
-        List<Pet> results;
-
-        if (request.getUserId() != null) {
-            results = petRepository.findAllByCustomerUserIdOrderByNameAsc(request.getUserId());
-        } else {
-            results = petRepository.findAllByCustomerIsNullAndTypeOrderByNameAsc(request.getType());
-        }
-
+        List<Pet> results = petRepository.findAllByCustomerIsNullAndTypeOrderByNameAsc(request.getType());
         final GetPetsResponseDTO response = new GetPetsResponseDTO();
         assert results != null;
 
