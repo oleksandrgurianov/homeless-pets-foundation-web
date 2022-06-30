@@ -4,7 +4,6 @@ import fontys.sem3.hpfapi.business.converter.DonationDTOConverter;
 import fontys.sem3.hpfapi.business.donation.GetDonationsUseCase;
 import fontys.sem3.hpfapi.business.exception.UnauthorizedDataAccessException;
 import fontys.sem3.hpfapi.dto.donation.DonationDTO;
-import fontys.sem3.hpfapi.dto.donation.GetDonationsRequestDTO;
 import fontys.sem3.hpfapi.dto.donation.GetDonationsResponseDTO;
 import fontys.sem3.hpfapi.dto.login.AccessTokenDTO;
 import fontys.sem3.hpfapi.repository.DonationRepository;
@@ -21,16 +20,9 @@ public class GetDonationsUseCaseImpl implements GetDonationsUseCase {
     private AccessTokenDTO requestAccessToken;
 
     @Override
-    public GetDonationsResponseDTO getDonations(GetDonationsRequestDTO request) {
+    public GetDonationsResponseDTO getDonations() {
         if (requestAccessToken.hasRole("ADMIN")) {
-            List<Donation> results;
-
-            if (request.getUserId() != null) {
-                results = donationRepository.findAllByCustomerUserIdOrderByDateOfReceiptDesc(request.getUserId());
-            } else {
-                results = donationRepository.findAllByOrderByDateOfReceiptDesc();
-            }
-
+            List<Donation> results = donationRepository.findAllByOrderByDateOfReceiptDesc();
             final GetDonationsResponseDTO response = new GetDonationsResponseDTO();
             List<DonationDTO> donationsDTO = results
                     .stream()

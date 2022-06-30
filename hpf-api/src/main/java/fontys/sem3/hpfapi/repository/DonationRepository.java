@@ -13,11 +13,6 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     Double sumAll();
 
 
-    //Customer
-
-    List<Donation> findAllByCustomerUserIdOrderByDateOfReceiptDesc(Long userId);
-
-
     //Administrator
 
     List<Donation> findAllByOrderByDateOfReceiptDesc();

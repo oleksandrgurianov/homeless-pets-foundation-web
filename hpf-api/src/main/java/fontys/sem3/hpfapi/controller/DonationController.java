@@ -29,9 +29,7 @@ public class DonationController {
     @IsAuthenticated
     @RolesAllowed({"ADMIN"})
     @GetMapping
-    public ResponseEntity<GetDonationsResponseDTO> getDonations(@RequestParam(value = "userId", required = false) Long userId) {
-        GetDonationsRequestDTO request = new GetDonationsRequestDTO();
-        request.setUserId(userId);
-        return ResponseEntity.ok(getDonationsUseCase.getDonations(request));
+    public ResponseEntity<GetDonationsResponseDTO> getDonations() {
+        return ResponseEntity.ok(getDonationsUseCase.getDonations());
     }
 }
