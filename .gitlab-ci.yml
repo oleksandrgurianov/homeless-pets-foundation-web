@@ -34,6 +34,6 @@ cypress:
   stage: cypress
   script:
     - cd hpf-react
-    - cypress run --stacktrace
+    - cypress run
 
 
