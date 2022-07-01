@@ -2,7 +2,6 @@ package fontys.sem3.hpfapi.controller;
 
 import fontys.sem3.hpfapi.business.petPicture.CreatePetPictureUseCase;
 import fontys.sem3.hpfapi.business.petPicture.GetPetPicturesUseCase;
-import fontys.sem3.hpfapi.dto.pet.*;
 import fontys.sem3.hpfapi.dto.petPicture.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

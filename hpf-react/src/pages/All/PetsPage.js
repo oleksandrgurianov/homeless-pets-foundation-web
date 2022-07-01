@@ -60,16 +60,16 @@ const PetsPage = () => {
     }, [pets, search, sort]);
 
     return (
-        <>
+        <div id={'container'}>
             <div className={'Header'}>
                 <h1>Pets</h1>
                 {(auth?.role === 'ADMIN') &&
                     <Link to='/pets/addPet'><FontAwesomeIcon className='add-icon' icon={faCirclePlus}/></Link>
                 }
-                <input className={'header-search'} type={'text'} placeholder={'Search'}
+                <input id={'search'} className={'header-search'} type={'text'} placeholder={'Search'}
                        value={search} onChange={e => setSearch(e.target.value)}/>
                 <div className={'header-dropdown'}>
-                    <select onChange={e => setSort(e.target.value)}>
+                    <select id={'sort'} onChange={e => setSort(e.target.value)}>
                         <option value={'nameAsc'}>Name &uarr;</option>
                         <option value={'nameDesc'}>Name &darr;</option>
                         <option value={'adoptionFeeAsc'}>Adoption Fee &uarr;</option>
@@ -102,7 +102,7 @@ const PetsPage = () => {
                 )) : (
                 <img className={"Loading"} src={loading} alt={'loading gif'}/>
             )}
-        </>
+        </div>
     )
 }
 
