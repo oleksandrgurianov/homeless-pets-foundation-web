@@ -35,7 +35,7 @@ cypress:
   stage: cypress
   script:
     - npm ci
-    - npm run start:ci &
+    - npm run start:ci "&"
     - npm run e2e
 
 
