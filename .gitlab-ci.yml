@@ -6,6 +6,7 @@ stages:
   - build
   - test
   - sonar
+  - cypress
 
 build:
   stage: build
@@ -24,10 +25,15 @@ sonar:
   stage: sonar
   only:
     - main
-  when: manual
   allow_failure: true
   script:
     - cd hpf-api
     - ./gradlew sonarqube --stacktrace
+
+cypress:
+  stage: cypress
+  script:
+    - cd hpf-react
+    - cypress run --stacktrace
 
 
