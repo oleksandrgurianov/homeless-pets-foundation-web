@@ -35,8 +35,6 @@ cypress:
   stage: cypress
   script:
     - cd hpf-react
-    - npm ci
-    - npm run start:ci "&"
-    - npm run e2e
+    - ./package.json test --stacktrace
 
 
