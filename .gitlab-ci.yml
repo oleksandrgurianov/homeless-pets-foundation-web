@@ -31,9 +31,11 @@ sonar:
     - ./gradlew sonarqube --stacktrace
 
 cypress:
+  image: node:latest
   stage: cypress
   script:
-    - cd hpf-react
-    - cypress run
+    - npm ci
+    - npm run start:ci &
+    - npm run e2e
 
 
