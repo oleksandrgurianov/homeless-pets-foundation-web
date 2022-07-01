@@ -3,10 +3,10 @@ before_script:
   - $env:Path = $env:JAVA_HOME + '/bin;' + $env:Path
 
 stages:
+  - cypress
   - build
   - test
   - sonar
-  - cypress
 
 build:
   stage: build
@@ -36,7 +36,7 @@ cypress:
   script:
     - cd hpf-react
     - npm ci
-    - npm run start:ci &
+    - npm run start:ci "&"
     - npm run e2e
 
 
