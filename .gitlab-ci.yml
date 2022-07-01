@@ -36,7 +36,7 @@ cypress:
   script:
     - cd hpf-react
     - npm ci
-    - npm run start:ci &
+    - npm run start:ci "&"
     - npx cypress run --browser chrome
 
 
