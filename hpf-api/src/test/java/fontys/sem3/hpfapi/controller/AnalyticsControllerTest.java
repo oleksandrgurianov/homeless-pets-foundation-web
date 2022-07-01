@@ -43,7 +43,11 @@ class AnalyticsControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", APPLICATION_JSON_VALUE))
                 .andExpect(content().json("""
-                            {"petsAdoptedTotal":1,"customersSatisfiedTotal":1,"donationsReceivedTotal":289.49}
+                        {
+                           "petsAdoptedTotal":1,
+                           "customersSatisfiedTotal":1,
+                           "donationsReceivedTotal":289.49
+                        }
                         """));
 
         verify(getAnalyticsUseCase).getAnalytics();
