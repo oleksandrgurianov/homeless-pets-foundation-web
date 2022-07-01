@@ -31,10 +31,12 @@ sonar:
     - ./gradlew sonarqube --stacktrace
 
 cypress:
-  image: node:latest
+  image: cypress/browsers:node12.14.1-chrome85-ff81
   stage: cypress
   script:
     - cd hpf-react
-    - ./package.json test --stacktrace
+    - npm ci
+    - npm run start:ci &
+    - npx cypress run --browser chrome
 
 
