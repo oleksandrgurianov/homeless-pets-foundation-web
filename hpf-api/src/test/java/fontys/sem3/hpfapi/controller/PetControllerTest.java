@@ -62,7 +62,7 @@ class PetControllerTest {
                 .build();
         when(createPetUseCase.createPet(expectedRequest))
                 .thenReturn(CreatePetResponseDTO.builder()
-                        .petId(10L)
+                        .petId(1L)
                         .build());
 
         mockMvc.perform(post("/pets")
@@ -86,7 +86,7 @@ class PetControllerTest {
                 .andExpect(header().string("Content-Type", APPLICATION_JSON_VALUE))
                 .andExpect(content().json("""
                         {
-                            "petId": 10
+                            "petId": 1
                         }
                         """));
 
@@ -105,7 +105,7 @@ class PetControllerTest {
 
     @Test
     @WithMockUser(username = "admin@hpf.com", roles = {"ADMIN"})
-    void getPets_shouldReturn200WithPetsList_WhenTypeFilterProvided1() throws Exception {
+    void getPets_shouldReturn200WithPetsList1() throws Exception {
         GetPetsResponseDTO responseDTO = GetPetsResponseDTO.builder()
                 .pets(List.of(
                         PetDTO.builder()
@@ -183,7 +183,7 @@ class PetControllerTest {
 
     @Test
     @WithMockUser(username = "cust1@gmail.com", roles = {"CUST"})
-    void getPets_shouldReturn200WithPetsList_WhenTypeFilterProvided2() throws Exception {
+    void getPets_shouldReturn200WithPetsList2() throws Exception {
         GetPetsResponseDTO responseDTO = GetPetsResponseDTO.builder()
                 .pets(List.of(
                         PetDTO.builder()
