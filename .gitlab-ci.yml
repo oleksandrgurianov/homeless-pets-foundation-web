@@ -6,7 +6,6 @@ stages:
   - build
   - test
   - sonar
-  - cypress
 
 build:
   stage: build
@@ -29,11 +28,5 @@ sonar:
   script:
     - cd hpf-api
     - ./gradlew sonarqube --stacktrace
-
-cypress:
-  stage: cypress
-  script:
-    - cd hpf-react
-    - cypress run --stacktrace
 
 
