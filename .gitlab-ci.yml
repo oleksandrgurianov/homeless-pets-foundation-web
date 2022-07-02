@@ -3,7 +3,6 @@ before_script:
   - $env:Path = $env:JAVA_HOME + '/bin;' + $env:Path
 
 stages:
-  - cypress
   - build
   - test
   - sonar
